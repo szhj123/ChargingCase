@@ -1,0 +1,44 @@
+/*背景颜色*/
+QWidget#centralwidget
+{
+    border-image:url(:/images/background.png);
+}
+
+QLabel#labelLogoPic
+{
+    border-image:url(:/images/tws.png);
+}
+
+QLabel#labelLogoText
+{
+    color: rgb(50, 254, 255)
+}
+
+/*QTabWidget 的样式*/
+QTabWidget::pane
+{
+    top:10px;
+    border: none;
+}
+/*个性推荐*/
+QTabBar::tab
+{
+    background-color:rgb(240,240,240);
+    border-bottom: 3px solid rgb(255,255,255);
+    font-family:"微软雅黑";
+    font-size:12px;
+    padding-left:5px;
+    padding-right:5px;
+    min-width: 55px;
+    min-height:20px;
+}
+
+QTabBar::tab:selected
+{
+    border-bottom: 3px solid rgb(236,65,65);
+    color: rgb(55,55,55);
+	background-color:rgb(255,255,255);
+    font-size:12px;
+    font-weight: bold;
+}
+
