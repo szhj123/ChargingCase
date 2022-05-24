@@ -3,5 +3,8 @@
         <file>images/background.png</file>
         <file>images/tws.png</file>
         <file>my.qss</file>
+        <file>images/add_pic.png</file>
+        <file>images/close.png</file>
+        <file>images/minimize.png</file>
     </qresource>
 </RCC>

@@ -11,10 +11,17 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,9 +30,82 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QWidget *widget;
+    QWidget *widget_logo;
     QLabel *labelLogoText;
+    QPushButton *pushButton_close;
+    QPushButton *pushButton_min;
+    QLabel *label_28;
+    QLabel *label_29;
+    QLabel *label_30;
+    QLabel *label_31;
     QLabel *labelLogoPic;
+    QTabWidget *tabWidget;
+    QWidget *tab_3;
+    QLabel *label_8;
+    QComboBox *comboBox_7;
+    QWidget *widget_2;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_9;
+    QComboBox *comboBox_8;
+    QLabel *label_10;
+    QLineEdit *lineEdit;
+    QLabel *label_18;
+    QLabel *label_11;
+    QLineEdit *lineEdit_2;
+    QLabel *label_19;
+    QWidget *widget_3;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_12;
+    QComboBox *comboBox_9;
+    QLabel *label_13;
+    QLineEdit *lineEdit_3;
+    QLabel *label_20;
+    QLabel *label_14;
+    QLineEdit *lineEdit_4;
+    QLabel *label_21;
+    QWidget *widget_4;
+    QWidget *horizontalLayoutWidget_3;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_15;
+    QComboBox *comboBox_10;
+    QLabel *label_16;
+    QLineEdit *lineEdit_5;
+    QLabel *label_22;
+    QLabel *label_17;
+    QLineEdit *lineEdit_6;
+    QLabel *label_23;
+    QWidget *tab;
+    QLabel *label_24;
+    QLineEdit *lineEdit_7;
+    QPushButton *pushButton_2;
+    QLabel *label_25;
+    QLineEdit *lineEdit_8;
+    QPushButton *pushButton_3;
+    QWidget *tab_4;
+    QPushButton *pushButton_4;
+    QLineEdit *lineEdit_9;
+    QPushButton *pushButton_5;
+    QLabel *label_26;
+    QLabel *label_27;
+    QGroupBox *groupBoxSerial;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout;
+    QComboBox *comboBox;
+    QLabel *label_5;
+    QComboBox *comboBox_5;
+    QLabel *label;
+    QComboBox *comboBox_2;
+    QLabel *label_3;
+    QComboBox *comboBox_3;
+    QComboBox *comboBox_4;
+    QLabel *label_4;
+    QLabel *label_2;
+    QLabel *label_6;
+    QComboBox *comboBox_6;
+    QPushButton *pushButton;
+    QLabel *label_7;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -33,29 +113,387 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(720, 480);
-        MainWindow->setMinimumSize(QSize(720, 480));
-        MainWindow->setMaximumSize(QSize(720, 480));
+        MainWindow->resize(640, 400);
+        MainWindow->setMinimumSize(QSize(640, 400));
+        MainWindow->setMaximumSize(QSize(640, 400));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(0, 0, 641, 60));
-        widget->setMaximumSize(QSize(720, 16777215));
-        labelLogoText = new QLabel(widget);
+        widget_logo = new QWidget(centralwidget);
+        widget_logo->setObjectName(QString::fromUtf8("widget_logo"));
+        widget_logo->setGeometry(QRect(0, 0, 640, 35));
+        widget_logo->setMaximumSize(QSize(640, 60));
+        labelLogoText = new QLabel(widget_logo);
         labelLogoText->setObjectName(QString::fromUtf8("labelLogoText"));
-        labelLogoText->setGeometry(QRect(90, 0, 180, 60));
+        labelLogoText->setGeometry(QRect(80, 2, 341, 31));
         QFont font;
         font.setFamily(QString::fromUtf8("MV Boli"));
         font.setPointSize(14);
         labelLogoText->setFont(font);
-        labelLogoPic = new QLabel(widget);
+        pushButton_close = new QPushButton(widget_logo);
+        pushButton_close->setObjectName(QString::fromUtf8("pushButton_close"));
+        pushButton_close->setGeometry(QRect(610, 10, 21, 20));
+        pushButton_min = new QPushButton(widget_logo);
+        pushButton_min->setObjectName(QString::fromUtf8("pushButton_min"));
+        pushButton_min->setGeometry(QRect(580, 10, 21, 20));
+        label_28 = new QLabel(widget_logo);
+        label_28->setObjectName(QString::fromUtf8("label_28"));
+        label_28->setGeometry(QRect(380, 0, 31, 41));
+        label_28->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
+        label_29 = new QLabel(widget_logo);
+        label_29->setObjectName(QString::fromUtf8("label_29"));
+        label_29->setGeometry(QRect(410, 10, 41, 21));
+        label_29->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
+        label_30 = new QLabel(widget_logo);
+        label_30->setObjectName(QString::fromUtf8("label_30"));
+        label_30->setGeometry(QRect(460, 0, 31, 41));
+        label_30->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
+        label_31 = new QLabel(widget_logo);
+        label_31->setObjectName(QString::fromUtf8("label_31"));
+        label_31->setGeometry(QRect(490, 10, 41, 21));
+        label_31->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
+        labelLogoPic = new QLabel(widget_logo);
         labelLogoPic->setObjectName(QString::fromUtf8("labelLogoPic"));
-        labelLogoPic->setGeometry(QRect(10, 10, 71, 41));
+        labelLogoPic->setGeometry(QRect(10, 2, 61, 31));
+        tabWidget = new QTabWidget(centralwidget);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setGeometry(QRect(160, 50, 471, 311));
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        label_8 = new QLabel(tab_3);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(10, 10, 61, 20));
+        label_8->setStyleSheet(QString::fromUtf8("color: rgb(50, 254, 255);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+        label_8->setAlignment(Qt::AlignCenter);
+        comboBox_7 = new QComboBox(tab_3);
+        comboBox_7->setObjectName(QString::fromUtf8("comboBox_7"));
+        comboBox_7->setGeometry(QRect(80, 10, 72, 22));
+        widget_2 = new QWidget(tab_3);
+        widget_2->setObjectName(QString::fromUtf8("widget_2"));
+        widget_2->setGeometry(QRect(10, 50, 451, 41));
+        horizontalLayoutWidget = new QWidget(widget_2);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(0, 0, 451, 41));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label_9 = new QLabel(horizontalLayoutWidget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+
+        horizontalLayout->addWidget(label_9);
+
+        comboBox_8 = new QComboBox(horizontalLayoutWidget);
+        comboBox_8->setObjectName(QString::fromUtf8("comboBox_8"));
+
+        horizontalLayout->addWidget(comboBox_8);
+
+        label_10 = new QLabel(horizontalLayoutWidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout->addWidget(label_10);
+
+        lineEdit = new QLineEdit(horizontalLayoutWidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+
+        horizontalLayout->addWidget(lineEdit);
+
+        label_18 = new QLabel(horizontalLayoutWidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+        label_18->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout->addWidget(label_18);
+
+        label_11 = new QLabel(horizontalLayoutWidget);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout->addWidget(label_11);
+
+        lineEdit_2 = new QLineEdit(horizontalLayoutWidget);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        horizontalLayout->addWidget(lineEdit_2);
+
+        label_19 = new QLabel(horizontalLayoutWidget);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout->addWidget(label_19);
+
+        widget_3 = new QWidget(tab_3);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        widget_3->setGeometry(QRect(10, 110, 451, 41));
+        horizontalLayoutWidget_2 = new QWidget(widget_3);
+        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setGeometry(QRect(0, 0, 451, 41));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_12 = new QLabel(horizontalLayoutWidget_2);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+
+        horizontalLayout_2->addWidget(label_12);
+
+        comboBox_9 = new QComboBox(horizontalLayoutWidget_2);
+        comboBox_9->setObjectName(QString::fromUtf8("comboBox_9"));
+
+        horizontalLayout_2->addWidget(comboBox_9);
+
+        label_13 = new QLabel(horizontalLayoutWidget_2);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_2->addWidget(label_13);
+
+        lineEdit_3 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        horizontalLayout_2->addWidget(lineEdit_3);
+
+        label_20 = new QLabel(horizontalLayoutWidget_2);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
+        label_20->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_2->addWidget(label_20);
+
+        label_14 = new QLabel(horizontalLayoutWidget_2);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_2->addWidget(label_14);
+
+        lineEdit_4 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+
+        horizontalLayout_2->addWidget(lineEdit_4);
+
+        label_21 = new QLabel(horizontalLayoutWidget_2);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+        label_21->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_2->addWidget(label_21);
+
+        widget_4 = new QWidget(tab_3);
+        widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setGeometry(QRect(10, 170, 451, 41));
+        horizontalLayoutWidget_3 = new QWidget(widget_4);
+        horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
+        horizontalLayoutWidget_3->setGeometry(QRect(0, 0, 451, 41));
+        horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        label_15 = new QLabel(horizontalLayoutWidget_3);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+
+        horizontalLayout_3->addWidget(label_15);
+
+        comboBox_10 = new QComboBox(horizontalLayoutWidget_3);
+        comboBox_10->setObjectName(QString::fromUtf8("comboBox_10"));
+
+        horizontalLayout_3->addWidget(comboBox_10);
+
+        label_16 = new QLabel(horizontalLayoutWidget_3);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_3->addWidget(label_16);
+
+        lineEdit_5 = new QLineEdit(horizontalLayoutWidget_3);
+        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
+
+        horizontalLayout_3->addWidget(lineEdit_5);
+
+        label_22 = new QLabel(horizontalLayoutWidget_3);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+        label_22->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_3->addWidget(label_22);
+
+        label_17 = new QLabel(horizontalLayoutWidget_3);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+        label_17->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_3->addWidget(label_17);
+
+        lineEdit_6 = new QLineEdit(horizontalLayoutWidget_3);
+        lineEdit_6->setObjectName(QString::fromUtf8("lineEdit_6"));
+
+        horizontalLayout_3->addWidget(lineEdit_6);
+
+        label_23 = new QLabel(horizontalLayoutWidget_3);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+        label_23->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);"));
+
+        horizontalLayout_3->addWidget(label_23);
+
+        tabWidget->addTab(tab_3, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        label_24 = new QLabel(tab);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+        label_24->setGeometry(QRect(10, 10, 101, 21));
+        label_24->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+        label_24->setAlignment(Qt::AlignCenter);
+        lineEdit_7 = new QLineEdit(tab);
+        lineEdit_7->setObjectName(QString::fromUtf8("lineEdit_7"));
+        lineEdit_7->setGeometry(QRect(120, 10, 51, 21));
+        pushButton_2 = new QPushButton(tab);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(10, 40, 100, 100));
+        pushButton_2->setStyleSheet(QString::fromUtf8("background-image: url(:/images/add_pic.png);"));
+        label_25 = new QLabel(tab);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+        label_25->setGeometry(QRect(10, 150, 101, 21));
+        label_25->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft JhengHei UI\";"));
+        label_25->setAlignment(Qt::AlignCenter);
+        lineEdit_8 = new QLineEdit(tab);
+        lineEdit_8->setObjectName(QString::fromUtf8("lineEdit_8"));
+        lineEdit_8->setGeometry(QRect(120, 150, 51, 21));
+        pushButton_3 = new QPushButton(tab);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(10, 180, 100, 100));
+        pushButton_3->setStyleSheet(QString::fromUtf8("background-image: url(:/images/add_pic.png);"));
+        tabWidget->addTab(tab, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        pushButton_4 = new QPushButton(tab_4);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setGeometry(QRect(19, 30, 71, 31));
+        pushButton_4->setStyleSheet(QString::fromUtf8("color: rgb(50, 245, 255);\n"
+"font: 10pt \"Microsoft YaHei UI\";"));
+        lineEdit_9 = new QLineEdit(tab_4);
+        lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
+        lineEdit_9->setGeometry(QRect(100, 29, 231, 31));
+        pushButton_5 = new QPushButton(tab_4);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setGeometry(QRect(20, 189, 71, 31));
+        pushButton_5->setStyleSheet(QString::fromUtf8("color: rgb(50, 245, 255);\n"
+"font: 10pt \"Microsoft YaHei UI\";"));
+        label_26 = new QLabel(tab_4);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+        label_26->setGeometry(QRect(330, 90, 101, 16));
+        label_26->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 10pt \"Microsoft YaHei UI\";"));
+        label_27 = new QLabel(tab_4);
+        label_27->setObjectName(QString::fromUtf8("label_27"));
+        label_27->setGeometry(QRect(330, 120, 54, 12));
+        tabWidget->addTab(tab_4, QString());
+        groupBoxSerial = new QGroupBox(centralwidget);
+        groupBoxSerial->setObjectName(QString::fromUtf8("groupBoxSerial"));
+        groupBoxSerial->setGeometry(QRect(9, 80, 141, 241));
+        groupBoxSerial->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        groupBoxSerial->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        groupBoxSerial->setFlat(false);
+        groupBoxSerial->setCheckable(false);
+        gridLayoutWidget = new QWidget(groupBoxSerial);
+        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
+        gridLayoutWidget->setGeometry(QRect(10, 20, 121, 171));
+        gridLayout = new QGridLayout(gridLayoutWidget);
+        gridLayout->setSpacing(1);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        comboBox = new QComboBox(gridLayoutWidget);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox, 1, 1, 1, 1);
+
+        label_5 = new QLabel(gridLayoutWidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_5, 4, 0, 1, 1);
+
+        comboBox_5 = new QComboBox(gridLayoutWidget);
+        comboBox_5->setObjectName(QString::fromUtf8("comboBox_5"));
+        comboBox_5->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox_5, 4, 1, 1, 1);
+
+        label = new QLabel(gridLayoutWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label, 0, 0, 1, 1);
+
+        comboBox_2 = new QComboBox(gridLayoutWidget);
+        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
+        comboBox_2->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox_2, 0, 1, 1, 1);
+
+        label_3 = new QLabel(gridLayoutWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_3, 2, 0, 1, 1);
+
+        comboBox_3 = new QComboBox(gridLayoutWidget);
+        comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
+        comboBox_3->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox_3, 2, 1, 1, 1);
+
+        comboBox_4 = new QComboBox(gridLayoutWidget);
+        comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
+        comboBox_4->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox_4, 3, 1, 1, 1);
+
+        label_4 = new QLabel(gridLayoutWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_4, 3, 0, 1, 1);
+
+        label_2 = new QLabel(gridLayoutWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+
+        label_6 = new QLabel(gridLayoutWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setMinimumSize(QSize(0, 22));
+        label_6->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(label_6, 5, 0, 1, 1);
+
+        comboBox_6 = new QComboBox(gridLayoutWidget);
+        comboBox_6->setObjectName(QString::fromUtf8("comboBox_6"));
+        comboBox_6->setMaximumSize(QSize(60, 16777215));
+
+        gridLayout->addWidget(comboBox_6, 5, 1, 1, 1);
+
+        pushButton = new QPushButton(groupBoxSerial);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(20, 200, 101, 31));
+        label_7 = new QLabel(centralwidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(20, 50, 111, 21));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Microsoft JhengHei UI"));
+        font1.setPointSize(12);
+        label_7->setFont(font1);
+        label_7->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        label_7->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 720, 23));
+        menubar->setGeometry(QRect(0, 0, 640, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -65,6 +503,9 @@ public:
 
         retranslateUi(MainWindow);
 
+        tabWidget->setCurrentIndex(2);
+
+
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
@@ -72,7 +513,49 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         labelLogoText->setText(QCoreApplication::translate("MainWindow", "TWS Charging Case", nullptr));
+        pushButton_close->setText(QString());
+        pushButton_min->setText(QString());
+        label_28->setText(QCoreApplication::translate("MainWindow", "\346\270\251\345\272\246:", nullptr));
+        label_29->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
+        label_30->setText(QCoreApplication::translate("MainWindow", "\347\224\265\351\207\217:", nullptr));
+        label_31->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         labelLogoPic->setText(QString());
+        label_8->setText(QCoreApplication::translate("MainWindow", "LED\346\225\260\351\207\217", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "LED1:", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        label_19->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "LED1:", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        label_20->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        label_21->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "LED1:", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        label_22->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        label_23->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        label_24->setText(QCoreApplication::translate("MainWindow", "\351\235\231\346\200\201\345\233\276\347\211\207\346\225\260\351\207\217", nullptr));
+        pushButton_2->setText(QString());
+        label_25->setText(QCoreApplication::translate("MainWindow", "\351\235\231\346\200\201\345\233\276\347\211\207\346\225\260\351\207\217", nullptr));
+        pushButton_3->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "\346\267\273\345\212\240\345\233\272\344\273\266", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "\346\233\264\346\226\260\345\233\272\344\273\266", nullptr));
+        label_26->setText(QCoreApplication::translate("MainWindow", "\345\275\223\345\211\215\345\233\272\344\273\266\347\211\210\346\234\254\345\217\267\357\274\232", nullptr));
+        label_27->setText(QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        groupBoxSerial->setTitle(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\350\256\276\347\275\256", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\345\201\234\346\255\242\344\275\215", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\345\217\267", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "\346\240\241\351\252\214\344\275\215", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\275\215", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\346\263\242\347\211\271\347\216\207", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\346\265\201\346\216\247\345\210\266", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\351\200\232\344\277\241\350\256\276\345\244\207", nullptr));
     } // retranslateUi
 
 };

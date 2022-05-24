@@ -4,6 +4,11 @@ QWidget#centralwidget
     border-image:url(:/images/background.png);
 }
 
+QWidget#widget_logo
+{
+    border-bottom: 1px solid rgb(128,128,128);
+}
+
 QLabel#labelLogoPic
 {
     border-image:url(:/images/tws.png);
@@ -11,20 +16,35 @@ QLabel#labelLogoPic
 
 QLabel#labelLogoText
 {
-    color: rgb(50, 254, 255)
+    color: rgb(50,254,255)
+}
+
+QPushButton#pushButton_min
+{
+    border-image:url(:/images/minimize.png);
+}
+
+QPushButton#pushButton_close
+{
+    border-image:url(:/images/close.png);
+}
+
+QGroupBox#groupBoxSerial
+{
+    border: 1px solid rgb(128,128,128);
 }
 
 /*QTabWidget 的样式*/
 QTabWidget::pane
 {
-    top:10px;
-    border: none;
+    top:5px;
+    border: 1px solid rgb(128,128,128);
 }
 /*个性推荐*/
 QTabBar::tab
 {
-    background-color:rgb(240,240,240);
-    border-bottom: 3px solid rgb(255,255,255);
+    background-color:rgb(128,128,128);
+    border-bottom: 3px solid rgb(128,128,128);
     font-family:"微软雅黑";
     font-size:12px;
     padding-left:5px;
@@ -37,7 +57,7 @@ QTabBar::tab:selected
 {
     border-bottom: 3px solid rgb(236,65,65);
     color: rgb(55,55,55);
-	background-color:rgb(255,255,255);
+    background-color:rgb(255,255,255);
     font-size:12px;
     font-weight: bold;
 }
