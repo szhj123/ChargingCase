@@ -78,10 +78,9 @@ public:
     QLabel *label_23;
     QWidget *tab;
     QLabel *label_24;
-    QLineEdit *lineEdit_7;
-    QPushButton *pushButton_2;
-    QLabel *label_25;
-    QLineEdit *lineEdit_8;
+    QLineEdit *lineEdit_PngNum;
+    QLabel *label_png1;
+    QPushButton *btnPng1;
     QPushButton *pushButton_3;
     QWidget *tab_4;
     QPushButton *pushButton_4;
@@ -92,19 +91,20 @@ public:
     QGroupBox *groupBoxSerial;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QComboBox *comboBox;
-    QLabel *label_5;
-    QComboBox *comboBox_5;
+    QComboBox *boxBaudRate;
+    QLabel *labelStopBits;
+    QComboBox *boxStopBits;
+    QLabel *labelPortName;
+    QComboBox *boxPortName;
+    QLabel *labelDataBits;
+    QComboBox *boxDataBits;
+    QComboBox *boxParity;
+    QLabel *labelParity;
+    QLabel *labelBaudRate;
+    QLabel *labelFlowControl;
+    QComboBox *boxFlowControl;
+    QPushButton *btnSerialOpen;
     QLabel *label;
-    QComboBox *comboBox_2;
-    QLabel *label_3;
-    QComboBox *comboBox_3;
-    QComboBox *comboBox_4;
-    QLabel *label_4;
-    QLabel *label_2;
-    QLabel *label_6;
-    QComboBox *comboBox_6;
-    QPushButton *pushButton;
     QLabel *label_7;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -346,26 +346,19 @@ public:
         label_24->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 10pt \"Microsoft JhengHei UI\";"));
         label_24->setAlignment(Qt::AlignCenter);
-        lineEdit_7 = new QLineEdit(tab);
-        lineEdit_7->setObjectName(QString::fromUtf8("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(120, 10, 51, 21));
-        pushButton_2 = new QPushButton(tab);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(10, 40, 100, 100));
-        pushButton_2->setStyleSheet(QString::fromUtf8("background-image: url(:/images/add_pic.png);"));
-        label_25 = new QLabel(tab);
-        label_25->setObjectName(QString::fromUtf8("label_25"));
-        label_25->setGeometry(QRect(10, 150, 101, 21));
-        label_25->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 10pt \"Microsoft JhengHei UI\";"));
-        label_25->setAlignment(Qt::AlignCenter);
-        lineEdit_8 = new QLineEdit(tab);
-        lineEdit_8->setObjectName(QString::fromUtf8("lineEdit_8"));
-        lineEdit_8->setGeometry(QRect(120, 150, 51, 21));
+        lineEdit_PngNum = new QLineEdit(tab);
+        lineEdit_PngNum->setObjectName(QString::fromUtf8("lineEdit_PngNum"));
+        lineEdit_PngNum->setGeometry(QRect(120, 10, 51, 21));
+        label_png1 = new QLabel(tab);
+        label_png1->setObjectName(QString::fromUtf8("label_png1"));
+        label_png1->setGeometry(QRect(10, 40, 100, 100));
+        label_png1->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        btnPng1 = new QPushButton(tab);
+        btnPng1->setObjectName(QString::fromUtf8("btnPng1"));
+        btnPng1->setGeometry(QRect(10, 150, 80, 20));
         pushButton_3 = new QPushButton(tab);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(10, 180, 100, 100));
-        pushButton_3->setStyleSheet(QString::fromUtf8("background-image: url(:/images/add_pic.png);"));
+        pushButton_3->setGeometry(QRect(100, 150, 80, 20));
         tabWidget->addTab(tab, QString());
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
@@ -405,82 +398,117 @@ public:
         gridLayout->setSpacing(1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        comboBox = new QComboBox(gridLayoutWidget);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setMaximumSize(QSize(60, 16777215));
+        boxBaudRate = new QComboBox(gridLayoutWidget);
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->addItem(QString());
+        boxBaudRate->setObjectName(QString::fromUtf8("boxBaudRate"));
+        boxBaudRate->setMaximumSize(QSize(60, 16777215));
+        boxBaudRate->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
-        gridLayout->addWidget(comboBox, 1, 1, 1, 1);
+        gridLayout->addWidget(boxBaudRate, 1, 1, 1, 1);
 
-        label_5 = new QLabel(gridLayoutWidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setAlignment(Qt::AlignCenter);
+        labelStopBits = new QLabel(gridLayoutWidget);
+        labelStopBits->setObjectName(QString::fromUtf8("labelStopBits"));
+        labelStopBits->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addWidget(label_5, 4, 0, 1, 1);
+        gridLayout->addWidget(labelStopBits, 4, 0, 1, 1);
 
-        comboBox_5 = new QComboBox(gridLayoutWidget);
-        comboBox_5->setObjectName(QString::fromUtf8("comboBox_5"));
-        comboBox_5->setMaximumSize(QSize(60, 16777215));
+        boxStopBits = new QComboBox(gridLayoutWidget);
+        boxStopBits->addItem(QString());
+        boxStopBits->addItem(QString());
+        boxStopBits->addItem(QString());
+        boxStopBits->setObjectName(QString::fromUtf8("boxStopBits"));
+        boxStopBits->setMaximumSize(QSize(60, 16777215));
+        boxStopBits->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
-        gridLayout->addWidget(comboBox_5, 4, 1, 1, 1);
+        gridLayout->addWidget(boxStopBits, 4, 1, 1, 1);
 
-        label = new QLabel(gridLayoutWidget);
+        labelPortName = new QLabel(gridLayoutWidget);
+        labelPortName->setObjectName(QString::fromUtf8("labelPortName"));
+        labelPortName->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelPortName, 0, 0, 1, 1);
+
+        boxPortName = new QComboBox(gridLayoutWidget);
+        boxPortName->setObjectName(QString::fromUtf8("boxPortName"));
+        boxPortName->setMaximumSize(QSize(60, 16777215));
+        boxPortName->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        gridLayout->addWidget(boxPortName, 0, 1, 1, 1);
+
+        labelDataBits = new QLabel(gridLayoutWidget);
+        labelDataBits->setObjectName(QString::fromUtf8("labelDataBits"));
+        labelDataBits->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelDataBits, 2, 0, 1, 1);
+
+        boxDataBits = new QComboBox(gridLayoutWidget);
+        boxDataBits->addItem(QString());
+        boxDataBits->addItem(QString());
+        boxDataBits->addItem(QString());
+        boxDataBits->addItem(QString());
+        boxDataBits->addItem(QString());
+        boxDataBits->setObjectName(QString::fromUtf8("boxDataBits"));
+        boxDataBits->setMaximumSize(QSize(60, 16777215));
+        boxDataBits->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        gridLayout->addWidget(boxDataBits, 2, 1, 1, 1);
+
+        boxParity = new QComboBox(gridLayoutWidget);
+        boxParity->addItem(QString());
+        boxParity->addItem(QString());
+        boxParity->addItem(QString());
+        boxParity->addItem(QString());
+        boxParity->setObjectName(QString::fromUtf8("boxParity"));
+        boxParity->setMaximumSize(QSize(60, 16777215));
+        boxParity->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        gridLayout->addWidget(boxParity, 3, 1, 1, 1);
+
+        labelParity = new QLabel(gridLayoutWidget);
+        labelParity->setObjectName(QString::fromUtf8("labelParity"));
+        labelParity->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelParity, 3, 0, 1, 1);
+
+        labelBaudRate = new QLabel(gridLayoutWidget);
+        labelBaudRate->setObjectName(QString::fromUtf8("labelBaudRate"));
+        labelBaudRate->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelBaudRate, 1, 0, 1, 1);
+
+        labelFlowControl = new QLabel(gridLayoutWidget);
+        labelFlowControl->setObjectName(QString::fromUtf8("labelFlowControl"));
+        labelFlowControl->setMinimumSize(QSize(0, 22));
+        labelFlowControl->setAlignment(Qt::AlignCenter);
+
+        gridLayout->addWidget(labelFlowControl, 5, 0, 1, 1);
+
+        boxFlowControl = new QComboBox(gridLayoutWidget);
+        boxFlowControl->addItem(QString());
+        boxFlowControl->addItem(QString());
+        boxFlowControl->addItem(QString());
+        boxFlowControl->setObjectName(QString::fromUtf8("boxFlowControl"));
+        boxFlowControl->setMaximumSize(QSize(60, 16777215));
+        boxFlowControl->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        gridLayout->addWidget(boxFlowControl, 5, 1, 1, 1);
+
+        btnSerialOpen = new QPushButton(groupBoxSerial);
+        btnSerialOpen->setObjectName(QString::fromUtf8("btnSerialOpen"));
+        btnSerialOpen->setGeometry(QRect(60, 200, 71, 31));
+        btnSerialOpen->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        label = new QLabel(groupBoxSerial);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label, 0, 0, 1, 1);
-
-        comboBox_2 = new QComboBox(gridLayoutWidget);
-        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
-        comboBox_2->setMaximumSize(QSize(60, 16777215));
-
-        gridLayout->addWidget(comboBox_2, 0, 1, 1, 1);
-
-        label_3 = new QLabel(gridLayoutWidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label_3, 2, 0, 1, 1);
-
-        comboBox_3 = new QComboBox(gridLayoutWidget);
-        comboBox_3->setObjectName(QString::fromUtf8("comboBox_3"));
-        comboBox_3->setMaximumSize(QSize(60, 16777215));
-
-        gridLayout->addWidget(comboBox_3, 2, 1, 1, 1);
-
-        comboBox_4 = new QComboBox(gridLayoutWidget);
-        comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setMaximumSize(QSize(60, 16777215));
-
-        gridLayout->addWidget(comboBox_4, 3, 1, 1, 1);
-
-        label_4 = new QLabel(gridLayoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label_4, 3, 0, 1, 1);
-
-        label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
-
-        label_6 = new QLabel(gridLayoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setMinimumSize(QSize(0, 22));
-        label_6->setAlignment(Qt::AlignCenter);
-
-        gridLayout->addWidget(label_6, 5, 0, 1, 1);
-
-        comboBox_6 = new QComboBox(gridLayoutWidget);
-        comboBox_6->setObjectName(QString::fromUtf8("comboBox_6"));
-        comboBox_6->setMaximumSize(QSize(60, 16777215));
-
-        gridLayout->addWidget(comboBox_6, 5, 1, 1, 1);
-
-        pushButton = new QPushButton(groupBoxSerial);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(20, 200, 101, 31));
+        label->setGeometry(QRect(25, 207, 16, 16));
         label_7 = new QLabel(centralwidget);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setGeometry(QRect(20, 50, 111, 21));
@@ -503,7 +531,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -538,9 +566,9 @@ public:
         label_23->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "\351\235\231\346\200\201\345\233\276\347\211\207\346\225\260\351\207\217", nullptr));
-        pushButton_2->setText(QString());
-        label_25->setText(QCoreApplication::translate("MainWindow", "\351\235\231\346\200\201\345\233\276\347\211\207\346\225\260\351\207\217", nullptr));
-        pushButton_3->setText(QString());
+        label_png1->setText(QString());
+        btnPng1->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\346\267\273\345\212\240\345\233\272\344\273\266", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\346\233\264\346\226\260\345\233\272\344\273\266", nullptr));
@@ -548,13 +576,47 @@ public:
         label_27->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         groupBoxSerial->setTitle(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\350\256\276\347\275\256", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "\345\201\234\346\255\242\344\275\215", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\345\217\267", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "\346\240\241\351\252\214\344\275\215", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\275\215", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "\346\263\242\347\211\271\347\216\207", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "\346\265\201\346\216\247\345\210\266", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        boxBaudRate->setItemText(0, QCoreApplication::translate("MainWindow", "1200", nullptr));
+        boxBaudRate->setItemText(1, QCoreApplication::translate("MainWindow", "2400", nullptr));
+        boxBaudRate->setItemText(2, QCoreApplication::translate("MainWindow", "4800", nullptr));
+        boxBaudRate->setItemText(3, QCoreApplication::translate("MainWindow", "9600", nullptr));
+        boxBaudRate->setItemText(4, QCoreApplication::translate("MainWindow", "19200", nullptr));
+        boxBaudRate->setItemText(5, QCoreApplication::translate("MainWindow", "38400", nullptr));
+        boxBaudRate->setItemText(6, QCoreApplication::translate("MainWindow", "57600", nullptr));
+        boxBaudRate->setItemText(7, QCoreApplication::translate("MainWindow", "115200", nullptr));
+        boxBaudRate->setItemText(8, QCoreApplication::translate("MainWindow", "128000", nullptr));
+        boxBaudRate->setItemText(9, QCoreApplication::translate("MainWindow", "230400", nullptr));
+
+        boxBaudRate->setCurrentText(QCoreApplication::translate("MainWindow", "9600", nullptr));
+        labelStopBits->setText(QCoreApplication::translate("MainWindow", "\345\201\234\346\255\242\344\275\215", nullptr));
+        boxStopBits->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
+        boxStopBits->setItemText(1, QCoreApplication::translate("MainWindow", "1.5", nullptr));
+        boxStopBits->setItemText(2, QCoreApplication::translate("MainWindow", "2", nullptr));
+
+        labelPortName->setText(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\345\217\267", nullptr));
+        boxPortName->setCurrentText(QString());
+        labelDataBits->setText(QCoreApplication::translate("MainWindow", "\346\240\241\351\252\214\344\275\215", nullptr));
+        boxDataBits->setItemText(0, QCoreApplication::translate("MainWindow", "NONE", nullptr));
+        boxDataBits->setItemText(1, QCoreApplication::translate("MainWindow", "Even\345\201\266", nullptr));
+        boxDataBits->setItemText(2, QCoreApplication::translate("MainWindow", "Odd\345\245\207", nullptr));
+        boxDataBits->setItemText(3, QCoreApplication::translate("MainWindow", "Space", nullptr));
+        boxDataBits->setItemText(4, QCoreApplication::translate("MainWindow", "Mark", nullptr));
+
+        boxParity->setItemText(0, QCoreApplication::translate("MainWindow", "5", nullptr));
+        boxParity->setItemText(1, QCoreApplication::translate("MainWindow", "6", nullptr));
+        boxParity->setItemText(2, QCoreApplication::translate("MainWindow", "7", nullptr));
+        boxParity->setItemText(3, QCoreApplication::translate("MainWindow", "8", nullptr));
+
+        boxParity->setCurrentText(QCoreApplication::translate("MainWindow", "8", nullptr));
+        labelParity->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\275\215", nullptr));
+        labelBaudRate->setText(QCoreApplication::translate("MainWindow", "\346\263\242\347\211\271\347\216\207", nullptr));
+        labelFlowControl->setText(QCoreApplication::translate("MainWindow", "\346\265\201\346\216\247\345\210\266", nullptr));
+        boxFlowControl->setItemText(0, QCoreApplication::translate("MainWindow", "No", nullptr));
+        boxFlowControl->setItemText(1, QCoreApplication::translate("MainWindow", "Hardware", nullptr));
+        boxFlowControl->setItemText(2, QCoreApplication::translate("MainWindow", "Software", nullptr));
+
+        btnSerialOpen->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        label->setText(QString());
         label_7->setText(QCoreApplication::translate("MainWindow", "\351\200\232\344\277\241\350\256\276\345\244\207", nullptr));
     } // retranslateUi
 

@@ -178,7 +178,7 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -485,7 +485,7 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="lineEdit_PngNum">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -495,7 +495,7 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QLabel" name="label_png1">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -505,56 +505,36 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-image: url(:/images/add_pic.png);</string>
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_25">
+     <widget class="QPushButton" name="btnPng1">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>150</y>
-        <width>101</width>
-        <height>21</height>
+        <width>80</width>
+        <height>20</height>
        </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(240, 240, 240);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
       </property>
       <property name="text">
-       <string>静态图片数量</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_8">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>150</y>
-        <width>51</width>
-        <height>21</height>
-       </rect>
+       <string>PushButton</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>100</width>
-        <height>100</height>
+        <x>100</x>
+        <y>150</y>
+        <width>80</width>
+        <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-image: url(:/images/add_pic.png);</string>
-      </property>
       <property name="text">
-       <string/>
+       <string>PushButton</string>
       </property>
      </widget>
     </widget>
@@ -676,17 +656,73 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <number>1</number>
       </property>
       <item row="1" column="1">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="boxBaudRate">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="currentText">
+         <string>9600</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>1200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2400</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4800</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>9600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>19200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>38400</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>57600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>115200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>128000</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>230400</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="labelStopBits">
         <property name="text">
          <string>停止位</string>
         </property>
@@ -696,17 +732,35 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QComboBox" name="comboBox_5">
+       <widget class="QComboBox" name="boxStopBits">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1.5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="labelPortName">
         <property name="text">
          <string>串口号</string>
         </property>
@@ -716,17 +770,23 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox_2">
+       <widget class="QComboBox" name="boxPortName">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="currentText">
+         <string/>
+        </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="labelDataBits">
         <property name="text">
          <string>校验位</string>
         </property>
@@ -736,27 +796,81 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox_3">
+       <widget class="QComboBox" name="boxDataBits">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>NONE</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Even偶</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Odd奇</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Space</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mark</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QComboBox" name="comboBox_4">
+       <widget class="QComboBox" name="boxParity">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="currentText">
+         <string>8</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>6</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>7</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>8</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="labelParity">
         <property name="text">
          <string>数据位</string>
         </property>
@@ -766,7 +880,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="labelBaudRate">
         <property name="text">
          <string>波特率</string>
         </property>
@@ -776,7 +890,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="5" column="0">
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="labelFlowControl">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -792,28 +906,62 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QComboBox" name="comboBox_6">
+       <widget class="QComboBox" name="boxFlowControl">
         <property name="maximumSize">
          <size>
           <width>60</width>
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>No</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Hardware</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Software</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnSerialOpen">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>60</x>
        <y>200</y>
-       <width>101</width>
+       <width>71</width>
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>打开</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>207</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
