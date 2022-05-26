@@ -18,10 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    myled.cpp \
+    myserialport.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    myled.h \
+    myserialport.h
 
 FORMS += \
     mainwindow.ui

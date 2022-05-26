@@ -22,6 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -40,69 +41,57 @@ public:
     QLabel *label_31;
     QLabel *labelLogoPic;
     QTabWidget *tabWidget;
-    QWidget *tab1;
+    QWidget *tab_3;
     QLabel *label_8;
-    QComboBox *cbxLedNum;
-    QWidget *ledWidget2;
+    QComboBox *comboBox_7;
+    QWidget *widget_2;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_9;
+    QComboBox *comboBox_8;
+    QLabel *label_10;
+    QLineEdit *lineEdit;
+    QLabel *label_18;
+    QLabel *label_11;
+    QLineEdit *lineEdit_2;
+    QLabel *label_19;
+    QWidget *widget_3;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_12;
-    QComboBox *cbxLed2Mode;
+    QComboBox *comboBox_9;
     QLabel *label_13;
-    QLineEdit *led2OnTime;
+    QLineEdit *lineEdit_3;
     QLabel *label_20;
     QLabel *label_14;
-    QLineEdit *led2OffTime;
+    QLineEdit *lineEdit_4;
     QLabel *label_21;
-    QWidget *ledWidget3;
+    QWidget *widget_4;
     QWidget *horizontalLayoutWidget_3;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_15;
-    QComboBox *cbxLed3Mode;
+    QComboBox *comboBox_10;
     QLabel *label_16;
-    QLineEdit *led3OnTime;
+    QLineEdit *lineEdit_5;
     QLabel *label_22;
     QLabel *label_17;
-    QLineEdit *led3OffTime;
+    QLineEdit *lineEdit_6;
     QLabel *label_23;
-    QWidget *ledWidget1;
-    QWidget *horizontalLayoutWidget_4;
-    QHBoxLayout *horizontalLayout_5;
-    QLabel *label_34;
-    QComboBox *cbxLed1Mode;
-    QLabel *label_35;
-    QLineEdit *led1OnTime;
-    QLabel *label_36;
-    QLabel *label_37;
-    QLineEdit *led1OffTime;
-    QLabel *label_38;
-    QWidget *tab2;
+    QWidget *tab;
     QLabel *label_24;
     QLabel *label_png1;
     QPushButton *btnPng1;
-    QPushButton *pushButton_3;
-    QLabel *label_png1_2;
     QPushButton *btnPng1_2;
-    QPushButton *pushButton_6;
-    QLabel *label_png1_3;
-    QLabel *label_png1_4;
-    QPushButton *btnPng1_3;
-    QPushButton *pushButton_7;
-    QPushButton *btnPng1_4;
-    QPushButton *pushButton_8;
-    QLabel *label_png1_5;
-    QLabel *label_png1_6;
-    QPushButton *btnPng1_5;
-    QPushButton *pushButton_9;
-    QPushButton *pushButton_10;
-    QPushButton *btnPng1_6;
-    QWidget *tab3;
+    QWidget *tab_4;
     QPushButton *pushButton_4;
     QLineEdit *lineEdit_9;
     QPushButton *pushButton_5;
     QLabel *label_26;
     QLabel *label_27;
-    QWidget *tab4;
+    QWidget *tab_2;
+    QTextEdit *textRecv;
+    QTextEdit *textSend;
+    QPushButton *btnSend;
     QGroupBox *groupBoxSerial;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
@@ -154,49 +143,109 @@ public:
         label_28->setObjectName(QString::fromUtf8("label_28"));
         label_28->setGeometry(QRect(380, 0, 31, 41));
         label_28->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
         label_29 = new QLabel(widget_logo);
         label_29->setObjectName(QString::fromUtf8("label_29"));
         label_29->setGeometry(QRect(410, 10, 41, 21));
         label_29->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
         label_30 = new QLabel(widget_logo);
         label_30->setObjectName(QString::fromUtf8("label_30"));
         label_30->setGeometry(QRect(460, 0, 31, 41));
         label_30->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
         label_31 = new QLabel(widget_logo);
         label_31->setObjectName(QString::fromUtf8("label_31"));
         label_31->setGeometry(QRect(490, 10, 41, 21));
         label_31->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+"font: 75 10pt \"Microsoft JhengHei UI\";"));
         labelLogoPic = new QLabel(widget_logo);
         labelLogoPic->setObjectName(QString::fromUtf8("labelLogoPic"));
         labelLogoPic->setGeometry(QRect(10, 2, 61, 31));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(170, 50, 460, 321));
-        tabWidget->setMaximumSize(QSize(16777215, 16777215));
-        tab1 = new QWidget();
-        tab1->setObjectName(QString::fromUtf8("tab1"));
-        label_8 = new QLabel(tab1);
+        tabWidget->setGeometry(QRect(160, 50, 471, 311));
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        label_8 = new QLabel(tab_3);
         label_8->setObjectName(QString::fromUtf8("label_8"));
         label_8->setGeometry(QRect(10, 10, 51, 20));
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         label_8->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        cbxLedNum = new QComboBox(tab1);
-        cbxLedNum->addItem(QString());
-        cbxLedNum->addItem(QString());
-        cbxLedNum->addItem(QString());
-        cbxLedNum->setObjectName(QString::fromUtf8("cbxLedNum"));
-        cbxLedNum->setGeometry(QRect(70, 10, 41, 21));
-        cbxLedNum->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+        comboBox_7 = new QComboBox(tab_3);
+        comboBox_7->addItem(QString());
+        comboBox_7->addItem(QString());
+        comboBox_7->addItem(QString());
+        comboBox_7->setObjectName(QString::fromUtf8("comboBox_7"));
+        comboBox_7->setGeometry(QRect(60, 10, 31, 16));
+        widget_2 = new QWidget(tab_3);
+        widget_2->setObjectName(QString::fromUtf8("widget_2"));
+        widget_2->setGeometry(QRect(10, 50, 451, 41));
+        horizontalLayoutWidget = new QWidget(widget_2);
+        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setGeometry(QRect(0, 0, 451, 41));
+        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        label_9 = new QLabel(horizontalLayoutWidget);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
-        ledWidget2 = new QWidget(tab1);
-        ledWidget2->setObjectName(QString::fromUtf8("ledWidget2"));
-        ledWidget2->setGeometry(QRect(10, 110, 451, 41));
-        horizontalLayoutWidget_2 = new QWidget(ledWidget2);
+
+        horizontalLayout->addWidget(label_9);
+
+        comboBox_8 = new QComboBox(horizontalLayoutWidget);
+        comboBox_8->addItem(QString());
+        comboBox_8->addItem(QString());
+        comboBox_8->addItem(QString());
+        comboBox_8->addItem(QString());
+        comboBox_8->setObjectName(QString::fromUtf8("comboBox_8"));
+
+        horizontalLayout->addWidget(comboBox_8);
+
+        label_10 = new QLabel(horizontalLayoutWidget);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+
+        horizontalLayout->addWidget(label_10);
+
+        lineEdit = new QLineEdit(horizontalLayoutWidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+
+        horizontalLayout->addWidget(lineEdit);
+
+        label_18 = new QLabel(horizontalLayoutWidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+        label_18->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+
+        horizontalLayout->addWidget(label_18);
+
+        label_11 = new QLabel(horizontalLayoutWidget);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+
+        horizontalLayout->addWidget(label_11);
+
+        lineEdit_2 = new QLineEdit(horizontalLayoutWidget);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        horizontalLayout->addWidget(lineEdit_2);
+
+        label_19 = new QLabel(horizontalLayoutWidget);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+
+        horizontalLayout->addWidget(label_19);
+
+        widget_3 = new QWidget(tab_3);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        widget_3->setGeometry(QRect(10, 110, 451, 41));
+        horizontalLayoutWidget_2 = new QWidget(widget_3);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
         horizontalLayoutWidget_2->setGeometry(QRect(0, 0, 451, 41));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
@@ -209,18 +258,14 @@ public:
 
         horizontalLayout_2->addWidget(label_12);
 
-        cbxLed2Mode = new QComboBox(horizontalLayoutWidget_2);
-        cbxLed2Mode->addItem(QString());
-        cbxLed2Mode->addItem(QString());
-        cbxLed2Mode->addItem(QString());
-        cbxLed2Mode->addItem(QString());
-        cbxLed2Mode->setObjectName(QString::fromUtf8("cbxLed2Mode"));
-        cbxLed2Mode->setMinimumSize(QSize(60, 0));
-        cbxLed2Mode->setMaximumSize(QSize(60, 16777215));
-        cbxLed2Mode->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+        comboBox_9 = new QComboBox(horizontalLayoutWidget_2);
+        comboBox_9->addItem(QString());
+        comboBox_9->addItem(QString());
+        comboBox_9->addItem(QString());
+        comboBox_9->addItem(QString());
+        comboBox_9->setObjectName(QString::fromUtf8("comboBox_9"));
 
-        horizontalLayout_2->addWidget(cbxLed2Mode);
+        horizontalLayout_2->addWidget(comboBox_9);
 
         label_13 = new QLabel(horizontalLayoutWidget_2);
         label_13->setObjectName(QString::fromUtf8("label_13"));
@@ -229,11 +274,10 @@ public:
 
         horizontalLayout_2->addWidget(label_13);
 
-        led2OnTime = new QLineEdit(horizontalLayoutWidget_2);
-        led2OnTime->setObjectName(QString::fromUtf8("led2OnTime"));
-        led2OnTime->setAlignment(Qt::AlignCenter);
+        lineEdit_3 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
 
-        horizontalLayout_2->addWidget(led2OnTime);
+        horizontalLayout_2->addWidget(lineEdit_3);
 
         label_20 = new QLabel(horizontalLayoutWidget_2);
         label_20->setObjectName(QString::fromUtf8("label_20"));
@@ -249,11 +293,10 @@ public:
 
         horizontalLayout_2->addWidget(label_14);
 
-        led2OffTime = new QLineEdit(horizontalLayoutWidget_2);
-        led2OffTime->setObjectName(QString::fromUtf8("led2OffTime"));
-        led2OffTime->setAlignment(Qt::AlignCenter);
+        lineEdit_4 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
 
-        horizontalLayout_2->addWidget(led2OffTime);
+        horizontalLayout_2->addWidget(lineEdit_4);
 
         label_21 = new QLabel(horizontalLayoutWidget_2);
         label_21->setObjectName(QString::fromUtf8("label_21"));
@@ -262,10 +305,10 @@ public:
 
         horizontalLayout_2->addWidget(label_21);
 
-        ledWidget3 = new QWidget(tab1);
-        ledWidget3->setObjectName(QString::fromUtf8("ledWidget3"));
-        ledWidget3->setGeometry(QRect(10, 180, 451, 41));
-        horizontalLayoutWidget_3 = new QWidget(ledWidget3);
+        widget_4 = new QWidget(tab_3);
+        widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setGeometry(QRect(10, 170, 451, 41));
+        horizontalLayoutWidget_3 = new QWidget(widget_4);
         horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
         horizontalLayoutWidget_3->setGeometry(QRect(0, 0, 451, 41));
         horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
@@ -278,18 +321,14 @@ public:
 
         horizontalLayout_3->addWidget(label_15);
 
-        cbxLed3Mode = new QComboBox(horizontalLayoutWidget_3);
-        cbxLed3Mode->addItem(QString());
-        cbxLed3Mode->addItem(QString());
-        cbxLed3Mode->addItem(QString());
-        cbxLed3Mode->addItem(QString());
-        cbxLed3Mode->setObjectName(QString::fromUtf8("cbxLed3Mode"));
-        cbxLed3Mode->setMinimumSize(QSize(60, 0));
-        cbxLed3Mode->setMaximumSize(QSize(75, 16777215));
-        cbxLed3Mode->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
+        comboBox_10 = new QComboBox(horizontalLayoutWidget_3);
+        comboBox_10->addItem(QString());
+        comboBox_10->addItem(QString());
+        comboBox_10->addItem(QString());
+        comboBox_10->addItem(QString());
+        comboBox_10->setObjectName(QString::fromUtf8("comboBox_10"));
 
-        horizontalLayout_3->addWidget(cbxLed3Mode);
+        horizontalLayout_3->addWidget(comboBox_10);
 
         label_16 = new QLabel(horizontalLayoutWidget_3);
         label_16->setObjectName(QString::fromUtf8("label_16"));
@@ -298,11 +337,10 @@ public:
 
         horizontalLayout_3->addWidget(label_16);
 
-        led3OnTime = new QLineEdit(horizontalLayoutWidget_3);
-        led3OnTime->setObjectName(QString::fromUtf8("led3OnTime"));
-        led3OnTime->setAlignment(Qt::AlignCenter);
+        lineEdit_5 = new QLineEdit(horizontalLayoutWidget_3);
+        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
 
-        horizontalLayout_3->addWidget(led3OnTime);
+        horizontalLayout_3->addWidget(lineEdit_5);
 
         label_22 = new QLabel(horizontalLayoutWidget_3);
         label_22->setObjectName(QString::fromUtf8("label_22"));
@@ -318,11 +356,10 @@ public:
 
         horizontalLayout_3->addWidget(label_17);
 
-        led3OffTime = new QLineEdit(horizontalLayoutWidget_3);
-        led3OffTime->setObjectName(QString::fromUtf8("led3OffTime"));
-        led3OffTime->setAlignment(Qt::AlignCenter);
+        lineEdit_6 = new QLineEdit(horizontalLayoutWidget_3);
+        lineEdit_6->setObjectName(QString::fromUtf8("lineEdit_6"));
 
-        horizontalLayout_3->addWidget(led3OffTime);
+        horizontalLayout_3->addWidget(lineEdit_6);
 
         label_23 = new QLabel(horizontalLayoutWidget_3);
         label_23->setObjectName(QString::fromUtf8("label_23"));
@@ -331,206 +368,73 @@ public:
 
         horizontalLayout_3->addWidget(label_23);
 
-        ledWidget1 = new QWidget(tab1);
-        ledWidget1->setObjectName(QString::fromUtf8("ledWidget1"));
-        ledWidget1->setGeometry(QRect(10, 40, 451, 41));
-        horizontalLayoutWidget_4 = new QWidget(ledWidget1);
-        horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(0, 0, 451, 41));
-        horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_4);
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        label_34 = new QLabel(horizontalLayoutWidget_4);
-        label_34->setObjectName(QString::fromUtf8("label_34"));
-        label_34->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(label_34);
-
-        cbxLed1Mode = new QComboBox(horizontalLayoutWidget_4);
-        cbxLed1Mode->addItem(QString());
-        cbxLed1Mode->addItem(QString());
-        cbxLed1Mode->addItem(QString());
-        cbxLed1Mode->addItem(QString());
-        cbxLed1Mode->setObjectName(QString::fromUtf8("cbxLed1Mode"));
-        cbxLed1Mode->setMinimumSize(QSize(60, 0));
-        cbxLed1Mode->setMaximumSize(QSize(75, 16777215));
-        cbxLed1Mode->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(cbxLed1Mode);
-
-        label_35 = new QLabel(horizontalLayoutWidget_4);
-        label_35->setObjectName(QString::fromUtf8("label_35"));
-        label_35->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(label_35);
-
-        led1OnTime = new QLineEdit(horizontalLayoutWidget_4);
-        led1OnTime->setObjectName(QString::fromUtf8("led1OnTime"));
-        led1OnTime->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_5->addWidget(led1OnTime);
-
-        label_36 = new QLabel(horizontalLayoutWidget_4);
-        label_36->setObjectName(QString::fromUtf8("label_36"));
-        label_36->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(label_36);
-
-        label_37 = new QLabel(horizontalLayoutWidget_4);
-        label_37->setObjectName(QString::fromUtf8("label_37"));
-        label_37->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(label_37);
-
-        led1OffTime = new QLineEdit(horizontalLayoutWidget_4);
-        led1OffTime->setObjectName(QString::fromUtf8("led1OffTime"));
-        led1OffTime->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_5->addWidget(led1OffTime);
-
-        label_38 = new QLabel(horizontalLayoutWidget_4);
-        label_38->setObjectName(QString::fromUtf8("label_38"));
-        label_38->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-
-        horizontalLayout_5->addWidget(label_38);
-
-        tabWidget->addTab(tab1, QString());
-        tab2 = new QWidget();
-        tab2->setObjectName(QString::fromUtf8("tab2"));
-        label_24 = new QLabel(tab2);
+        tabWidget->addTab(tab_3, QString());
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        label_24 = new QLabel(tab);
         label_24->setObjectName(QString::fromUtf8("label_24"));
-        label_24->setGeometry(QRect(10, 5, 101, 16));
+        label_24->setGeometry(QRect(10, 10, 101, 21));
         label_24->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         label_24->setAlignment(Qt::AlignCenter);
-        label_png1 = new QLabel(tab2);
+        label_png1 = new QLabel(tab);
         label_png1->setObjectName(QString::fromUtf8("label_png1"));
-        label_png1->setGeometry(QRect(10, 30, 121, 91));
+        label_png1->setGeometry(QRect(10, 40, 100, 100));
         label_png1->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1 = new QPushButton(tab2);
+        btnPng1 = new QPushButton(tab);
         btnPng1->setObjectName(QString::fromUtf8("btnPng1"));
-        btnPng1->setGeometry(QRect(10, 125, 41, 24));
-        btnPng1->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_3 = new QPushButton(tab2);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(90, 125, 41, 24));
-        pushButton_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_2 = new QLabel(tab2);
-        label_png1_2->setObjectName(QString::fromUtf8("label_png1_2"));
-        label_png1_2->setGeometry(QRect(10, 160, 121, 91));
-        label_png1_2->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_2 = new QPushButton(tab2);
+        btnPng1->setGeometry(QRect(10, 150, 41, 21));
+        btnPng1_2 = new QPushButton(tab);
         btnPng1_2->setObjectName(QString::fromUtf8("btnPng1_2"));
-        btnPng1_2->setGeometry(QRect(10, 255, 41, 24));
-        btnPng1_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_6 = new QPushButton(tab2);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(90, 255, 41, 24));
-        pushButton_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_3 = new QLabel(tab2);
-        label_png1_3->setObjectName(QString::fromUtf8("label_png1_3"));
-        label_png1_3->setGeometry(QRect(170, 30, 121, 91));
-        label_png1_3->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        label_png1_4 = new QLabel(tab2);
-        label_png1_4->setObjectName(QString::fromUtf8("label_png1_4"));
-        label_png1_4->setGeometry(QRect(330, 30, 121, 91));
-        label_png1_4->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_3 = new QPushButton(tab2);
-        btnPng1_3->setObjectName(QString::fromUtf8("btnPng1_3"));
-        btnPng1_3->setGeometry(QRect(180, 125, 41, 24));
-        btnPng1_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_7 = new QPushButton(tab2);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(250, 125, 41, 24));
-        pushButton_7->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        btnPng1_4 = new QPushButton(tab2);
-        btnPng1_4->setObjectName(QString::fromUtf8("btnPng1_4"));
-        btnPng1_4->setGeometry(QRect(330, 125, 41, 24));
-        btnPng1_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_8 = new QPushButton(tab2);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(410, 125, 41, 24));
-        pushButton_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_5 = new QLabel(tab2);
-        label_png1_5->setObjectName(QString::fromUtf8("label_png1_5"));
-        label_png1_5->setGeometry(QRect(170, 160, 121, 91));
-        label_png1_5->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        label_png1_6 = new QLabel(tab2);
-        label_png1_6->setObjectName(QString::fromUtf8("label_png1_6"));
-        label_png1_6->setGeometry(QRect(330, 160, 121, 91));
-        label_png1_6->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_5 = new QPushButton(tab2);
-        btnPng1_5->setObjectName(QString::fromUtf8("btnPng1_5"));
-        btnPng1_5->setGeometry(QRect(170, 255, 41, 24));
-        btnPng1_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_9 = new QPushButton(tab2);
-        pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setGeometry(QRect(250, 255, 41, 24));
-        pushButton_9->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_10 = new QPushButton(tab2);
-        pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(410, 255, 41, 24));
-        pushButton_10->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        btnPng1_6 = new QPushButton(tab2);
-        btnPng1_6->setObjectName(QString::fromUtf8("btnPng1_6"));
-        btnPng1_6->setGeometry(QRect(330, 255, 41, 24));
-        btnPng1_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        tabWidget->addTab(tab2, QString());
-        tab3 = new QWidget();
-        tab3->setObjectName(QString::fromUtf8("tab3"));
-        pushButton_4 = new QPushButton(tab3);
+        btnPng1_2->setGeometry(QRect(70, 150, 41, 21));
+        tabWidget->addTab(tab, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QString::fromUtf8("tab_4"));
+        pushButton_4 = new QPushButton(tab_4);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setGeometry(QRect(19, 30, 71, 31));
-        pushButton_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        lineEdit_9 = new QLineEdit(tab3);
+        pushButton_4->setStyleSheet(QString::fromUtf8("color: rgb(40, 40, 40);\n"
+"font: 10pt \"Microsoft YaHei UI\";"));
+        lineEdit_9 = new QLineEdit(tab_4);
         lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
         lineEdit_9->setGeometry(QRect(100, 29, 231, 31));
-        pushButton_5 = new QPushButton(tab3);
+        pushButton_5 = new QPushButton(tab_4);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
         pushButton_5->setGeometry(QRect(20, 189, 71, 31));
-        pushButton_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_26 = new QLabel(tab3);
+        pushButton_5->setStyleSheet(QString::fromUtf8("color: rgb(40, 40, 40);\n"
+"font: 10pt \"Microsoft YaHei UI\";"));
+        label_26 = new QLabel(tab_4);
         label_26->setObjectName(QString::fromUtf8("label_26"));
         label_26->setGeometry(QRect(330, 90, 101, 16));
         label_26->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 10pt \"Microsoft YaHei UI\";"));
-        label_27 = new QLabel(tab3);
+        label_27 = new QLabel(tab_4);
         label_27->setObjectName(QString::fromUtf8("label_27"));
         label_27->setGeometry(QRect(330, 120, 54, 12));
-        tabWidget->addTab(tab3, QString());
-        tab4 = new QWidget();
-        tab4->setObjectName(QString::fromUtf8("tab4"));
-        tabWidget->addTab(tab4, QString());
+        tabWidget->addTab(tab_4, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        textRecv = new QTextEdit(tab_2);
+        textRecv->setObjectName(QString::fromUtf8("textRecv"));
+        textRecv->setGeometry(QRect(0, 0, 291, 111));
+        textSend = new QTextEdit(tab_2);
+        textSend->setObjectName(QString::fromUtf8("textSend"));
+        textSend->setGeometry(QRect(0, 130, 291, 111));
+        btnSend = new QPushButton(tab_2);
+        btnSend->setObjectName(QString::fromUtf8("btnSend"));
+        btnSend->setGeometry(QRect(340, 170, 75, 23));
+        tabWidget->addTab(tab_2, QString());
         groupBoxSerial = new QGroupBox(centralwidget);
         groupBoxSerial->setObjectName(QString::fromUtf8("groupBoxSerial"));
-        groupBoxSerial->setGeometry(QRect(9, 80, 151, 291));
-        groupBoxSerial->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);"));
+        groupBoxSerial->setGeometry(QRect(9, 80, 141, 241));
+        groupBoxSerial->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
         groupBoxSerial->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         groupBoxSerial->setFlat(false);
         groupBoxSerial->setCheckable(false);
         gridLayoutWidget = new QWidget(groupBoxSerial);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(10, 20, 133, 171));
+        gridLayoutWidget->setGeometry(QRect(10, 20, 121, 171));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -547,7 +451,7 @@ public:
         boxBaudRate->addItem(QString());
         boxBaudRate->addItem(QString());
         boxBaudRate->setObjectName(QString::fromUtf8("boxBaudRate"));
-        boxBaudRate->setMaximumSize(QSize(75, 16777215));
+        boxBaudRate->setMaximumSize(QSize(60, 16777215));
         boxBaudRate->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -566,7 +470,7 @@ public:
         boxStopBits->addItem(QString());
         boxStopBits->addItem(QString());
         boxStopBits->setObjectName(QString::fromUtf8("boxStopBits"));
-        boxStopBits->setMaximumSize(QSize(75, 16777215));
+        boxStopBits->setMaximumSize(QSize(60, 16777215));
         boxStopBits->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -574,8 +478,6 @@ public:
 
         labelPortName = new QLabel(gridLayoutWidget);
         labelPortName->setObjectName(QString::fromUtf8("labelPortName"));
-        labelPortName->setMinimumSize(QSize(50, 0));
-        labelPortName->setMaximumSize(QSize(50, 16777215));
         labelPortName->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         labelPortName->setAlignment(Qt::AlignCenter);
@@ -584,7 +486,7 @@ public:
 
         boxPortName = new QComboBox(gridLayoutWidget);
         boxPortName->setObjectName(QString::fromUtf8("boxPortName"));
-        boxPortName->setMaximumSize(QSize(75, 16777215));
+        boxPortName->setMaximumSize(QSize(60, 16777215));
         boxPortName->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -605,7 +507,7 @@ public:
         boxParity->addItem(QString());
         boxParity->addItem(QString());
         boxParity->setObjectName(QString::fromUtf8("boxParity"));
-        boxParity->setMaximumSize(QSize(75, 16777215));
+        boxParity->setMaximumSize(QSize(60, 16777215));
         boxParity->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -617,7 +519,7 @@ public:
         boxDataBits->addItem(QString());
         boxDataBits->addItem(QString());
         boxDataBits->setObjectName(QString::fromUtf8("boxDataBits"));
-        boxDataBits->setMaximumSize(QSize(75, 16777215));
+        boxDataBits->setMaximumSize(QSize(60, 16777215));
         boxDataBits->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -653,7 +555,7 @@ public:
         boxFlowControl->addItem(QString());
         boxFlowControl->addItem(QString());
         boxFlowControl->setObjectName(QString::fromUtf8("boxFlowControl"));
-        boxFlowControl->setMaximumSize(QSize(75, 16777215));
+        boxFlowControl->setMaximumSize(QSize(60, 16777215));
         boxFlowControl->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
 
@@ -691,10 +593,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
-        cbxLed2Mode->setCurrentIndex(2);
-        cbxLed3Mode->setCurrentIndex(2);
-        cbxLed1Mode->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -712,74 +611,53 @@ public:
         label_31->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         labelLogoPic->setText(QString());
         label_8->setText(QCoreApplication::translate("MainWindow", "LED\346\225\260\351\207\217", nullptr));
-        cbxLedNum->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
-        cbxLedNum->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));
-        cbxLedNum->setItemText(2, QCoreApplication::translate("MainWindow", "3", nullptr));
+        comboBox_7->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
+        comboBox_7->setItemText(1, QCoreApplication::translate("MainWindow", "2", nullptr));
+        comboBox_7->setItemText(2, QCoreApplication::translate("MainWindow", "3", nullptr));
 
-        cbxLedNum->setCurrentText(QCoreApplication::translate("MainWindow", "3", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "LED1:", nullptr));
+        comboBox_8->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
+        comboBox_8->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
+        comboBox_8->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
+        comboBox_8->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
+
+        label_10->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        label_19->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "LED2:", nullptr));
-        cbxLed2Mode->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
-        cbxLed2Mode->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
-        cbxLed2Mode->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
-        cbxLed2Mode->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
+        comboBox_9->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
+        comboBox_9->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
+        comboBox_9->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
+        comboBox_9->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
 
-        label_13->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\344\272\256\346\227\266\351\227\264:", nullptr));
-        led2OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
         label_20->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
-        label_14->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\347\201\255\346\227\266\351\227\264", nullptr));
-        led2OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
         label_21->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "LED3:", nullptr));
-        cbxLed3Mode->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
-        cbxLed3Mode->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
-        cbxLed3Mode->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
-        cbxLed3Mode->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
+        comboBox_10->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
+        comboBox_10->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
+        comboBox_10->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
+        comboBox_10->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
 
-        label_16->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\344\272\256\346\227\266\351\227\264:", nullptr));
-        led3OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
         label_22->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
-        label_17->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\347\201\255\346\227\266\351\227\264", nullptr));
-        led3OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
-        label_34->setText(QCoreApplication::translate("MainWindow", "LED1:", nullptr));
-        cbxLed1Mode->setItemText(0, QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255", nullptr));
-        cbxLed1Mode->setItemText(1, QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256", nullptr));
-        cbxLed1Mode->setItemText(2, QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
-        cbxLed1Mode->setItemText(3, QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
-
-        label_35->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\344\272\256\346\227\266\351\227\264:", nullptr));
-        led1OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
-        label_36->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
-        label_37->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201\347\201\255\346\227\266\351\227\264:", nullptr));
-        led1OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
-        label_38->setText(QCoreApplication::translate("MainWindow", "\346\257\253\347\247\222", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab1), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
-        label_24->setText(QCoreApplication::translate("MainWindow", "\345\233\276\347\211\207\345\257\274\345\205\245", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        label_24->setText(QCoreApplication::translate("MainWindow", "\351\235\231\346\200\201\345\233\276\347\211\207\346\225\260\351\207\217", nullptr));
         label_png1->setText(QString());
         btnPng1->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_2->setText(QString());
-        btnPng1_2->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_3->setText(QString());
-        label_png1_4->setText(QString());
-        btnPng1_3->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        btnPng1_4->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_5->setText(QString());
-        label_png1_6->setText(QString());
-        btnPng1_5->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        btnPng1_6->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
+        btnPng1_2->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\346\267\273\345\212\240\345\233\272\344\273\266", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\346\233\264\346\226\260\345\233\272\344\273\266", nullptr));
         label_26->setText(QCoreApplication::translate("MainWindow", "\345\275\223\345\211\215\345\233\272\344\273\266\347\211\210\346\234\254\345\217\267\357\274\232", nullptr));
         label_27->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab4), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        btnSend->setText(QCoreApplication::translate("MainWindow", "\345\217\221\351\200\201", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         groupBoxSerial->setTitle(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\350\256\276\347\275\256", nullptr));
         boxBaudRate->setItemText(0, QCoreApplication::translate("MainWindow", "1200", nullptr));
         boxBaudRate->setItemText(1, QCoreApplication::translate("MainWindow", "2400", nullptr));
@@ -792,7 +670,7 @@ public:
         boxBaudRate->setItemText(8, QCoreApplication::translate("MainWindow", "128000", nullptr));
         boxBaudRate->setItemText(9, QCoreApplication::translate("MainWindow", "230400", nullptr));
 
-        boxBaudRate->setCurrentText(QCoreApplication::translate("MainWindow", "115200", nullptr));
+        boxBaudRate->setCurrentText(QCoreApplication::translate("MainWindow", "1200", nullptr));
         labelStopBits->setText(QCoreApplication::translate("MainWindow", "\345\201\234\346\255\242\344\275\215", nullptr));
         boxStopBits->setItemText(0, QCoreApplication::translate("MainWindow", "1", nullptr));
         boxStopBits->setItemText(1, QCoreApplication::translate("MainWindow", "1.5", nullptr));
@@ -812,7 +690,7 @@ public:
         boxDataBits->setItemText(2, QCoreApplication::translate("MainWindow", "7", nullptr));
         boxDataBits->setItemText(3, QCoreApplication::translate("MainWindow", "8", nullptr));
 
-        boxDataBits->setCurrentText(QCoreApplication::translate("MainWindow", "8", nullptr));
+        boxDataBits->setCurrentText(QCoreApplication::translate("MainWindow", "5", nullptr));
         labelParity->setText(QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\344\275\215", nullptr));
         labelBaudRate->setText(QCoreApplication::translate("MainWindow", "\346\263\242\347\211\271\347\216\207", nullptr));
         labelFlowControl->setText(QCoreApplication::translate("MainWindow", "\346\265\201\346\216\247\345\210\266", nullptr));

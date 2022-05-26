@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "myserialport.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,7 +14,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     setTabWidget();
 
-    scanSerialPort();
+    myLed = new MyLed(this);
+
+    mySerialPort = new MySerialPort(this);
+
+    mySerialPort->Serial_Port_Init(ui);
 
 }
 
@@ -27,47 +32,6 @@ void MainWindow::setTabWidget()
     ui->tabWidget->setTabText(0, tr("灯光设置"));
     ui->tabWidget->setTabText(1, tr("图片设置"));
     ui->tabWidget->setTabText(2, tr("固件升级"));
-
-}
-
-void MainWindow::scanSerialPort()
-{
-    //创建串口串口对象
-    serialport = new QSerialPort(this);
-    //数据接收处理
-    //connect(serialport,&QSerialPort::readyRead,this,&MainWidget::recvData);
-
-    QStringList slist;
-    foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
-        //检测是否可用
-        if(!info.isBusy())
-            slist<<info.portName();
-    }
-    if(slist.isEmpty()){
-        qDebug()<<"未找到可用串口,请确认串口连接正常后点击刷新";
-    }
-
-    ui->boxPortName->clear();
-    ui->boxPortName->addItems(slist);
-}
-
-void MainWindow::refreshSerial()
-{
-    ui->boxPortName->clear();
-    scanSerialPort();
-}
-
-void MainWindow::setSerialEnable(bool enabled)
-{
-    //打开成功就false不能再修改配置，关闭状态true可以进行设置
-    ui->btnSerialOpen->setText(enabled?QString("打开"):QString("关闭"));
-    //可以把btn和配置分在两个widget里，这样直接设置widget的enable就没这么麻烦了
-    ui->boxPortName->setEnabled(enabled);
-    ui->boxBaudRate->setEnabled(enabled);
-    ui->boxDataBits->setEnabled(enabled);
-    ui->boxParity->setEnabled(enabled);
-    ui->boxStopBits->setEnabled(enabled);
-    ui->boxFlowControl->setEnabled(enabled);
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
@@ -138,12 +102,17 @@ void MainWindow::on_btnSerialOpen_clicked()
 {
     if(ui->btnSerialOpen->text()=="打开")
     {
-        openSerial();
+        mySerialPort->Serial_Port_Open(ui);
     }
     else
     {
-        closeSerial();
+        mySerialPort->Serial_Port_Close(ui);
     }
+}
+
+void MainWindow::on_btnSerialRefresh_clicked()
+{
+    mySerialPort->Serial_Port_Refresh(ui);
 }
 
 void MainWindow::show_imgage(QImage *pImage, QLabel *pLabel )
@@ -181,94 +150,21 @@ void MainWindow::read_image_rgb565(QImage *pImage, QByteArray pImageDataBuf)
             qDebug() << QString().sprintf("%x", pData[2*j+1]);
         }
     }
-
 }
 
-void MainWindow::openSerial()
+void MainWindow::on_btnSend_clicked()
 {
-    const QString portnameStr=ui->boxPortName->currentText();
+    char buf[5] = {0,1,2,3,4};
 
-    if(!portnameStr.isEmpty())
-    {
-        QSerialPortInfo info(portnameStr);
-
-        if(info.isBusy())
-        {
-            qDebug()<<"当前串口繁忙,可能已被占用,请确认后再连接"<<portnameStr;
-            return;
-        }
-
-        qint32 baudrate=ui->boxBaudRate->currentText().toInt();
-        QSerialPort::DataBits databit;
-        switch (ui->boxDataBits->currentIndex())
-        {
-            case 0:databit=QSerialPort::Data5; break;
-            case 1:databit=QSerialPort::Data6; break;
-            case 2:databit=QSerialPort::Data7; break;
-            case 3:databit=QSerialPort::Data8; break;
-            default:databit=QSerialPort::Data8; break;
-        }
-
-        QSerialPort::Parity parity;
-        switch (ui->boxParity->currentIndex())
-        {
-            case 0:parity=QSerialPort::NoParity; break;
-            case 1:parity=QSerialPort::EvenParity; break;
-            case 2:parity=QSerialPort::OddParity; break;
-            case 3:parity=QSerialPort::SpaceParity; break;
-            case 4:parity=QSerialPort::MarkParity; break;
-            default:parity=QSerialPort::NoParity; break;
-        }
-
-        QSerialPort::StopBits stopbit;
-        switch (ui->boxStopBits->currentIndex())
-        {
-            case 0:stopbit=QSerialPort::OneStop; break;
-            case 1:stopbit=QSerialPort::OneAndHalfStop; break;
-            case 2:stopbit=QSerialPort::TwoStop; break;
-            default:stopbit=QSerialPort::OneStop; break;
-        }
-
-        QSerialPort::FlowControl flowcontrol;
-        switch (ui->boxFlowControl->currentIndex())
-        {
-            case 0:flowcontrol=QSerialPort::NoFlowControl; break;
-            case 1:flowcontrol=QSerialPort::HardwareControl; break;
-            case 2:flowcontrol=QSerialPort::SoftwareControl; break;
-            default:flowcontrol=QSerialPort::NoFlowControl; break;
-        }
-
-        //串口配置设置
-        serialport->setPortName(portnameStr);
-        serialport->setBaudRate(baudrate);
-        serialport->setDataBits(databit);
-        serialport->setParity(parity);
-        serialport->setStopBits(stopbit);
-        serialport->setFlowControl(flowcontrol);//这个我一般没用
-
-        if(serialport->open(QIODevice::ReadWrite))
-        {
-            qDebug()<<"串口已打开,读写模式";
-            setSerialEnable(false);//改变ui状态
-        }
-        else
-        {
-            qDebug()<<"串口打开异常"<<portnameStr<<serialport->errorString();
-            serialport->clearError();
-            setSerialEnable(true);
-        }
-    }
-    else
-    {
-        qDebug()<<"未找到可用串口,请确认串口连接正常后点击刷新";
-    }
+    mySerialPort->Serial_Port_Send_Data(buf, 5);
 }
 
-void MainWindow::closeSerial()
+void MainWindow::on_cbxLedNum_currentIndexChanged(int index)
 {
-    serialport->clear();
-    serialport->close();
-    qDebug()<<"串口已关闭";
-    setSerialEnable(true);
+    myLed->Set_Led_Enabled(ui, index);
 }
 
+void MainWindow::on_cbxLed1Mode_currentIndexChanged(int index)
+{
+    myLed->Set_Led_Mode(ui, index);
+}

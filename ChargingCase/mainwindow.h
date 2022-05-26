@@ -1,11 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "myserialport.h"
+#include "myled.h"
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
-#include <QSerialPort>
-#include <QSerialPortInfo>
 #include <QListView>
 #include <QLabel>
 #include <QImage>
@@ -29,11 +28,6 @@ public:
     ~MainWindow();
 
     void setTabWidget();
-    void scanSerialPort();
-    void openSerial();
-    void closeSerial();
-    void setSerialEnable(bool enabled);
-    void refreshSerial();
     void show_imgage(QImage *pImage, QLabel *pLabel );
     void read_image_rgb565(QImage *pImage, QByteArray pImageDataBuf );
 protected:
@@ -49,10 +43,19 @@ private slots:
 
     void on_btnSerialOpen_clicked();
 
+    void on_btnSerialRefresh_clicked();
+
+    void on_btnSend_clicked();
+
+    void on_cbxLedNum_currentIndexChanged(int index);
+
+    void on_cbxLed1Mode_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
+    MySerialPort *mySerialPort;
+    MyLed *myLed;
     QPoint last;
-    QSerialPort *serialport;
     QImage *image_png1_src;
     QByteArray image_png1_buf;
 };

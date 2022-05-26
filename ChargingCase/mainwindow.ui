@@ -97,7 +97,7 @@
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(240, 240, 240);
-font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </property>
      <property name="text">
       <string>温度:</string>
@@ -114,7 +114,7 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(240, 240, 240);
-font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </property>
      <property name="text">
       <string>1</string>
@@ -131,7 +131,7 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(240, 240, 240);
-font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </property>
      <property name="text">
       <string>电量:</string>
@@ -148,7 +148,7 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(240, 240, 240);
-font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </property>
      <property name="text">
       <string>2</string>
@@ -171,16 +171,22 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>50</y>
-      <width>471</width>
-      <height>311</height>
+      <width>460</width>
+      <height>321</height>
      </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
     </property>
     <property name="currentIndex">
      <number>1</number>
     </property>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="tab1">
      <attribute name="title">
       <string>页</string>
      </attribute>
@@ -189,114 +195,54 @@ font: 75 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>61</width>
+        <width>51</width>
         <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(50, 254, 255);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+       <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
        <string>LED数量</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_7">
+     <widget class="QComboBox" name="cbxLedNum">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>10</y>
-        <width>72</width>
-        <height>22</height>
+        <width>41</width>
+        <height>21</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QWidget" name="widget_2" native="true">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>451</width>
-        <height>41</height>
-       </rect>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
-      <widget class="QWidget" name="horizontalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>451</width>
-         <height>41</height>
-        </rect>
+      <property name="currentText">
+       <string>3</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label_9">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
-          </property>
-          <property name="text">
-           <string>LED1:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox_8"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_10">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
-          </property>
-          <property name="text">
-           <string>常亮时间:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_18">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
-          </property>
-          <property name="text">
-           <string>毫秒</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_11">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
-          </property>
-          <property name="text">
-           <string>常灭时间:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_19">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
-          </property>
-          <property name="text">
-           <string>毫秒</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QWidget" name="widget_3" native="true">
+     <widget class="QWidget" name="ledWidget2" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -319,33 +265,82 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
          <widget class="QLabel" name="label_12">
           <property name="styleSheet">
            <string notr="true">color: rgb(240, 240, 240);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>LED1:</string>
+           <string>LED2:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox_9"/>
+         <widget class="QComboBox" name="cbxLed2Mode">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>60</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>常灭</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>常亮</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>闪烁</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>呼吸</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_13">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>常亮时间:</string>
+           <string>闪烁亮时间:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_3"/>
+         <widget class="QLineEdit" name="led2OnTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_20">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>毫秒</string>
@@ -355,20 +350,29 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
         <item>
          <widget class="QLabel" name="label_14">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>常灭时间:</string>
+           <string>闪烁灭时间</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_4"/>
+         <widget class="QLineEdit" name="led2OffTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_21">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>毫秒</string>
@@ -378,11 +382,11 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        </layout>
       </widget>
      </widget>
-     <widget class="QWidget" name="widget_4" native="true">
+     <widget class="QWidget" name="ledWidget3" native="true">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>170</y>
+        <y>180</y>
         <width>451</width>
         <height>41</height>
        </rect>
@@ -401,33 +405,82 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
          <widget class="QLabel" name="label_15">
           <property name="styleSheet">
            <string notr="true">color: rgb(240, 240, 240);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>LED1:</string>
+           <string>LED3:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox_10"/>
+         <widget class="QComboBox" name="cbxLed3Mode">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>75</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>常灭</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>常亮</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>闪烁</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>呼吸</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_16">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>常亮时间:</string>
+           <string>闪烁亮时间:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_5"/>
+         <widget class="QLineEdit" name="led3OnTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_22">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>毫秒</string>
@@ -437,20 +490,169 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
         <item>
          <widget class="QLabel" name="label_17">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
-           <string>常灭时间:</string>
+           <string>闪烁灭时间</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_6"/>
+         <widget class="QLineEdit" name="led3OffTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_23">
           <property name="styleSheet">
-           <string notr="true">color: rgb(240, 240, 240);</string>
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="text">
+           <string>毫秒</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="ledWidget1" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>451</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="horizontalLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>451</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_34">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="text">
+           <string>LED1:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cbxLed1Mode">
+          <property name="minimumSize">
+           <size>
+            <width>60</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>75</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>常灭</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>常亮</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>闪烁</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>呼吸</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_35">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="text">
+           <string>闪烁亮时间:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="led1OnTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_36">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="text">
+           <string>毫秒</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_37">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+          </property>
+          <property name="text">
+           <string>闪烁灭时间:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="led1OffTime">
+          <property name="text">
+           <string>500</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_38">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           </property>
           <property name="text">
            <string>毫秒</string>
@@ -461,7 +663,7 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tab2">
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
@@ -469,39 +671,29 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>5</y>
         <width>101</width>
-        <height>21</height>
+        <height>16</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(240, 240, 240);
-font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
-       <string>静态图片数量</string>
+       <string>图片导入</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_PngNum">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>10</y>
-        <width>51</width>
-        <height>21</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_png1">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
-        <width>100</width>
-        <height>100</height>
+        <y>30</y>
+        <width>121</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -515,30 +707,288 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>150</y>
-        <width>80</width>
-        <height>20</height>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>打开</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>150</y>
-        <width>80</width>
-        <height>20</height>
+        <x>90</x>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_png1_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>121</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPng1_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_png1_3">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>30</y>
+        <width>121</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_png1_4">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>30</y>
+        <width>121</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPng1_3">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPng1_4">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>125</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_png1_5">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>160</y>
+        <width>121</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_png1_6">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>160</y>
+        <width>121</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/images/add_pic.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPng1_5">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>打开</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_9">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_10">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>下载</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPng1_6">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>255</y>
+        <width>41</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>打开</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="tab3">
      <attribute name="title">
       <string>页</string>
      </attribute>
@@ -552,8 +1002,8 @@ font: 10pt &quot;Microsoft JhengHei UI&quot;;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(50, 245, 255);
-font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
        <string>添加固件</string>
@@ -579,8 +1029,8 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(50, 245, 255);
-font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
        <string>更新固件</string>
@@ -617,14 +1067,19 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab4">
+     <attribute name="title">
+      <string>页</string>
+     </attribute>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBoxSerial">
     <property name="geometry">
      <rect>
       <x>9</x>
       <y>80</y>
-      <width>141</width>
-      <height>241</height>
+      <width>151</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -647,7 +1102,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>121</width>
+       <width>133</width>
        <height>171</height>
       </rect>
      </property>
@@ -659,15 +1114,16 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <widget class="QComboBox" name="boxBaudRate">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
-         <string>9600</string>
+         <string>115200</string>
         </property>
         <item>
          <property name="text">
@@ -723,6 +1179,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="labelStopBits">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>停止位</string>
         </property>
@@ -735,12 +1195,13 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <widget class="QComboBox" name="boxStopBits">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -761,6 +1222,22 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelPortName">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>串口号</string>
         </property>
@@ -773,12 +1250,13 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <widget class="QComboBox" name="boxPortName">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
          <string/>
@@ -787,6 +1265,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="labelDataBits">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>校验位</string>
         </property>
@@ -796,15 +1278,16 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="boxDataBits">
+       <widget class="QComboBox" name="boxParity">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -834,15 +1317,16 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QComboBox" name="boxParity">
+       <widget class="QComboBox" name="boxDataBits">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
          <string>8</string>
@@ -871,6 +1355,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="labelParity">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>数据位</string>
         </property>
@@ -881,6 +1369,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="labelBaudRate">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>波特率</string>
         </property>
@@ -897,6 +1389,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
           <height>22</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+        </property>
         <property name="text">
          <string>流控制</string>
         </property>
@@ -909,12 +1405,13 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <widget class="QComboBox" name="boxFlowControl">
         <property name="maximumSize">
          <size>
-          <width>60</width>
+          <width>75</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: rgb(0, 0, 0);</string>
+         <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <item>
          <property name="text">
@@ -938,30 +1435,35 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
     <widget class="QPushButton" name="btnSerialOpen">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>70</x>
        <y>200</y>
-       <width>71</width>
-       <height>31</height>
+       <width>58</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
+      <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </property>
      <property name="text">
       <string>打开</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QPushButton" name="btnSerialRefresh">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>207</y>
-       <width>16</width>
-       <height>16</height>
+       <x>10</x>
+       <y>200</y>
+       <width>58</width>
+       <height>30</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+     </property>
      <property name="text">
-      <string/>
+      <string>刷新</string>
      </property>
     </widget>
    </widget>
