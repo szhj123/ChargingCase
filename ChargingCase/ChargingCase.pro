@@ -21,12 +21,14 @@ SOURCES += \
     mainwindow.cpp \
     mybtn.cpp \
     myled.cpp \
+    myprocessbar.cpp \
     myserialport.cpp
 
 HEADERS += \
     mainwindow.h \
     mybtn.h \
     myled.h \
+    myprocessbar.h \
     myserialport.h
 
 FORMS += \

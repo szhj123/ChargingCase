@@ -26,7 +26,8 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <mybtn.h>
+#include <myprocessbar.h>
+#include "mybtn.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -133,6 +134,8 @@ public:
     QPushButton *pushButton_5;
     QLabel *label_26;
     QLabel *label_27;
+    QWidget *tab4;
+    MyProcessBar *widget;
     QGroupBox *groupBoxSerial;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
@@ -659,6 +662,12 @@ public:
         label_27->setObjectName(QString::fromUtf8("label_27"));
         label_27->setGeometry(QRect(330, 120, 54, 12));
         tabWidget->addTab(tab3, QString());
+        tab4 = new QWidget();
+        tab4->setObjectName(QString::fromUtf8("tab4"));
+        widget = new MyProcessBar(tab4);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(80, 30, 191, 151));
+        tabWidget->addTab(tab4, QString());
         groupBoxSerial = new QGroupBox(centralwidget);
         groupBoxSerial->setObjectName(QString::fromUtf8("groupBoxSerial"));
         groupBoxSerial->setGeometry(QRect(9, 80, 151, 291));
@@ -829,7 +838,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -908,6 +917,7 @@ public:
         label_26->setText(QCoreApplication::translate("MainWindow", "\345\275\223\345\211\215\345\233\272\344\273\266\347\211\210\346\234\254\345\217\267\357\274\232", nullptr));
         label_27->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab3), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab4), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         groupBoxSerial->setTitle(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\350\256\276\347\275\256", nullptr));
         boxBaudRate->setItemText(0, QCoreApplication::translate("MainWindow", "1200", nullptr));
         boxBaudRate->setItemText(1, QCoreApplication::translate("MainWindow", "2400", nullptr));

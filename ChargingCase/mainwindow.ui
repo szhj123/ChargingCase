@@ -184,7 +184,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -1196,6 +1196,21 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab4">
+     <attribute name="title">
+      <string>页</string>
+     </attribute>
+     <widget class="MyProcessBar" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>30</y>
+        <width>191</width>
+        <height>151</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBoxSerial">
     <property name="geometry">
@@ -1640,7 +1655,13 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
   <customwidget>
    <class>MyBtn</class>
    <extends>QWidget</extends>
-   <header location="global">mybtn.h</header>
+   <header>mybtn.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MyProcessBar</class>
+   <extends>QWidget</extends>
+   <header location="global">myprocessbar.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
