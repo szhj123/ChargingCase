@@ -19,11 +19,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    mybtn.cpp \
     myled.cpp \
     myserialport.cpp
 
 HEADERS += \
     mainwindow.h \
+    mybtn.h \
     myled.h \
     myserialport.h
 

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 #include "myserialport.h"
 #include "myled.h"
+#include "mybtn.h"
+
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
@@ -55,6 +57,7 @@ private:
     Ui::MainWindow *ui;
     MySerialPort *mySerialPort;
     MyLed *myLed;
+    MyBtn *myBtn;
     QPoint last;
     QImage *image_png1_src;
     QByteArray image_png1_buf;
