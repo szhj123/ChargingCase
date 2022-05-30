@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QTimer>
 
 class MyProcessBar : public QWidget
 {
@@ -20,6 +21,7 @@ private:
     int currVal;
 
     int processWidth;
+    int textWidth;
     int marginVal;
 
     QColor bgColor;
@@ -27,9 +29,10 @@ private:
     QColor processBgColor;
     QColor textColor;
 
+    QTimer *timer;
 
-
-
+private slots:
+    void Update_Val();
 signals:
 
 };

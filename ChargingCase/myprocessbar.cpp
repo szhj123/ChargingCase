@@ -13,9 +13,16 @@ MyProcessBar::MyProcessBar(QWidget *parent) : QWidget(parent)
     maxVal = 100;
     currVal = 0;
 
+    textWidth = 16;
     processWidth = 10;
 
     setMinimumSize(50, 50);
+
+    timer = new QTimer(this);
+    timer->setInterval(30);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Update_Val()));
+
+    timer->start();
 }
 
 MyProcessBar::~MyProcessBar()
@@ -47,15 +54,18 @@ void MyProcessBar::Draw_Process(QPainter *painter)
     painter->setBrush(bgColor);
     painter->drawEllipse(rectCircle);
 
-    QColor processColor = currVal > 0 ? processPieColor : processBgColor;
+    QRect rectProcess(marginVal, marginVal, diameter-marginVal*2, diameter-marginVal*2);
+    painter->setBrush(processBgColor);
+    painter->setPen(Qt::NoPen);
+    painter->drawEllipse(rectProcess);
 
-    QPen pen;
-    pen.setWidth(processWidth);
-    pen.setColor(processColor);
-    painter->setBrush(Qt::NoBrush);
-    painter->setPen(pen);
-    painter->drawEllipse(marginVal, marginVal, diameter-marginVal*2, diameter-marginVal*2);
+    painter->setBrush(processPieColor);
+    painter->drawPie(rectProcess, (-90)*16, (360*16*currVal)/100);
 
+    QRect rectInterCircle(marginVal+processWidth, marginVal+processWidth, diameter-(marginVal+processWidth)*2, diameter-(marginVal+processWidth)*2);
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(bgColor);
+    painter->drawEllipse(rectInterCircle);
 
     painter->restore();
 
@@ -63,5 +73,59 @@ void MyProcessBar::Draw_Process(QPainter *painter)
 
 void MyProcessBar::Draw_Text(QPainter *painter)
 {
+    painter->save();
 
+    int width = this->width();
+    int height = this->height();
+    int diameter = qMin(width, height);
+
+    QRect textRect(diameter/2 -25, diameter/2-textWidth/2, 50, textWidth);
+
+    QPen pen;
+    pen.setColor(QColor(255, 255, 255));
+    pen.setWidth(5);
+    QFont font;
+    font.setFamily(tr("微软雅黑"));
+    font.setPixelSize(textWidth);
+    font.setBold(true);
+    painter->setFont(font);
+    painter->setBrush(Qt::NoBrush);
+    painter->setPen(pen);
+
+    QString strValue = QString("%1").arg(currVal);
+    strValue += "%";
+    painter->drawText(textRect, Qt::AlignCenter, strValue);
+
+    painter->restore();
+
+}
+
+void MyProcessBar::Update_Val()
+{
+    static bool flag= false;
+
+    if(!flag)
+    {
+        if(currVal < 100)
+        {
+            currVal++;
+        }
+        else
+        {
+            flag = true;
+        }
+    }
+    else
+    {
+        if(currVal > 0)
+        {
+            currVal--;
+        }
+        else
+        {
+            flag = false;
+        }
+    }
+
+    update();
 }
