@@ -67,7 +67,7 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_10;
     QSlider *led1Slider;
-    QLabel *label_6;
+    QLabel *led1SliderValue;
     QGroupBox *led2Group;
     MyBtn *led2Btn;
     QWidget *widget_6;
@@ -87,7 +87,7 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_14;
     QSlider *led2Slider;
-    QLabel *label_16;
+    QLabel *led2SliderValue;
     QGroupBox *led3Group;
     MyBtn *led3Btn;
     QWidget *widget_7;
@@ -107,7 +107,7 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_21;
     QSlider *led3Slider;
-    QLabel *label_23;
+    QLabel *led3SliderValue;
     QWidget *tab2;
     QLabel *label_24;
     QLabel *label_png1;
@@ -271,6 +271,7 @@ public:
         led1OnTime->setMaximumSize(QSize(30, 16777215));
         led1OnTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led1OnTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(led1OnTime);
 
@@ -297,6 +298,7 @@ public:
         led1OffTime->setMaximumSize(QSize(30, 16777215));
         led1OffTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led1OffTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_2->addWidget(led1OffTime);
 
@@ -324,16 +326,18 @@ public:
         led1Slider->setObjectName(QString::fromUtf8("led1Slider"));
         led1Slider->setMinimum(0);
         led1Slider->setMaximum(5);
+        led1Slider->setSingleStep(1);
         led1Slider->setPageStep(1);
         led1Slider->setValue(0);
+        led1Slider->setSliderPosition(0);
         led1Slider->setOrientation(Qt::Horizontal);
 
         horizontalLayout_3->addWidget(led1Slider);
 
-        label_6 = new QLabel(verticalLayoutWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        led1SliderValue = new QLabel(verticalLayoutWidget);
+        led1SliderValue->setObjectName(QString::fromUtf8("led1SliderValue"));
 
-        horizontalLayout_3->addWidget(label_6);
+        horizontalLayout_3->addWidget(led1SliderValue);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -380,6 +384,7 @@ public:
         led2OnTime->setMaximumSize(QSize(30, 16777215));
         led2OnTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led2OnTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_4->addWidget(led2OnTime);
 
@@ -406,6 +411,7 @@ public:
         led2OffTime->setMaximumSize(QSize(30, 16777215));
         led2OffTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led2OffTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_5->addWidget(led2OffTime);
 
@@ -437,10 +443,10 @@ public:
 
         horizontalLayout_6->addWidget(led2Slider);
 
-        label_16 = new QLabel(verticalLayoutWidget_2);
-        label_16->setObjectName(QString::fromUtf8("label_16"));
+        led2SliderValue = new QLabel(verticalLayoutWidget_2);
+        led2SliderValue->setObjectName(QString::fromUtf8("led2SliderValue"));
 
-        horizontalLayout_6->addWidget(label_16);
+        horizontalLayout_6->addWidget(led2SliderValue);
 
 
         verticalLayout_2->addLayout(horizontalLayout_6);
@@ -487,6 +493,7 @@ public:
         led3OnTime->setMaximumSize(QSize(30, 16777215));
         led3OnTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led3OnTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_7->addWidget(led3OnTime);
 
@@ -513,6 +520,7 @@ public:
         led3OffTime->setMaximumSize(QSize(30, 16777215));
         led3OffTime->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
+        led3OffTime->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_8->addWidget(led3OffTime);
 
@@ -544,10 +552,10 @@ public:
 
         horizontalLayout_9->addWidget(led3Slider);
 
-        label_23 = new QLabel(verticalLayoutWidget_3);
-        label_23->setObjectName(QString::fromUtf8("label_23"));
+        led3SliderValue = new QLabel(verticalLayoutWidget_3);
+        led3SliderValue->setObjectName(QString::fromUtf8("led3SliderValue"));
 
-        horizontalLayout_9->addWidget(label_23);
+        horizontalLayout_9->addWidget(led3SliderValue);
 
 
         verticalLayout_3->addLayout(horizontalLayout_9);
@@ -599,7 +607,7 @@ public:
         label_png1_4->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
         btnPng1_3 = new QPushButton(tab2);
         btnPng1_3->setObjectName(QString::fromUtf8("btnPng1_3"));
-        btnPng1_3->setGeometry(QRect(180, 125, 41, 24));
+        btnPng1_3->setGeometry(QRect(170, 125, 41, 24));
         btnPng1_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         pushButton_7 = new QPushButton(tab2);
@@ -836,7 +844,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 640, 21));
+        menubar->setGeometry(QRect(0, 0, 640, 23));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -846,7 +854,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         cbxLedNum->setCurrentIndex(2);
 
 
@@ -874,32 +882,38 @@ public:
         led1StyleOn->setText(QCoreApplication::translate("MainWindow", "LED\345\270\270\344\272\256", nullptr));
         led1StyleFlash->setText(QCoreApplication::translate("MainWindow", "LED\351\227\252\347\203\201", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        led1OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        led1OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
-        led1StyleBreath->setText(QCoreApplication::translate("MainWindow", "\345\221\274\345\220\270", nullptr));
+        led1StyleBreath->setText(QCoreApplication::translate("MainWindow", "LED\345\221\274\345\220\270", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "\351\200\237\347\216\207", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "1s", nullptr));
+        led1SliderValue->setText(QCoreApplication::translate("MainWindow", "0s", nullptr));
         led2Group->setTitle(QCoreApplication::translate("MainWindow", "LED2", nullptr));
         led2StyleOn->setText(QCoreApplication::translate("MainWindow", "LED\345\270\270\344\272\256", nullptr));
         led2StyleFlash->setText(QCoreApplication::translate("MainWindow", "LED\351\227\252\347\203\201", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        led2OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        led2OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_13->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
-        led2StyleBreath->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
+        led2StyleBreath->setText(QCoreApplication::translate("MainWindow", "LED\345\221\274\345\220\270", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "\351\200\237\347\216\207", nullptr));
-        label_16->setText(QCoreApplication::translate("MainWindow", "1s", nullptr));
+        led2SliderValue->setText(QCoreApplication::translate("MainWindow", "0s", nullptr));
         led3Group->setTitle(QCoreApplication::translate("MainWindow", "LED3", nullptr));
         led3StyleOn->setText(QCoreApplication::translate("MainWindow", "LED\345\270\270\344\272\256", nullptr));
         led3StyleFlash->setText(QCoreApplication::translate("MainWindow", "LED\351\227\252\347\203\201", nullptr));
         label_17->setText(QCoreApplication::translate("MainWindow", "\345\270\270\344\272\256\346\227\266\351\227\264:", nullptr));
+        led3OnTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_18->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
         label_19->setText(QCoreApplication::translate("MainWindow", "\345\270\270\347\201\255\346\227\266\351\227\264:", nullptr));
+        led3OffTime->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_20->setText(QCoreApplication::translate("MainWindow", "ms", nullptr));
-        led3StyleBreath->setText(QCoreApplication::translate("MainWindow", "\351\227\252\347\203\201", nullptr));
+        led3StyleBreath->setText(QCoreApplication::translate("MainWindow", "LED\345\221\274\345\220\270", nullptr));
         label_21->setText(QCoreApplication::translate("MainWindow", "\351\200\237\347\216\207", nullptr));
-        label_23->setText(QCoreApplication::translate("MainWindow", "1s", nullptr));
+        led3SliderValue->setText(QCoreApplication::translate("MainWindow", "0s", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab1), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "\345\233\276\347\211\207\345\257\274\345\205\245", nullptr));
         label_png1->setText(QString());

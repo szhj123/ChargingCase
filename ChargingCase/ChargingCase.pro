@@ -21,6 +21,7 @@ SOURCES += \
     mainwindow.cpp \
     mybtn.cpp \
     myled.cpp \
+    mypic.cpp \
     myprocessbar.cpp \
     myserialport.cpp
 
@@ -28,6 +29,7 @@ HEADERS += \
     mainwindow.h \
     mybtn.h \
     myled.h \
+    mypic.h \
     myprocessbar.h \
     myserialport.h
 

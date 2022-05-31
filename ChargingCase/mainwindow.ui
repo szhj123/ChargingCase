@@ -184,7 +184,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -337,6 +337,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -381,6 +387,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -395,7 +407,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <item>
           <widget class="QRadioButton" name="led1StyleBreath">
            <property name="text">
-            <string>呼吸</string>
+            <string>LED呼吸</string>
            </property>
           </widget>
          </item>
@@ -416,10 +428,16 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              <property name="maximum">
               <number>5</number>
              </property>
+             <property name="singleStep">
+              <number>1</number>
+             </property>
              <property name="pageStep">
               <number>1</number>
              </property>
              <property name="value">
+              <number>0</number>
+             </property>
+             <property name="sliderPosition">
               <number>0</number>
              </property>
              <property name="orientation">
@@ -428,9 +446,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="led1SliderValue">
              <property name="text">
-              <string>1s</string>
+              <string>0s</string>
              </property>
             </widget>
            </item>
@@ -532,6 +550,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -576,6 +600,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -590,7 +620,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <item>
           <widget class="QRadioButton" name="led2StyleBreath">
            <property name="text">
-            <string>闪烁</string>
+            <string>LED呼吸</string>
            </property>
           </widget>
          </item>
@@ -617,9 +647,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_16">
+            <widget class="QLabel" name="led2SliderValue">
              <property name="text">
-              <string>1s</string>
+              <string>0s</string>
              </property>
             </widget>
            </item>
@@ -721,6 +751,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -765,6 +801,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
               <string notr="true">color: rgb(0, 0, 0);
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
              </property>
+             <property name="text">
+              <string>500</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
@@ -779,7 +821,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <item>
           <widget class="QRadioButton" name="led3StyleBreath">
            <property name="text">
-            <string>闪烁</string>
+            <string>LED呼吸</string>
            </property>
           </widget>
          </item>
@@ -806,9 +848,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="label_23">
+            <widget class="QLabel" name="led3SliderValue">
              <property name="text">
-              <string>1s</string>
+              <string>0s</string>
              </property>
             </widget>
            </item>
@@ -978,7 +1020,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      <widget class="QPushButton" name="btnPng1_3">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>170</x>
         <y>125</y>
         <width>41</width>
         <height>24</height>
@@ -1665,7 +1707,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

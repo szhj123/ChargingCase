@@ -3,7 +3,7 @@
 #include "myserialport.h"
 #include "myled.h"
 #include "mybtn.h"
-
+#include "mypic.h"
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
@@ -30,8 +30,7 @@ public:
     ~MainWindow();
 
     void setTabWidget();
-    void show_imgage(QImage *pImage, QLabel *pLabel );
-    void read_image_rgb565(QImage *pImage, QByteArray pImageDataBuf );
+
 protected:
     void paintEvent(QPaintEvent *event );
     void mousePressEvent(QMouseEvent *event);
@@ -53,8 +52,8 @@ private:
     MySerialPort *mySerialPort;
     MyLed *myLed;
     MyBtn *myBtn;
+    MyPic *myPic;
     QPoint last;
-    QImage *image_png1_src;
-    QByteArray image_png1_buf;
+
 };
 #endif // MAINWINDOW_H

@@ -43,7 +43,24 @@ private:
     led_typedef led3;
 private slots:
     void on_cbxLedNum_currentIndexChanged(int index);
-    void on_le1Btn_checked(bool checked);
+    void on_led1Btn_checked(bool checked);
+    void on_led1StyleOn_checked(bool checked);
+    void on_led1StyleFlash_checked(bool checked);
+    void on_led1StyleBreath_checked(bool checked);
+    void on_led1Slider_Changed(int value);
+
+    void on_led2Btn_checked(bool checked);
+    void on_led2StyleOn_checked(bool checked);
+    void on_led2StyleFlash_checked(bool checked);
+    void on_led2StyleBreath_checked(bool checked);
+    void on_led2Slider_Changed(int value);
+
+    void on_led3Btn_checked(bool checked);
+    void on_led3StyleOn_checked(bool checked);
+    void on_led3StyleFlash_checked(bool checked);
+    void on_led3StyleBreath_checked(bool checked);
+    void on_led3Slider_Changed(int value);
+
 signals:
 
 };

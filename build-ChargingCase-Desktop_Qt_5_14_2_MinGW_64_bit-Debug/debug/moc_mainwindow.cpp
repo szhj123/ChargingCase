@@ -86,8 +86,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_lineEdit_PngNum_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 1: _t->on_btnPng1_clicked(); break;
         case 2: _t->on_btnSerialOpen_clicked(); break;
         case 3: _t->on_btnSerialRefresh_clicked(); break;
         case 4: _t->on_btnSend_clicked(); break;
