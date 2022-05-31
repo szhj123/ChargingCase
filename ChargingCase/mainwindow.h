@@ -48,11 +48,6 @@ private slots:
     void on_btnSerialRefresh_clicked();
 
     void on_btnSend_clicked();
-
-    void on_cbxLedNum_currentIndexChanged(int index);
-
-    void on_cbxLed1Mode_currentIndexChanged(int index);
-
 private:
     Ui::MainWindow *ui;
     MySerialPort *mySerialPort;

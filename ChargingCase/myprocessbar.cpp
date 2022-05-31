@@ -60,7 +60,7 @@ void MyProcessBar::Draw_Process(QPainter *painter)
     painter->drawEllipse(rectProcess);
 
     painter->setBrush(processPieColor);
-    painter->drawPie(rectProcess, (-90)*16, (360*16*currVal)/100);
+    painter->drawPie(rectProcess, (90)*16, (360*16*currVal)/100);
 
     QRect rectInterCircle(marginVal+processWidth, marginVal+processWidth, diameter-(marginVal+processWidth)*2, diameter-(marginVal+processWidth)*2);
     painter->setPen(Qt::NoPen);

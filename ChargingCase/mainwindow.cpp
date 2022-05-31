@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     setTabWidget();
 
     myLed = new MyLed(this);
+    myLed->Led_Init(ui);
 
     mySerialPort = new MySerialPort(this);
 
@@ -159,12 +160,7 @@ void MainWindow::on_btnSend_clicked()
     mySerialPort->Serial_Port_Send_Data(buf, 5);
 }
 
-void MainWindow::on_cbxLedNum_currentIndexChanged(int index)
-{
-    myLed->Set_Led_Enabled(ui, index);
-}
 
-void MainWindow::on_cbxLed1Mode_currentIndexChanged(int index)
-{
-    myLed->Set_Led_Mode(ui, index);
-}
+
+
+

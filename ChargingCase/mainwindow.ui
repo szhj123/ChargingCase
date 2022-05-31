@@ -184,13 +184,13 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </size>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
       <string>页</string>
      </attribute>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="labelLedNum">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -224,7 +224,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="currentText">
-       <string>1</string>
+       <string>3</string>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
       </property>
       <item>
        <property name="text">
@@ -407,6 +410,18 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            </item>
            <item>
             <widget class="QSlider" name="led1Slider">
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>5</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
+             <property name="value">
+              <number>0</number>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -415,7 +430,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            <item>
             <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>100%</string>
+              <string>1s</string>
              </property>
             </widget>
            </item>
@@ -590,6 +605,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            </item>
            <item>
             <widget class="QSlider" name="led2Slider">
+             <property name="maximum">
+              <number>5</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -598,7 +619,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            <item>
             <widget class="QLabel" name="label_16">
              <property name="text">
-              <string>100%</string>
+              <string>1s</string>
              </property>
             </widget>
            </item>
@@ -773,6 +794,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            </item>
            <item>
             <widget class="QSlider" name="led3Slider">
+             <property name="maximum">
+              <number>5</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -781,7 +808,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
            <item>
             <widget class="QLabel" name="label_23">
              <property name="text">
-              <string>100%</string>
+              <string>1s</string>
              </property>
             </widget>
            </item>
@@ -1143,7 +1170,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <rect>
         <x>100</x>
         <y>29</y>
-        <width>231</width>
+        <width>251</width>
         <height>31</height>
        </rect>
       </property>
@@ -1152,7 +1179,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>189</y>
+        <y>230</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -1168,10 +1195,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>90</y>
+        <x>340</x>
+        <y>70</y>
         <width>101</width>
-        <height>16</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1185,14 +1212,24 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
      <widget class="QLabel" name="label_27">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>120</y>
-        <width>54</width>
-        <height>12</height>
+        <x>370</x>
+        <y>100</y>
+        <width>71</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="MyProcessBar" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>100</y>
+        <width>211</width>
+        <height>161</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -1200,16 +1237,6 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
      <attribute name="title">
       <string>页</string>
      </attribute>
-     <widget class="MyProcessBar" name="widget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>30</y>
-        <width>191</width>
-        <height>151</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBoxSerial">
