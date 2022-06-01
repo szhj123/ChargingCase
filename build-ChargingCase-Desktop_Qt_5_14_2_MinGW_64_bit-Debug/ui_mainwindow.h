@@ -110,24 +110,24 @@ public:
     QLabel *led3SliderValue;
     QWidget *tab2;
     QLabel *label_24;
-    QLabel *label_png1;
+    QLabel *labelPng1;
+    QPushButton *btnDownload1;
+    QLabel *labelPng4;
+    QPushButton *btnPng4;
+    QPushButton *btnDownload4;
+    QLabel *labelPng2;
+    QLabel *labelPng3;
+    QPushButton *btnPng2;
+    QPushButton *btnDownload2;
+    QPushButton *btnPng3;
+    QPushButton *btnDownload3;
+    QLabel *labelPng5;
+    QLabel *labelPng6;
+    QPushButton *btnPng5;
+    QPushButton *btnDownload5;
+    QPushButton *btnDownload6;
+    QPushButton *btnPng6;
     QPushButton *btnPng1;
-    QPushButton *pushButton_3;
-    QLabel *label_png1_2;
-    QPushButton *btnPng1_2;
-    QPushButton *pushButton_6;
-    QLabel *label_png1_3;
-    QLabel *label_png1_4;
-    QPushButton *btnPng1_3;
-    QPushButton *pushButton_7;
-    QPushButton *btnPng1_4;
-    QPushButton *pushButton_8;
-    QLabel *label_png1_5;
-    QLabel *label_png1_6;
-    QPushButton *btnPng1_5;
-    QPushButton *pushButton_9;
-    QPushButton *pushButton_10;
-    QPushButton *btnPng1_6;
     QWidget *tab3;
     QPushButton *pushButton_4;
     QLineEdit *lineEdit_9;
@@ -569,89 +569,89 @@ public:
         label_24->setStyleSheet(QString::fromUtf8("color: rgb(240, 240, 240);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         label_24->setAlignment(Qt::AlignCenter);
-        label_png1 = new QLabel(tab2);
-        label_png1->setObjectName(QString::fromUtf8("label_png1"));
-        label_png1->setGeometry(QRect(10, 30, 121, 91));
-        label_png1->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        labelPng1 = new QLabel(tab2);
+        labelPng1->setObjectName(QString::fromUtf8("labelPng1"));
+        labelPng1->setGeometry(QRect(10, 30, 121, 91));
+        labelPng1->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        btnDownload1 = new QPushButton(tab2);
+        btnDownload1->setObjectName(QString::fromUtf8("btnDownload1"));
+        btnDownload1->setGeometry(QRect(90, 125, 41, 24));
+        btnDownload1->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        labelPng4 = new QLabel(tab2);
+        labelPng4->setObjectName(QString::fromUtf8("labelPng4"));
+        labelPng4->setGeometry(QRect(10, 160, 121, 91));
+        labelPng4->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        btnPng4 = new QPushButton(tab2);
+        btnPng4->setObjectName(QString::fromUtf8("btnPng4"));
+        btnPng4->setGeometry(QRect(10, 255, 41, 24));
+        btnPng4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnDownload4 = new QPushButton(tab2);
+        btnDownload4->setObjectName(QString::fromUtf8("btnDownload4"));
+        btnDownload4->setGeometry(QRect(90, 255, 41, 24));
+        btnDownload4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        labelPng2 = new QLabel(tab2);
+        labelPng2->setObjectName(QString::fromUtf8("labelPng2"));
+        labelPng2->setGeometry(QRect(170, 30, 121, 91));
+        labelPng2->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        labelPng3 = new QLabel(tab2);
+        labelPng3->setObjectName(QString::fromUtf8("labelPng3"));
+        labelPng3->setGeometry(QRect(330, 30, 121, 91));
+        labelPng3->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        btnPng2 = new QPushButton(tab2);
+        btnPng2->setObjectName(QString::fromUtf8("btnPng2"));
+        btnPng2->setGeometry(QRect(170, 125, 41, 24));
+        btnPng2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnDownload2 = new QPushButton(tab2);
+        btnDownload2->setObjectName(QString::fromUtf8("btnDownload2"));
+        btnDownload2->setGeometry(QRect(250, 125, 41, 24));
+        btnDownload2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnPng3 = new QPushButton(tab2);
+        btnPng3->setObjectName(QString::fromUtf8("btnPng3"));
+        btnPng3->setGeometry(QRect(330, 125, 41, 24));
+        btnPng3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnDownload3 = new QPushButton(tab2);
+        btnDownload3->setObjectName(QString::fromUtf8("btnDownload3"));
+        btnDownload3->setGeometry(QRect(410, 125, 41, 24));
+        btnDownload3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        labelPng5 = new QLabel(tab2);
+        labelPng5->setObjectName(QString::fromUtf8("labelPng5"));
+        labelPng5->setGeometry(QRect(170, 160, 121, 91));
+        labelPng5->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        labelPng6 = new QLabel(tab2);
+        labelPng6->setObjectName(QString::fromUtf8("labelPng6"));
+        labelPng6->setGeometry(QRect(330, 160, 121, 91));
+        labelPng6->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
+        btnPng5 = new QPushButton(tab2);
+        btnPng5->setObjectName(QString::fromUtf8("btnPng5"));
+        btnPng5->setGeometry(QRect(170, 255, 41, 24));
+        btnPng5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnDownload5 = new QPushButton(tab2);
+        btnDownload5->setObjectName(QString::fromUtf8("btnDownload5"));
+        btnDownload5->setGeometry(QRect(250, 255, 41, 24));
+        btnDownload5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnDownload6 = new QPushButton(tab2);
+        btnDownload6->setObjectName(QString::fromUtf8("btnDownload6"));
+        btnDownload6->setGeometry(QRect(410, 255, 41, 24));
+        btnDownload6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
+        btnPng6 = new QPushButton(tab2);
+        btnPng6->setObjectName(QString::fromUtf8("btnPng6"));
+        btnPng6->setGeometry(QRect(330, 255, 41, 24));
+        btnPng6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+"font: 8pt \"Microsoft YaHei UI\";"));
         btnPng1 = new QPushButton(tab2);
         btnPng1->setObjectName(QString::fromUtf8("btnPng1"));
         btnPng1->setGeometry(QRect(10, 125, 41, 24));
         btnPng1->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_3 = new QPushButton(tab2);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(90, 125, 41, 24));
-        pushButton_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_2 = new QLabel(tab2);
-        label_png1_2->setObjectName(QString::fromUtf8("label_png1_2"));
-        label_png1_2->setGeometry(QRect(10, 160, 121, 91));
-        label_png1_2->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_2 = new QPushButton(tab2);
-        btnPng1_2->setObjectName(QString::fromUtf8("btnPng1_2"));
-        btnPng1_2->setGeometry(QRect(10, 255, 41, 24));
-        btnPng1_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_6 = new QPushButton(tab2);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(90, 255, 41, 24));
-        pushButton_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_3 = new QLabel(tab2);
-        label_png1_3->setObjectName(QString::fromUtf8("label_png1_3"));
-        label_png1_3->setGeometry(QRect(170, 30, 121, 91));
-        label_png1_3->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        label_png1_4 = new QLabel(tab2);
-        label_png1_4->setObjectName(QString::fromUtf8("label_png1_4"));
-        label_png1_4->setGeometry(QRect(330, 30, 121, 91));
-        label_png1_4->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_3 = new QPushButton(tab2);
-        btnPng1_3->setObjectName(QString::fromUtf8("btnPng1_3"));
-        btnPng1_3->setGeometry(QRect(170, 125, 41, 24));
-        btnPng1_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_7 = new QPushButton(tab2);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(250, 125, 41, 24));
-        pushButton_7->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        btnPng1_4 = new QPushButton(tab2);
-        btnPng1_4->setObjectName(QString::fromUtf8("btnPng1_4"));
-        btnPng1_4->setGeometry(QRect(330, 125, 41, 24));
-        btnPng1_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_8 = new QPushButton(tab2);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(410, 125, 41, 24));
-        pushButton_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        label_png1_5 = new QLabel(tab2);
-        label_png1_5->setObjectName(QString::fromUtf8("label_png1_5"));
-        label_png1_5->setGeometry(QRect(170, 160, 121, 91));
-        label_png1_5->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        label_png1_6 = new QLabel(tab2);
-        label_png1_6->setObjectName(QString::fromUtf8("label_png1_6"));
-        label_png1_6->setGeometry(QRect(330, 160, 121, 91));
-        label_png1_6->setStyleSheet(QString::fromUtf8("border-image: url(:/images/add_pic.png);"));
-        btnPng1_5 = new QPushButton(tab2);
-        btnPng1_5->setObjectName(QString::fromUtf8("btnPng1_5"));
-        btnPng1_5->setGeometry(QRect(170, 255, 41, 24));
-        btnPng1_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_9 = new QPushButton(tab2);
-        pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
-        pushButton_9->setGeometry(QRect(250, 255, 41, 24));
-        pushButton_9->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        pushButton_10 = new QPushButton(tab2);
-        pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(410, 255, 41, 24));
-        pushButton_10->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
-"font: 8pt \"Microsoft YaHei UI\";"));
-        btnPng1_6 = new QPushButton(tab2);
-        btnPng1_6->setObjectName(QString::fromUtf8("btnPng1_6"));
-        btnPng1_6->setGeometry(QRect(330, 255, 41, 24));
-        btnPng1_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "font: 8pt \"Microsoft YaHei UI\";"));
         tabWidget->addTab(tab2, QString());
         tab3 = new QWidget();
@@ -844,7 +844,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 640, 23));
+        menubar->setGeometry(QRect(0, 0, 640, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -916,24 +916,24 @@ public:
         led3SliderValue->setText(QCoreApplication::translate("MainWindow", "0s", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab1), QCoreApplication::translate("MainWindow", "\351\241\265", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "\345\233\276\347\211\207\345\257\274\345\205\245", nullptr));
-        label_png1->setText(QString());
+        labelPng1->setText(QString());
+        btnDownload1->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        labelPng4->setText(QString());
+        btnPng4->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        btnDownload4->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        labelPng2->setText(QString());
+        labelPng3->setText(QString());
+        btnPng2->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        btnDownload2->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        btnPng3->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        btnDownload3->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        labelPng5->setText(QString());
+        labelPng6->setText(QString());
+        btnPng5->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
+        btnDownload5->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        btnDownload6->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
+        btnPng6->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
         btnPng1->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_2->setText(QString());
-        btnPng1_2->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_3->setText(QString());
-        label_png1_4->setText(QString());
-        btnPng1_3->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        btnPng1_4->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        label_png1_5->setText(QString());
-        label_png1_6->setText(QString());
-        btnPng1_5->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("MainWindow", "\344\270\213\350\275\275", nullptr));
-        btnPng1_6->setText(QCoreApplication::translate("MainWindow", "\346\211\223\345\274\200", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab2), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\346\267\273\345\212\240\345\233\272\344\273\266", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\346\233\264\346\226\260\345\233\272\344\273\266", nullptr));

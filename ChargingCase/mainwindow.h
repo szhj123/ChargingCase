@@ -38,10 +38,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event );
 private slots:
 
-    void on_lineEdit_PngNum_textChanged(const QString &arg1);
-
-    void on_btnPng1_clicked();
-
     void on_btnSerialOpen_clicked();
 
     void on_btnSerialRefresh_clicked();
