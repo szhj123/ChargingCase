@@ -10,9 +10,10 @@ MyPic::~MyPic()
 
 }
 
-void MyPic::Pic_Init(Ui::MainWindow *ui)
+void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
 {
     this->ui = ui;
+    this->serialPort = serialPort;
 
     connect(ui->btnPng1, SIGNAL(clicked()), this, SLOT(on_btnPng1_clicked()));
     connect(ui->btnPng2, SIGNAL(clicked()), this, SLOT(on_btnPng2_clicked()));
@@ -22,6 +23,7 @@ void MyPic::Pic_Init(Ui::MainWindow *ui)
     connect(ui->btnPng6, SIGNAL(clicked()), this, SLOT(on_btnPng6_clicked()));
 
     connect(ui->btnDownload1, SIGNAL(clicked()), this, SLOT(on_btnDownload1_clicked()));
+    connect(ui->btnDownload2, SIGNAL(clicked()), this, SLOT(on_btnDownload2_clicked()));
 
     timer = new QTimer(this);
     timer->setInterval(100);
@@ -42,6 +44,9 @@ void MyPic::on_btnPng2_clicked()
 {
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
 
+    image2Src = new QImage(filename);
+
+    Pic_Show(image2Src, ui->labelPng2);
 }
 
 void MyPic::on_btnPng3_clicked()
@@ -80,41 +85,103 @@ void MyPic::on_btnPng6_clicked()
 
 void MyPic::on_btnDownload1_clicked()
 {
-    //Pic_Read_Rgb565(image1Src, image_png1_buf);
     Pic_Queue_Set(1, image1Src);
+}
+
+void MyPic::on_btnDownload2_clicked()
+{
+    Pic_Queue_Set(2, image1Src);
 }
 
 void MyPic::Pic_Data_Send()
 {
+    static pic_send_state_typedef picSendState;
     static image_data_s imageData;
-#if 1
 
-    if(!Pic_Queue_Get(&imageData))
+    static uchar *pData = nullptr;
+    static int colNum;
+    static QImage tempImage;
+
+    switch(picSendState)
     {
-        QPixmap pixmap = QPixmap::fromImage(*imageData.pImage);
+        case GET_IMAGE:
+        {
+            if(Pic_Queue_Get(&imageData) == true)
+            {
+                QPixmap pixmap = QPixmap::fromImage(*imageData.pImage);
 
-        if(imageData.pImage == nullptr)
-            return ;
+                if(imageData.pImage == nullptr)
+                    return ;
 
-        int with = 320;
-        int height = 240;
+                int width = 320;
+                int height = 240;
 
-        QPixmap fitpixmap = pixmap.scaled(with, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+                if(pixmap.width() > width && pixmap.height() > height)
+                {
+                    QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+                    tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
+                }
+                else
+                {
+                    tempImage = pixmap.toImage().convertToFormat(QImage::Format_RGB16);
+                }
+                imageData.rowIndex = 0;
+                imageData.colIndex = 0;
+                picSendState = GET_ROW_DATA;
+            }
+            break;
+        }
+        case GET_ROW_DATA:
+        {
+            if(imageData.rowIndex < tempImage.height())
+            {
+                pData = tempImage.scanLine(imageData.rowIndex);
+                imageData.rowIndex++;
+                colNum = tempImage.width();
+                picSendState = SEND_COL_DATA;
+            }
+            else
+            {
+                picSendState = GET_IMAGE;
+            }
+            break;
+        }
+        case SEND_COL_DATA:
+        {
+            int i;
 
-        QImage tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
+            if(colNum > 32)
+            {
+                for(i=0;i<32;i++)
+                {
+                    qDebug() << QString().sprintf("%x", pData[2*i]);
+                    qDebug() << QString().sprintf("%x", pData[2*i+1]);
+                }
 
-        uchar *pData = tempImage.bits();
+                imageData.colIndex += 64;
 
-        for(int i=0;i<64;i++)
-            qDebug() << QString().sprintf("%x", pData[i]);
+                qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
+                colNum -= 32;
+            }
+            else
+            {
+                for(i=0;i<colNum;i++)
+                {
+                    qDebug() << QString().sprintf("%x", pData[2*i]);
+                    qDebug() << QString().sprintf("%x", pData[2*i+1]);
+                }
+
+                imageData.colIndex += colNum*2;
+
+                qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
+
+                picSendState = GET_ROW_DATA;
+            }
+            break;
+        }
+        default: break;
     }
-#else
-    if(!Pic_Queue_Get(&imageData))
-    {
-        for(int i=0;i<64;i++)
-            qDebug() << "hello";
-    }
-#endif
+
 }
 
 void MyPic::Pic_Show(QImage *pImage, QLabel *pLabel )
@@ -167,7 +234,7 @@ void MyPic::Pic_Queue_Set(int imageIndex, QImage *imageSrc)
     imageQueue.rear = (imageQueue.rear + 1) % 6;
 }
 
-uchar MyPic::Pic_Queue_Get(image_data_s *imageData)
+bool MyPic::Pic_Queue_Get(image_data_s *imageData)
 {
     if(imageQueue.head != imageQueue.rear)
     {
@@ -175,10 +242,10 @@ uchar MyPic::Pic_Queue_Get(image_data_s *imageData)
         imageData->imageIndex = imageQueue.imageDataBuf[imageQueue.head].imageIndex;
         imageQueue.head = (imageQueue.head + 1) % 6;
 
-        return 0;
+        return true;
     }
     else
-        return 1;
+        return false;
 }
 
 

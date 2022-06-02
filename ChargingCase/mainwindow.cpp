@@ -15,14 +15,12 @@ MainWindow::MainWindow(QWidget *parent)
     setTabWidget();
 
     myLed = new MyLed(this);
-    myLed->Led_Init(ui);
-
     myPic = new MyPic(this);
-    myPic->Pic_Init(ui);
-
     mySerialPort = new MySerialPort(this);
-    mySerialPort->Serial_Port_Init(ui);
 
+    myLed->Led_Init(ui);
+    mySerialPort->Serial_Port_Init(ui);
+    myPic->Pic_Init(ui, mySerialPort);
 }
 
 MainWindow::~MainWindow()

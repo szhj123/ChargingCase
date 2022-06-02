@@ -23,7 +23,8 @@ SOURCES += \
     myled.cpp \
     mypic.cpp \
     myprocessbar.cpp \
-    myserialport.cpp
+    myserialport.cpp \
+    mythread.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -31,7 +32,8 @@ HEADERS += \
     myled.h \
     mypic.h \
     myprocessbar.h \
-    myserialport.h
+    myserialport.h \
+    mythread.h
 
 FORMS += \
     mainwindow.ui

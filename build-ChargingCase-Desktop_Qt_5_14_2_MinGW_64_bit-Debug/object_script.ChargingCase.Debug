@@ -5,6 +5,7 @@ debug/myled.o
 debug/mypic.o
 debug/myprocessbar.o
 debug/myserialport.o
+debug/mythread.o
 debug/qrc_res.o
 debug/moc_mainwindow.o
 debug/moc_mybtn.o
@@ -12,3 +13,4 @@ debug/moc_myled.o
 debug/moc_mypic.o
 debug/moc_myprocessbar.o
 debug/moc_myserialport.o
+debug/moc_mythread.o

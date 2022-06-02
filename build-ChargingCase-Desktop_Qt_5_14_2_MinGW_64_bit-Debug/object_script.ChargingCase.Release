@@ -5,6 +5,7 @@ release/myled.o
 release/mypic.o
 release/myprocessbar.o
 release/myserialport.o
+release/mythread.o
 release/qrc_res.o
 release/moc_mainwindow.o
 release/moc_mybtn.o
@@ -12,3 +13,4 @@ release/moc_myled.o
 release/moc_mypic.o
 release/moc_myprocessbar.o
 release/moc_myserialport.o
+release/moc_mythread.o

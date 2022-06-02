@@ -30,7 +30,6 @@ public:
     ~MainWindow();
 
     void setTabWidget();
-
 protected:
     void paintEvent(QPaintEvent *event );
     void mousePressEvent(QMouseEvent *event);
@@ -45,10 +44,12 @@ private slots:
     void on_btnSend_clicked();
 private:
     Ui::MainWindow *ui;
+
     MySerialPort *mySerialPort;
     MyLed *myLed;
     MyBtn *myBtn;
     MyPic *myPic;
+
     QPoint last;
 
 };

@@ -170,3 +170,4 @@ void MySerialPort::Serial_Port_Recv_Data()
         qDebug()<<"已接收："<<QString::fromUtf8(recv_data);
     }
 }
+

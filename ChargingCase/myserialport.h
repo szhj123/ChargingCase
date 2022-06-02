@@ -7,6 +7,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 
+
 class MySerialPort : public QObject
 {
     Q_OBJECT
@@ -18,10 +19,13 @@ public:
     void Serial_Port_Close(Ui::MainWindow *ui);
     void Serial_Port_Enable(Ui::MainWindow *ui, bool enabled);
     void Serial_Port_Send_Data(char *pBuf, int length );
+
 private:
     QSerialPort *mySerialPort;
+
 private slots:
     void Serial_Port_Recv_Data();
+
 signals:
 
 };
