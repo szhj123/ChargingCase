@@ -3,7 +3,7 @@
 
 MySerialPort::MySerialPort(QObject *parent) : QObject(parent)
 {
-
+    serialPortOpened = false;
 }
 
 void MySerialPort::Serial_Port_Init(Ui::MainWindow *ui)
@@ -105,12 +105,14 @@ void MySerialPort::Serial_Port_Open(Ui::MainWindow *ui)
         {
             qDebug()<<"串口已打开,读写模式";
             Serial_Port_Enable(ui, false);//改变ui状态
+            Serial_Port_Set_Opened(true);
         }
         else
         {
             qDebug()<<"串口打开异常"<<portnameStr<<mySerialPort->errorString();
             mySerialPort->clearError();
             Serial_Port_Enable(ui, true);
+            Serial_Port_Set_Opened(false);
         }
     }
     else
@@ -125,6 +127,7 @@ void MySerialPort::Serial_Port_Close(Ui::MainWindow *ui)
     mySerialPort->close();
     qDebug()<<"串口已关闭";
     Serial_Port_Enable(ui, true);
+    Serial_Port_Set_Opened(false);
 }
 
 
@@ -158,6 +161,18 @@ void MySerialPort::Serial_Port_Send_Data(char *pBuf, int length )
         mySerialPort->clearError();
     }
 }
+
+void MySerialPort::Serial_Port_Set_Opened(bool opened)
+{
+    serialPortOpened = opened;
+}
+
+bool MySerialPort::Serial_Port_Get_Opened()
+{
+    return serialPortOpened;
+}
+
+
 
 void MySerialPort::Serial_Port_Recv_Data()
 {

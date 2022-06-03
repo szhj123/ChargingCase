@@ -2,7 +2,7 @@
 
 MyPic::MyPic(QWidget *parent) : QWidget(parent)
 {
-
+    memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
 }
 
 MyPic::~MyPic()
@@ -28,12 +28,29 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
     timer = new QTimer(this);
     timer->setInterval(100);
     connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Data_Send()));
-    timer->start();
+
 }
 
 void MyPic::on_btnPng1_clicked()
 {
+    static QString saveFileName = nullptr;
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+
+    if(saveFileName == nullptr && filename != nullptr)
+    {
+        saveFileName = filename;
+    }
+    else
+    {
+        if(filename == saveFileName)
+        {
+            return ;
+        }
+        else
+        {
+            saveFileName = filename;
+        }
+    }
 
     image1Src = new QImage(filename);
 
@@ -42,7 +59,25 @@ void MyPic::on_btnPng1_clicked()
 
 void MyPic::on_btnPng2_clicked()
 {
+    static QString saveFileName = nullptr;
+
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+
+    if(saveFileName == nullptr && filename != nullptr)
+    {
+        saveFileName = filename;
+    }
+    else
+    {
+        if(filename == saveFileName)
+        {
+            return ;
+        }
+        else
+        {
+            saveFileName = filename;
+        }
+    }
 
     image2Src = new QImage(filename);
 
@@ -85,7 +120,12 @@ void MyPic::on_btnPng6_clicked()
 
 void MyPic::on_btnDownload1_clicked()
 {
-    Pic_Queue_Set(1, image1Src);
+    if(serialPort->Serial_Port_Get_Opened() == true)
+    {
+        Pic_Queue_Set(1, image1Src);
+
+        timer->start();
+    }
 }
 
 void MyPic::on_btnDownload2_clicked()
@@ -129,6 +169,10 @@ void MyPic::Pic_Data_Send()
                 imageData.colIndex = 0;
                 picSendState = GET_ROW_DATA;
             }
+            else
+            {
+                timer->stop();
+            }
             break;
         }
         case GET_ROW_DATA:
@@ -152,12 +196,8 @@ void MyPic::Pic_Data_Send()
 
             if(colNum > 32)
             {
-                for(i=0;i<32;i++)
-                {
-                    qDebug() << QString().sprintf("%x", pData[2*i]);
-                    qDebug() << QString().sprintf("%x", pData[2*i+1]);
-                }
-
+                serialPort->Serial_Port_Send_Data((char *)pData, 64);
+                pData += 64;
                 imageData.colIndex += 64;
 
                 qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
@@ -165,12 +205,7 @@ void MyPic::Pic_Data_Send()
             }
             else
             {
-                for(i=0;i<colNum;i++)
-                {
-                    qDebug() << QString().sprintf("%x", pData[2*i]);
-                    qDebug() << QString().sprintf("%x", pData[2*i+1]);
-                }
-
+                serialPort->Serial_Port_Send_Data((char *)pData, colNum*2);
                 imageData.colIndex += colNum*2;
 
                 qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
@@ -223,8 +258,6 @@ void MyPic::Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf)
 
 void MyPic::Pic_Queue_Set(int imageIndex, QImage *imageSrc)
 {
-    QPixmap pixmap = QPixmap::fromImage(*imageSrc);
-
     if(imageSrc == nullptr)
         return ;
 
@@ -232,6 +265,7 @@ void MyPic::Pic_Queue_Set(int imageIndex, QImage *imageSrc)
     imageQueue.imageDataBuf[imageQueue.rear].imageIndex = imageIndex;
 
     imageQueue.rear = (imageQueue.rear + 1) % 6;
+
 }
 
 bool MyPic::Pic_Queue_Get(image_data_s *imageData)

@@ -19,9 +19,11 @@ public:
     void Serial_Port_Close(Ui::MainWindow *ui);
     void Serial_Port_Enable(Ui::MainWindow *ui, bool enabled);
     void Serial_Port_Send_Data(char *pBuf, int length );
-
+    void Serial_Port_Set_Opened(bool opened);
+    bool Serial_Port_Get_Opened(void);
 private:
     QSerialPort *mySerialPort;
+    bool  serialPortOpened;
 
 private slots:
     void Serial_Port_Recv_Data();

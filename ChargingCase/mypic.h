@@ -23,12 +23,16 @@ typedef struct
     int    colIndex;
 }image_data_s;
 
+Q_DECLARE_METATYPE(image_data_s)
+
 typedef struct
 {
     image_data_s imageDataBuf[6];
     int head;
     int rear;
 }image_queue_typedef;
+
+Q_DECLARE_METATYPE(image_queue_typedef)
 
 typedef enum
 {
