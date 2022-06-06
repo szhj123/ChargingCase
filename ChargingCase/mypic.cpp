@@ -2,7 +2,9 @@
 
 MyPic::MyPic(QWidget *parent) : QWidget(parent)
 {
-    memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
+    Pic_Queue_Clr();
+
+    movie = nullptr;
 }
 
 MyPic::~MyPic()
@@ -24,11 +26,14 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
 
     connect(ui->btnDownload1, SIGNAL(clicked()), this, SLOT(on_btnDownload1_clicked()));
     connect(ui->btnDownload2, SIGNAL(clicked()), this, SLOT(on_btnDownload2_clicked()));
+    connect(ui->btnDownload3, SIGNAL(clicked()), this, SLOT(on_btnDownload3_clicked()));
+    connect(ui->btnDownload4, SIGNAL(clicked()), this, SLOT(on_btnDownload4_clicked()));
+    connect(ui->btnDownload5, SIGNAL(clicked()), this, SLOT(on_btnDownload5_clicked()));
+    connect(ui->btnDownload6, SIGNAL(clicked()), this, SLOT(on_btnDownload6_clkcked()));
 
     timer = new QTimer(this);
     timer->setInterval(100);
     connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Data_Send()));
-
 }
 
 void MyPic::on_btnPng1_clicked()
@@ -86,43 +91,115 @@ void MyPic::on_btnPng2_clicked()
 
 void MyPic::on_btnPng3_clicked()
 {
+    static QString saveFileName = nullptr;
+
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
 
+    if(saveFileName == nullptr && filename != nullptr)
+    {
+        saveFileName = filename;
+    }
+    else
+    {
+        if(filename == saveFileName)
+        {
+            return ;
+        }
+        else
+        {
+            saveFileName = filename;
+        }
+    }
+
+    image3Src = new QImage(filename);
+
+    Pic_Show(image3Src, ui->labelPng3);
 
 }
 
 void MyPic::on_btnPng4_clicked()
 {
+    static QString saveFileName = nullptr;
+
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
 
+    if(saveFileName == nullptr && filename != nullptr)
+    {
+        saveFileName = filename;
+    }
+    else
+    {
+        if(filename == saveFileName)
+        {
+            return ;
+        }
+        else
+        {
+            saveFileName = filename;
+        }
+    }
+
+    image4Src = new QImage(filename);
+
+    Pic_Show(image3Src, ui->labelPng4);
 
 }
 
 void MyPic::on_btnPng5_clicked()
 {
+    static QString saveFileName = nullptr;
+
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+
+    if(saveFileName == nullptr && filename != nullptr)
+    {
+        saveFileName = filename;
+    }
+    else
+    {
+        if(filename == saveFileName)
+        {
+            return ;
+        }
+        else
+        {
+            saveFileName = filename;
+        }
+    }
+
+    image5Src = new QImage(filename);
+
+    Pic_Show(image3Src, ui->labelPng5);
 }
 
 void MyPic::on_btnPng6_clicked()
 {
+    QMovie *tmpMovie = nullptr;
+
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.gif)"));
 
-    QMovie *movie = new QMovie(filename);
+    movie = new QMovie(filename);
+
+    movie->setFileName(filename);
+
+    movie->setCacheMode(QMovie::CacheAll);
+
+    tmpMovie = new QMovie(filename);
 
     QSize si(ui->labelPng6->width(),ui->labelPng6->height());
 
-    ui->labelPng6->setMovie(movie);
+    ui->labelPng6->setMovie(tmpMovie);
 
-    movie->setScaledSize(si);
+    tmpMovie->setScaledSize(si);
 
-    movie->start();
+    tmpMovie->start();
 }
 
 void MyPic::on_btnDownload1_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(1, image1Src);
+        Pic_Queue_Set(image1Src);
 
         timer->start();
     }
@@ -130,7 +207,67 @@ void MyPic::on_btnDownload1_clicked()
 
 void MyPic::on_btnDownload2_clicked()
 {
-    Pic_Queue_Set(2, image1Src);
+    if(serialPort->Serial_Port_Get_Opened() == true)
+    {
+        Pic_Queue_Set(image2Src);
+
+        timer->start();
+    }
+}
+
+void MyPic::on_btnDownload3_clicked()
+{
+    if(serialPort->Serial_Port_Get_Opened() == true)
+    {
+        Pic_Queue_Set(image3Src);
+
+        timer->start();
+    }
+}
+
+void MyPic::on_btnDownload4_clicked()
+{
+    if(serialPort->Serial_Port_Get_Opened() == true)
+    {
+        Pic_Queue_Set(image4Src);
+
+        timer->start();
+    }
+}
+
+void MyPic::on_btnDownload5_clicked()
+{
+    if(serialPort->Serial_Port_Get_Opened() == true)
+    {
+        Pic_Queue_Set(image5Src);
+
+        timer->start();
+    }
+}
+
+void MyPic::on_btnDownload6_clkcked()
+{
+    static QImage image;
+
+    if(movie == nullptr || serialPort->Serial_Port_Get_Opened() == false)
+    {
+        return ;
+    }
+
+    int gifFrameNum = movie->frameCount() > GIF_FRAME_NUM ? GIF_FRAME_NUM : movie->frameCount();
+
+    qDebug() << QString().sprintf("gif frame count:%d", gifFrameNum);
+
+    for(int i=0;i<gifFrameNum;i++)
+    {
+        movie->jumpToFrame(0);
+
+        image = movie->currentImage();
+
+        Pic_Queue_Set(&image);
+    }
+
+    timer->start();
 }
 
 void MyPic::Pic_Data_Send()
@@ -153,12 +290,9 @@ void MyPic::Pic_Data_Send()
                 if(imageData.pImage == nullptr)
                     return ;
 
-                int width = 320;
-                int height = 240;
-
-                if(pixmap.width() > width && pixmap.height() > height)
+                if(pixmap.width() > IMAGE_MAX_WIDTH && pixmap.height() > IMAGE_MAX_HEIGHT)
                 {
-                    QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+                    QPixmap fitpixmap = pixmap.scaled(IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
                     tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
                 }
                 else
@@ -167,10 +301,14 @@ void MyPic::Pic_Data_Send()
                 }
                 imageData.rowIndex = 0;
                 imageData.colIndex = 0;
+
+                qDebug() << QString().sprintf("gif frame index:%d", imageData.imageIndex);
                 picSendState = GET_ROW_DATA;
             }
             else
             {
+                Pic_Queue_Clr();
+
                 timer->stop();
             }
             break;
@@ -256,15 +394,14 @@ void MyPic::Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf)
     }
 }
 
-void MyPic::Pic_Queue_Set(int imageIndex, QImage *imageSrc)
+void MyPic::Pic_Queue_Set(QImage *imageSrc)
 {
     if(imageSrc == nullptr)
         return ;
 
     imageQueue.imageDataBuf[imageQueue.rear].pImage = imageSrc;
-    imageQueue.imageDataBuf[imageQueue.rear].imageIndex = imageIndex;
 
-    imageQueue.rear = (imageQueue.rear + 1) % 6;
+    imageQueue.rear = (imageQueue.rear + 1) % GIF_FRAME_NUM;
 
 }
 
@@ -273,13 +410,18 @@ bool MyPic::Pic_Queue_Get(image_data_s *imageData)
     if(imageQueue.head != imageQueue.rear)
     {
         imageData->pImage = imageQueue.imageDataBuf[imageQueue.head].pImage;
-        imageData->imageIndex = imageQueue.imageDataBuf[imageQueue.head].imageIndex;
-        imageQueue.head = (imageQueue.head + 1) % 6;
+        imageData->imageIndex = imageQueue.head;
+        imageQueue.head = (imageQueue.head + 1) % GIF_FRAME_NUM;
 
         return true;
     }
     else
         return false;
+}
+
+void MyPic::Pic_Queue_Clr()
+{
+    memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
 }
 
 

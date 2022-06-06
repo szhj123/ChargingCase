@@ -15,6 +15,10 @@
 #include <QMovie>
 #include <QTimer>
 
+#define GIF_FRAME_NUM                (64)
+#define IMAGE_MAX_WIDTH              (320)
+#define IMAGE_MAX_HEIGHT             (240)
+
 typedef struct
 {
     QImage *pImage;
@@ -27,7 +31,7 @@ Q_DECLARE_METATYPE(image_data_s)
 
 typedef struct
 {
-    image_data_s imageDataBuf[6];
+    image_data_s imageDataBuf[GIF_FRAME_NUM];
     int head;
     int rear;
 }image_queue_typedef;
@@ -51,14 +55,21 @@ public:
     void Pic_Init(Ui::MainWindow *ui, MySerialPort *serialPort);
     void Pic_Show(QImage *pImage, QLabel *pLabel );
     void Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf );
-    void Pic_Queue_Set(int imageIndex, QImage *imageSrc );
+    void Pic_Queue_Set(QImage *imageSrc );
     bool Pic_Queue_Get(image_data_s *imageData);
+    void Pic_Queue_Clr(void );
 private:
     Ui::MainWindow *ui;
     MySerialPort *serialPort;
-    QMovie *movie;
+
     QImage *image1Src;
     QImage *image2Src;
+    QImage *image3Src;
+    QImage *image4Src;
+    QImage *image5Src;
+
+    QMovie *movie;
+
     QByteArray image_png1_buf;
 
     image_queue_typedef imageQueue;
@@ -75,6 +86,10 @@ private slots:
 
     void on_btnDownload1_clicked(void );
     void on_btnDownload2_clicked(void );
+    void on_btnDownload3_clicked(void );
+    void on_btnDownload4_clicked(void );
+    void on_btnDownload5_clicked(void );
+    void on_btnDownload6_clkcked(void );
     void Pic_Data_Send(void);
 signals:
 
