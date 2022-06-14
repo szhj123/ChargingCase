@@ -72,6 +72,8 @@ private:
 
     QByteArray image_png1_buf;
 
+    pic_send_state_typedef picSendState;
+
     image_queue_typedef imageQueue;
 
     QTimer *timer;
@@ -90,6 +92,7 @@ private slots:
     void on_btnDownload4_clicked(void );
     void on_btnDownload5_clicked(void );
     void on_btnDownload6_clkcked(void );
+    void on_btnCancelDownload_clicked(void );
     void Pic_Data_Send(void);
 signals:
 

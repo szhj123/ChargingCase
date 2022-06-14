@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     myPic = new MyPic(this);
 
     myPic->Pic_Init(ui, mySerialPort);
-    myLed->Led_Init(ui);
+    myLed->Led_Init(ui, mySerialPort);
     mySerialPort->Serial_Port_Init(ui);
 
 }

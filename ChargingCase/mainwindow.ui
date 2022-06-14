@@ -1185,6 +1185,23 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <string>打开</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnCancelDownload">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>5</y>
+        <width>80</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>取消下载</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab3">
      <attribute name="title">

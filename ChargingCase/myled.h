@@ -2,6 +2,7 @@
 #define MYLED_H
 
 #include "ui_mainwindow.h"
+#include "myserialport.h"
 #include <QObject>
 #include <QDebug>
 #include <QMainWindow>
@@ -15,7 +16,8 @@ typedef enum
 
 typedef enum
 {
-    LED_SOLIED_ON = 0,
+    LED_SOLID_OFF = 0,
+    LED_SOLID_ON,
     LED_FLASH,
     LED_BREATH
 }led_style_typedef;
@@ -34,10 +36,12 @@ class MyLed : public QObject
     Q_OBJECT
 public:
     explicit MyLed(QObject *parent = nullptr);
-    void Led_Init(Ui::MainWindow *ui);
+    void Led_Init(Ui::MainWindow *ui, MySerialPort *serialPort);
     void Led_Set_Enabled(Ui::MainWindow *ui, int index);
+    void Led_Send(led_typedef *led );
 private:
     Ui::MainWindow *ui;
+    MySerialPort *serialPort;
     led_typedef led1;
     led_typedef led2;
     led_typedef led3;
