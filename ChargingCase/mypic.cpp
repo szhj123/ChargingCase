@@ -353,8 +353,6 @@ void MyPic::Pic_Data_Send()
 
                 timer->stop();
             }
-            uchar buf[] = {0x5a, 0x5a, 0x03, 0x01, 0x01, 0x05};
-            serialPort->Serial_Port_Send_Data((char *)buf, sizeof (buf));
             break;
         }
         case GET_ROW_DATA:
