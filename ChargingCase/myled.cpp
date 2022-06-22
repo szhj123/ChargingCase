@@ -14,8 +14,6 @@ void MyLed::Led_Init(Ui::MainWindow *ui, MySerialPort *serialPort)
 
     QDoubleValidator* lineDouble = new QDoubleValidator(0, 100000, 3, nullptr);
 
-    connect(ui->cbxLedNum, SIGNAL(currentIndexChanged(int )), this, SLOT(on_cbxLedNum_currentIndexChanged(int)));
-
     connect(ui->led1Btn, SIGNAL(checkedChanged(bool)), this, SLOT(on_led1Btn_checked(bool)));
     connect(ui->led1StyleOn, SIGNAL(clicked(bool)), this, SLOT(on_led1StyleOn_checked(bool)));
     connect(ui->led1StyleBreath, SIGNAL(clicked(bool)), this, SLOT(on_led1StyleBreath_checked(bool)));

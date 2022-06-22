@@ -190,61 +190,6 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      <attribute name="title">
       <string>页</string>
      </attribute>
-     <widget class="QLabel" name="labelLedNum">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(240, 240, 240);
-font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
-      </property>
-      <property name="text">
-       <string>LED数量</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cbxLedNum">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>10</y>
-        <width>41</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);
-font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
-      </property>
-      <property name="currentText">
-       <string>3</string>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </item>
-     </widget>
      <widget class="QGroupBox" name="led1Group">
       <property name="geometry">
        <rect>
@@ -286,12 +231,16 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>81</width>
-          <height>121</height>
+          <height>126</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QRadioButton" name="led1StyleOn">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED常亮</string>
            </property>
@@ -299,6 +248,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led1StyleSlow">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED慢闪</string>
            </property>
@@ -306,6 +259,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led1StyleRegular">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED闪烁</string>
            </property>
@@ -313,6 +270,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led1StyleQuick">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED快闪</string>
            </property>
@@ -320,6 +281,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led1StyleBreath">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED呼吸</string>
            </property>
@@ -370,12 +335,16 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>81</width>
-          <height>121</height>
+          <height>126</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QRadioButton" name="led2StyleOn">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED常亮</string>
            </property>
@@ -383,6 +352,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led2StyleSlow">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED慢闪</string>
            </property>
@@ -390,6 +363,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led2StyleRegular">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED闪烁</string>
            </property>
@@ -397,6 +374,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led2StyleQuick">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED快闪</string>
            </property>
@@ -404,6 +385,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led2StyleBreath">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED呼吸</string>
            </property>
@@ -453,13 +438,17 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>81</width>
-          <height>121</height>
+          <width>93</width>
+          <height>126</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <widget class="QRadioButton" name="led3StyleOn">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED常亮</string>
            </property>
@@ -467,6 +456,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led3StyleSlow">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>RadioButton</string>
            </property>
@@ -474,6 +467,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led3StyleRegular">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>RadioButton</string>
            </property>
@@ -481,6 +478,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led3StyleQuick">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED闪烁</string>
            </property>
@@ -488,6 +489,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led3StyleBreath">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED呼吸</string>
            </property>
@@ -537,13 +542,17 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <rect>
           <x>0</x>
           <y>10</y>
-          <width>81</width>
-          <height>121</height>
+          <width>93</width>
+          <height>126</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
           <widget class="QRadioButton" name="led4StyleOn">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED常亮</string>
            </property>
@@ -551,6 +560,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led4StyleSlow">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>RadioButton</string>
            </property>
@@ -558,6 +571,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led4StyleRegular">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>RadioButton</string>
            </property>
@@ -565,6 +582,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led4StyleQuick">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED闪烁</string>
            </property>
@@ -572,6 +593,10 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
          <item>
           <widget class="QRadioButton" name="led4StyleBreath">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+           </property>
            <property name="text">
             <string>LED呼吸</string>
            </property>
@@ -579,6 +604,266 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          </item>
         </layout>
        </widget>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>81</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="title">
+       <string>常规闪烁</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>81</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>灭</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_2"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>亮</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>349</x>
+        <y>10</y>
+        <width>81</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="title">
+       <string>呼吸效果</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>81</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>33</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>速度</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QSlider" name="horizontalSlider">
+          <property name="maximum">
+           <number>5</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_11">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>81</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="title">
+       <string>慢速闪烁</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>81</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_3"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_4"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>灭</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>亮</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>10</y>
+        <width>81</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);
+font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
+      </property>
+      <property name="title">
+       <string>快速闪烁</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget_5">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>81</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_12"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>灭</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_13"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>亮</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>ms</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
