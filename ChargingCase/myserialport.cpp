@@ -172,8 +172,6 @@ bool MySerialPort::Serial_Port_Get_Opened()
     return serialPortOpened;
 }
 
-
-
 void MySerialPort::Serial_Port_Recv_Data()
 {
     if (mySerialPort->bytesAvailable())
