@@ -26,7 +26,7 @@ private:
     bool  serialPortOpened;
 
 private slots:
-    void Serial_Port_Recv_Data();
+    void Serial_Port_Recv_Data(void);
 
 signals:
 

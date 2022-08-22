@@ -21,6 +21,11 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+extern MySerialPort *mySerialPort;
+extern MyLed *myLed;
+extern MyBtn *myBtn;
+extern MyPic *myPic;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -44,12 +49,6 @@ private slots:
     void on_btnSend_clicked();
 private:
     Ui::MainWindow *ui;
-
-    MySerialPort *mySerialPort;
-    MyLed *myLed;
-    MyBtn *myBtn;
-    MyPic *myPic;
-
     QPoint last;
 
 };

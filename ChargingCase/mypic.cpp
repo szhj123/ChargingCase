@@ -4,9 +4,11 @@ MyPic::MyPic(QWidget *parent) : QWidget(parent)
 {
     Pic_Queue_Clr();
 
-    picSendState = GET_IMAGE;
+    this->picSendState = GET_IMAGE;
 
-    movie = nullptr;
+    this->movie = nullptr;
+
+    this->ack = 0;
 }
 
 MyPic::~MyPic()
@@ -36,8 +38,8 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
     connect(ui->btnCancelDownload, SIGNAL(clicked()), this, SLOT(on_btnCancelDownload_clicked()));
 
     timer = new QTimer(this);
-    timer->setInterval(100);
-    connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Data_Send()));
+    timer->setInterval(50);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Send_Handler()));
 }
 
 void MyPic::on_btnPng1_clicked()
@@ -234,7 +236,7 @@ void MyPic::on_btnDownload1_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(image1Src);
+        Pic_Queue_Set(image1Src, 0);
 
         timer->start();
     }
@@ -244,7 +246,7 @@ void MyPic::on_btnDownload2_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(image2Src);
+        Pic_Queue_Set(image2Src, 1);
 
         timer->start();
     }
@@ -254,7 +256,7 @@ void MyPic::on_btnDownload3_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(image3Src);
+        Pic_Queue_Set(image3Src, 2);
 
         timer->start();
     }
@@ -264,7 +266,7 @@ void MyPic::on_btnDownload4_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(image4Src);
+        Pic_Queue_Set(image4Src, 3);
 
         timer->start();
     }
@@ -274,7 +276,7 @@ void MyPic::on_btnDownload5_clicked()
 {
     if(serialPort->Serial_Port_Get_Opened() == true)
     {
-        Pic_Queue_Set(image5Src);
+        Pic_Queue_Set(image5Src, 4);
 
         timer->start();
     }
@@ -299,7 +301,7 @@ void MyPic::on_btnDownload6_clkcked()
 
         image = movie->currentImage();
 
-        Pic_Queue_Set(&image);
+        Pic_Queue_Set(&image, 5+i);
     }
 
     timer->start();
@@ -312,7 +314,7 @@ void MyPic::on_btnCancelDownload_clicked()
     picSendState = GET_IMAGE;
 }
 
-void MyPic::Pic_Data_Send()
+void MyPic::Pic_Send_Handler()
 {
 
     static image_data_s imageData;
@@ -320,6 +322,7 @@ void MyPic::Pic_Data_Send()
     static uchar *pData = nullptr;
     static int colNum;
     static QImage tempImage;
+    static int timeout;
 
     switch(picSendState)
     {
@@ -332,26 +335,57 @@ void MyPic::Pic_Data_Send()
                 if(imageData.pImage == nullptr)
                     return ;
 
-                if(pixmap.width() > IMAGE_MAX_WIDTH && pixmap.height() > IMAGE_MAX_HEIGHT)
+                int width = pixmap.width();
+                int height = pixmap.height();
+
+                if(width > IMAGE_MAX_WIDTH)
                 {
-                    QPixmap fitpixmap = pixmap.scaled(IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
-                    tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
+                    width = IMAGE_MAX_WIDTH;
                 }
-                else
+
+                if(height > IMAGE_MAX_HEIGHT)
                 {
-                    tempImage = pixmap.toImage().convertToFormat(QImage::Format_RGB16);
+                    height = IMAGE_MAX_HEIGHT;
                 }
+
+                QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+                tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
+
+                Pic_Send_Enable(imageData.imageIndex, width, height);
+
                 imageData.rowIndex = 0;
                 imageData.colIndex = 0;
 
                 qDebug() << QString().sprintf("gif frame index:%d", imageData.imageIndex);
-                picSendState = GET_ROW_DATA;
+
+                timeout = 0;
+                picSendState = WAIT_RECV_ENABLE_ACK;
             }
             else
             {
                 Pic_Queue_Clr();
 
                 timer->stop();
+            }
+            break;
+        }
+        case WAIT_RECV_ENABLE_ACK:
+        {
+            if(Pic_Get_Ack() == 0x01)
+            {
+                Pic_Clr_Ack();
+                picSendState = GET_ROW_DATA;
+            }
+
+            if(++timeout >= 10)
+            {
+                timeout = 0;
+
+                Pic_Queue_Clr();
+
+                timer->stop();
+
+                picSendState = GET_IMAGE;
             }
             break;
         }
@@ -372,26 +406,67 @@ void MyPic::Pic_Data_Send()
         }
         case SEND_COL_DATA:
         {
-            int i;
-
             if(colNum > 32)
             {
-                serialPort->Serial_Port_Send_Data((char *)pData, 64);
-                pData += 64;
-                imageData.colIndex += 64;
-
-                qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
-                colNum -= 32;
+                Pic_Send_Data((char *)pData, 64);
             }
             else
             {
-                serialPort->Serial_Port_Send_Data((char *)pData, colNum*2);
-                imageData.colIndex += colNum*2;
+                Pic_Send_Data((char *)pData, colNum*2);
+
+                colNum = 0;
+            }
+
+            picSendState = WAIT_RECV_DATA_ACK;
+
+            break;
+        }
+        case WAIT_RECV_DATA_ACK:
+        {
+            if(Pic_Get_Ack() == 0x01)
+            {
+                timeout = 0;
+
+                Pic_Clr_Ack();
+
+                picSendState = SEND_COL_DATA;
+
+                if(colNum > 32)
+                {
+                    colNum -= 32;
+                    pData += 64;
+                    imageData.colIndex += 64;
+                }
+                else if(colNum > 0 && colNum < 32)
+                {
+                    imageData.colIndex += colNum*2;
+                }
+                else
+                {
+                    picSendState = GET_ROW_DATA;
+                }
 
                 qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
 
-                picSendState = GET_ROW_DATA;
+                return ;
             }
+
+
+            if(++timeout >= 10)
+            {
+                timeout = 0;
+
+                Pic_Queue_Clr();
+
+                timer->stop();
+
+                picSendState = GET_IMAGE;
+            }
+            else
+            {
+                picSendState = SEND_COL_DATA;
+            }
+
             break;
         }
         default: break;
@@ -415,10 +490,20 @@ void MyPic::Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf)
     if(pImage == nullptr)
         return ;
 
-    int with = 320;
-    int height = 240;
+    int width = pImage->width();
+    int height = pImage->height();
 
-    QPixmap fitpixmap = pixmap.scaled(with, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
+    if(width > IMAGE_MAX_WIDTH)
+    {
+        width = IMAGE_MAX_WIDTH;
+    }
+
+    if(height > IMAGE_MAX_HEIGHT)
+    {
+        height = IMAGE_MAX_HEIGHT;
+    }
+
+    QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
 
     QImage tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
 
@@ -436,12 +521,13 @@ void MyPic::Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf)
     }
 }
 
-void MyPic::Pic_Queue_Set(QImage *imageSrc)
+void MyPic::Pic_Queue_Set(QImage *imageSrc, int imageIndex )
 {
     if(imageSrc == nullptr)
         return ;
 
     imageQueue.imageDataBuf[imageQueue.rear].pImage = imageSrc;
+    imageQueue.imageDataBuf[imageQueue.rear].imageIndex = imageIndex;
 
     imageQueue.rear = (imageQueue.rear + 1) % GIF_FRAME_NUM;
 
@@ -465,6 +551,74 @@ void MyPic::Pic_Queue_Clr()
 {
     memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
 }
+
+void MyPic::Pic_Send_Enable(int imageIndex, uint16_t width, uint16_t height)
+{
+    static char buf[10] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x7;
+    buf[3] = 0x2;
+    buf[4] = imageIndex;
+    buf[5] = (char )width;
+    buf[6] = (char )(width >> 8);
+    buf[7] = (char )height;
+    buf[8] = (char )(height >> 8);
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[9] = (char)checksum;
+
+    serialPort->Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
+void MyPic::Pic_Send_Data(char *pBuf, int length)
+{
+    static char buf[69] = {0};
+    int i;
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = length+2;
+    buf[3] = 0x3;
+
+    for(i=0;i<length;i++)
+    {
+        buf[4+i] = pBuf[i];
+    }
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[length+4] = (char)checksum;
+
+    serialPort->Serial_Port_Send_Data(buf, length+5);
+}
+
+void MyPic::Pic_Set_Ack(unsigned char ack)
+{
+    this->ack = ack;
+}
+
+void MyPic::Pic_Clr_Ack()
+{
+    this->ack = 0;
+}
+
+unsigned char MyPic::Pic_Get_Ack()
+{
+    return this->ack;
+}
+
+
 
 
 

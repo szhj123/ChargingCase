@@ -16,8 +16,8 @@
 #include <QTimer>
 
 #define GIF_FRAME_NUM                (64)
-#define IMAGE_MAX_WIDTH              (320)
-#define IMAGE_MAX_HEIGHT             (240)
+#define IMAGE_MAX_WIDTH              (132)
+#define IMAGE_MAX_HEIGHT             (162)
 
 typedef struct
 {
@@ -41,8 +41,10 @@ Q_DECLARE_METATYPE(image_queue_typedef)
 typedef enum
 {
     GET_IMAGE = 0,
+    WAIT_RECV_ENABLE_ACK,
     GET_ROW_DATA,
-    SEND_COL_DATA
+    SEND_COL_DATA,
+    WAIT_RECV_DATA_ACK
 }pic_send_state_typedef;
 
 class MyPic : public QWidget
@@ -55,9 +57,14 @@ public:
     void Pic_Init(Ui::MainWindow *ui, MySerialPort *serialPort);
     void Pic_Show(QImage *pImage, QLabel *pLabel );
     void Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf );
-    void Pic_Queue_Set(QImage *imageSrc );
+    void Pic_Queue_Set(QImage *imageSrc, int imageIndex );
     bool Pic_Queue_Get(image_data_s *imageData);
     void Pic_Queue_Clr(void );
+    void Pic_Send_Enable(int imageIndex, uint16_t width, uint16_t height );
+    void Pic_Send_Data(char *buf, int length);
+    void Pic_Set_Ack(unsigned char ack );
+    void Pic_Clr_Ack(void );
+    unsigned char Pic_Get_Ack(void );
 private:
     Ui::MainWindow *ui;
     MySerialPort *serialPort;
@@ -78,6 +85,8 @@ private:
 
     QTimer *timer;
 
+    unsigned char ack;
+
 private slots:
     void on_btnPng1_clicked(void);
     void on_btnPng2_clicked(void);
@@ -93,7 +102,7 @@ private slots:
     void on_btnDownload5_clicked(void );
     void on_btnDownload6_clkcked(void );
     void on_btnCancelDownload_clicked(void );
-    void Pic_Data_Send(void);
+    void Pic_Send_Handler(void);
 signals:
 
 };

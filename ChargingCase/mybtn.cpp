@@ -189,3 +189,8 @@ void MyBtn::Update_Val()
 
     update();
 }
+
+bool MyBtn::Get_Checked()
+{
+    return checked;
+}

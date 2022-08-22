@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include "myserialport.h"
 
+MySerialPort *mySerialPort;
+MyLed *myLed;
+MyBtn *myBtn;
+MyPic *myPic;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
