@@ -179,32 +179,49 @@ void MySerialPort::Serial_Port_Recv_Data()
     if (mySerialPort->bytesAvailable())
     {
         //串口收到的数据可能不是连续的，需要的话应该把数据缓存下来再进行协议解析，类似tcp数据处理
-        QByteArray recv_data=mySerialPort->readAll();
+        QByteArray recv_data;
+        recv_data.resize(64);
+        recv_data = mySerialPort->readAll();
         int length = recv_data.length();
+        char *data = recv_data.data();
         //接收发送要一致，如果是处理字节数据，可以把QByteArray当数组一样取下标，或者用data()方法转为char*形式
         //ui->textRecv->append(QString::fromUtf8(recv_data));
         //qDebug() << QString().sprintf("recv count:%d", length);
         //qDebug()<<"已接收："<<QString::fromUtf8(recv_data);
-        int i=0;
-        for(;i<length;i++)
+
+        if(data[0] == 0x5a && data[1] == 0x5a)
         {
-            if(recv_data.at(i) == 0x5a && recv_data.at(i+1) == 0x5a)
+            //if((uchar)data[3] == 0x84)
+            {
+                myPic->Pic_Set_Ack(1);
+            }
+            data[0] = 0;
+            data[1] = 0;
+            recv_data.clear();
+        }
+
+        return ;
+
+        int i=0;
+        for(;i<(length-1);i++)
+        {
+            if(data[i] == 0x5a && data[i+1] == 0x5a)
             {
                 unsigned char calChecksum = 0;
-                unsigned char cmdLength = recv_data.at(i+2);
-                unsigned char cmd = recv_data.at(i+3);
-                unsigned char cmdCheckSum = recv_data.at(cmdLength+2);
+                unsigned char cmdLength = data[i+2];
+                unsigned char cmd = data[i+3];
+                unsigned char cmdCheckSum = data[cmdLength+2];
 
                 for(int j=0;j<cmdLength;j++)
                 {
-                    calChecksum += recv_data.at(2+j);
+                    calChecksum += data[2+j];
                 }
 
                 if(calChecksum == cmdCheckSum)
                 {
                     if(cmd == 0x84)
                     {
-                        unsigned char ack = recv_data.at(i+4);
+                        unsigned char ack = data[i+4];
 
                         myPic->Pic_Set_Ack(ack);
                     }
@@ -214,6 +231,9 @@ void MySerialPort::Serial_Port_Recv_Data()
             }
         }
 
+        recv_data.clear();
+
     }
+
 }
 
