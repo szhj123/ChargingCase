@@ -406,13 +406,27 @@ void MyPic::Pic_Send_Handler()
         }
         case SEND_COL_DATA:
         {
+            char tmpBuf[64];
+            int i;
             if(colNum > 32)
             {
-                Pic_Send_Data((char *)pData, 64);
+                for(i=0;i<32;i++)
+                {
+                    tmpBuf[i*2] = pData[i*2+1];
+                    tmpBuf[i*2+1] = pData[i*2];
+                }
+
+                Pic_Send_Data(tmpBuf, 64);
             }
             else
             {
-                Pic_Send_Data((char *)pData, colNum*2);
+                for(i=0;i<colNum*2;i++)
+                {
+                    tmpBuf[i*2] = pData[i*2+1];
+                    tmpBuf[i*2+1] = pData[i*2];
+                }
+
+                Pic_Send_Data(tmpBuf, colNum*2);
 
                 colNum = 0;
             }

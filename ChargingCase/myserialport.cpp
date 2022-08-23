@@ -189,39 +189,39 @@ void MySerialPort::Serial_Port_Recv_Data()
         //qDebug() << QString().sprintf("recv count:%d", length);
         //qDebug()<<"已接收："<<QString::fromUtf8(recv_data);
 
+#if 0
         if(data[0] == 0x5a && data[1] == 0x5a)
         {
-            //if((uchar)data[3] == 0x84)
+            if((uchar)data[3] == 0x84)
             {
                 myPic->Pic_Set_Ack(1);
             }
-            data[0] = 0;
-            data[1] = 0;
             recv_data.clear();
         }
 
         return ;
+#endif
 
         int i=0;
         for(;i<(length-1);i++)
         {
             if(data[i] == 0x5a && data[i+1] == 0x5a)
             {
-                unsigned char calChecksum = 0;
-                unsigned char cmdLength = data[i+2];
-                unsigned char cmd = data[i+3];
-                unsigned char cmdCheckSum = data[cmdLength+2];
+                uchar calChecksum = 0;
+                uchar cmdLength = (uchar)data[i+2];
+                uchar cmd = (uchar)data[i+3];
+                uchar cmdCheckSum = (uchar)data[cmdLength+2];
 
                 for(int j=0;j<cmdLength;j++)
                 {
-                    calChecksum += data[2+j];
+                    calChecksum += (uchar)data[2+j];
                 }
 
                 if(calChecksum == cmdCheckSum)
                 {
                     if(cmd == 0x84)
                     {
-                        unsigned char ack = data[i+4];
+                        unsigned char ack = (uchar)data[i+4];
 
                         myPic->Pic_Set_Ack(ack);
                     }
