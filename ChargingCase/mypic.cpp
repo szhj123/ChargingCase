@@ -417,6 +417,11 @@ void MyPic::Pic_Send_Handler()
                 }
 
                 Pic_Send_Data(tmpBuf, 64);
+                //serialPort->Serial_Port_Send_Data(tmpBuf, 64);
+
+                colNum -= 32;
+                pData += 64;
+                imageData.colIndex += 64;
             }
             else
             {
@@ -427,9 +432,14 @@ void MyPic::Pic_Send_Handler()
                 }
 
                 Pic_Send_Data(tmpBuf, colNum*2);
+                //serialPort->Serial_Port_Send_Data(tmpBuf, colNum*2);
 
+                imageData.colIndex += colNum*2;
+                pData += colNum*2;
                 colNum = 0;
             }
+
+            qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
 
             picSendState = WAIT_RECV_DATA_ACK;
 
@@ -443,28 +453,17 @@ void MyPic::Pic_Send_Handler()
 
                 Pic_Clr_Ack();
 
-                picSendState = SEND_COL_DATA;
-
-                if(colNum > 32)
+                if(colNum)
                 {
-                    colNum -= 32;
-                    pData += 64;
-                    imageData.colIndex += 64;
-                }
-                else if(colNum > 0 && colNum < 32)
-                {
-                    imageData.colIndex += colNum*2;
+                    picSendState = SEND_COL_DATA;
                 }
                 else
                 {
                     picSendState = GET_ROW_DATA;
                 }
 
-                qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
-
                 return ;
             }
-
 
             if(++timeout >= 10)
             {
