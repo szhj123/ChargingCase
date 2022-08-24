@@ -31,8 +31,11 @@ void MySerialPort::Serial_Port_Init(Ui::MainWindow *ui)
 
 void MySerialPort::Serial_Port_Refresh(Ui::MainWindow *ui)
 {
-    ui->boxPortName->clear();
-    Serial_Port_Init(ui);
+    if(!Serial_Port_Get_Opened())
+    {
+        ui->boxPortName->clear();
+        Serial_Port_Init(ui);
+    }
 }
 
 void MySerialPort::Serial_Port_Open(Ui::MainWindow *ui)

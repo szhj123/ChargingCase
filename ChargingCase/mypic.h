@@ -14,6 +14,7 @@
 #include <QFileDialog>
 #include <QMovie>
 #include <QTimer>
+#include <QProgressBar>
 
 #define GIF_FRAME_NUM                (64)
 #define IMAGE_MAX_WIDTH              (132)
@@ -22,9 +23,14 @@
 typedef struct
 {
     QImage *pImage;
+    QImage scalingImage;
+    uchar  *pData;
+    int    imageWidth;
+    int    imageHeightCnt;
     int    imageIndex;
-    int    rowIndex;
-    int    colIndex;
+    int    imageTotalLength;
+    int    imageDataCnt;
+    int    timeout;
 }image_data_s;
 
 Q_DECLARE_METATYPE(image_data_s)

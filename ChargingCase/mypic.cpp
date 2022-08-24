@@ -1,5 +1,8 @@
 #include "mypic.h"
 
+#define PIC_INTERVAL_TIME           5 //ms
+#define PIC_DATA_MAX_LENGTH         64
+
 MyPic::MyPic(QWidget *parent) : QWidget(parent)
 {
     Pic_Queue_Clr();
@@ -38,14 +41,14 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
     connect(ui->btnCancelDownload, SIGNAL(clicked()), this, SLOT(on_btnCancelDownload_clicked()));
 
     timer = new QTimer(this);
-    timer->setInterval(50);
+    timer->setInterval(10);
     connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Send_Handler()));
 }
 
 void MyPic::on_btnPng1_clicked()
 {
     static QString saveFileName = nullptr;
-    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpeg)\n(*.jpg)\n(*.bmp)\n(*.png)"));
 
     if(saveFileName == nullptr && filename != nullptr)
     {
@@ -78,7 +81,7 @@ void MyPic::on_btnPng2_clicked()
 {
     static QString saveFileName = nullptr;
 
-    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpeg)\n(*.jpg)\n(*.bmp)\n(*.png)"));
 
     if(saveFileName == nullptr && filename != nullptr)
     {
@@ -110,7 +113,7 @@ void MyPic::on_btnPng3_clicked()
 {
     static QString saveFileName = nullptr;
 
-    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpeg)\n(*.jpg)\n(*.bmp)\n(*.png)"));
 
     if(saveFileName == nullptr && filename != nullptr)
     {
@@ -143,7 +146,7 @@ void MyPic::on_btnPng4_clicked()
 {
     static QString saveFileName = nullptr;
 
-    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpeg)\n(*.jpg)\n(*.bmp)\n(*.png)"));
 
     if(saveFileName == nullptr && filename != nullptr)
     {
@@ -176,7 +179,7 @@ void MyPic::on_btnPng5_clicked()
 {
     static QString saveFileName = nullptr;
 
-    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpg)\n(*.bmp)\n(*.png)"));
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.jpeg)\n(*.jpg)\n(*.bmp)\n(*.png)"));
 
     if(saveFileName == nullptr && filename != nullptr)
     {
@@ -316,13 +319,7 @@ void MyPic::on_btnCancelDownload_clicked()
 
 void MyPic::Pic_Send_Handler()
 {
-
     static image_data_s imageData;
-
-    static uchar *pData = nullptr;
-    static int colNum;
-    static QImage tempImage;
-    static int timeout;
 
     switch(picSendState)
     {
@@ -349,16 +346,18 @@ void MyPic::Pic_Send_Handler()
                 }
 
                 QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
-                tempImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
+                imageData.scalingImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
 
                 Pic_Send_Enable(imageData.imageIndex, width, height);
 
-                imageData.rowIndex = 0;
-                imageData.colIndex = 0;
+                imageData.imageTotalLength = width * height * 2;
+                imageData.imageHeightCnt = 0;
+                imageData.imageDataCnt = 0;
+                imageData.timeout = 0;
 
                 qDebug() << QString().sprintf("gif frame index:%d", imageData.imageIndex);
 
-                timeout = 0;
+
                 picSendState = WAIT_RECV_ENABLE_ACK;
             }
             else
@@ -377,9 +376,9 @@ void MyPic::Pic_Send_Handler()
                 picSendState = GET_ROW_DATA;
             }
 
-            if(++timeout >= 10)
+            if(++imageData.timeout >= 1000/PIC_INTERVAL_TIME)
             {
-                timeout = 0;
+                imageData.timeout = 0;
 
                 Pic_Queue_Clr();
 
@@ -391,11 +390,11 @@ void MyPic::Pic_Send_Handler()
         }
         case GET_ROW_DATA:
         {
-            if(imageData.rowIndex < tempImage.height())
+            if(imageData.imageHeightCnt < imageData.scalingImage.height())
             {
-                pData = tempImage.scanLine(imageData.rowIndex);
-                imageData.rowIndex++;
-                colNum = tempImage.width();
+                imageData.pData = imageData.scalingImage.scanLine(imageData.imageHeightCnt);
+                imageData.imageHeightCnt++;
+                imageData.imageWidth = imageData.scalingImage.width();
                 picSendState = SEND_COL_DATA;
             }
             else
@@ -406,40 +405,52 @@ void MyPic::Pic_Send_Handler()
         }
         case SEND_COL_DATA:
         {
-            char tmpBuf[64];
             int i;
-            if(colNum > 32)
+            char tmpBuf[PIC_DATA_MAX_LENGTH];
+
+            if(imageData.imageWidth > PIC_DATA_MAX_LENGTH/2)
             {
-                for(i=0;i<32;i++)
+                for(i=0;i<PIC_DATA_MAX_LENGTH/2;i++)
                 {
-                    tmpBuf[i*2] = pData[i*2+1];
-                    tmpBuf[i*2+1] = pData[i*2];
+                    tmpBuf[i*2] = imageData.pData[i*2+1];
+                    tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(tmpBuf, 64);
+                Pic_Send_Data(tmpBuf, PIC_DATA_MAX_LENGTH);
                 //serialPort->Serial_Port_Send_Data(tmpBuf, 64);
 
-                colNum -= 32;
-                pData += 64;
-                imageData.colIndex += 64;
+                imageData.imageWidth -= PIC_DATA_MAX_LENGTH/2;
+                imageData.pData += PIC_DATA_MAX_LENGTH;
+                imageData.imageDataCnt += PIC_DATA_MAX_LENGTH;
             }
             else
             {
-                for(i=0;i<colNum*2;i++)
+                for(i=0;i<imageData.imageWidth*2;i++)
                 {
-                    tmpBuf[i*2] = pData[i*2+1];
-                    tmpBuf[i*2+1] = pData[i*2];
+                    tmpBuf[i*2] = imageData.pData[i*2+1];
+                    tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(tmpBuf, colNum*2);
-                //serialPort->Serial_Port_Send_Data(tmpBuf, colNum*2);
+                Pic_Send_Data(tmpBuf, imageData.imageWidth*2);
+                //serialPort->Serial_Port_Send_Data(tmpBuf, imageData.imageWidth*2);
 
-                imageData.colIndex += colNum*2;
-                pData += colNum*2;
-                colNum = 0;
+                imageData.imageDataCnt += imageData.imageWidth*2;
+                imageData.pData += imageData.imageWidth*2;
+                imageData.imageWidth = 0;
             }
 
-            qDebug() << QString().sprintf("send count:%d", imageData.colIndex);
+            qDebug() << QString().sprintf("send count:%d", imageData.imageDataCnt);
+
+            switch(imageData.imageIndex)
+            {
+                case 0: ui->progressBarPng1->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                case 1: ui->progressBarPng2->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                case 2: ui->progressBarPng3->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                case 3: ui->progressBarPng4->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                case 4: ui->progressBarPng5->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                case 5: ui->progressBarPng6->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                default: break;
+            }
 
             picSendState = WAIT_RECV_DATA_ACK;
 
@@ -449,11 +460,11 @@ void MyPic::Pic_Send_Handler()
         {
             if(Pic_Get_Ack() == 0x01)
             {
-                timeout = 0;
+                imageData.timeout = 0;
 
                 Pic_Clr_Ack();
 
-                if(colNum)
+                if(imageData.imageWidth)
                 {
                     picSendState = SEND_COL_DATA;
                 }
@@ -465,9 +476,9 @@ void MyPic::Pic_Send_Handler()
                 return ;
             }
 
-            if(++timeout >= 10)
+            if(++imageData.timeout >= 1000/PIC_INTERVAL_TIME)
             {
-                timeout = 0;
+                imageData.timeout = 0;
 
                 Pic_Queue_Clr();
 

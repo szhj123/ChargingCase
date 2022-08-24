@@ -171,8 +171,8 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>50</y>
+      <x>180</x>
+      <y>40</y>
       <width>460</width>
       <height>321</height>
      </rect>
@@ -184,7 +184,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -959,9 +959,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
-        <width>121</width>
-        <height>91</height>
+        <y>25</y>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -975,9 +975,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -993,8 +993,8 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <rect>
         <x>10</x>
         <y>160</y>
-        <width>121</width>
-        <height>91</height>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1008,9 +1008,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1025,9 +1025,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>90</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1042,9 +1042,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>30</y>
-        <width>121</width>
-        <height>91</height>
+        <y>25</y>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1058,9 +1058,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>30</y>
-        <width>121</width>
-        <height>91</height>
+        <y>25</y>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1074,9 +1074,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1091,9 +1091,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1108,9 +1108,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1125,9 +1125,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1143,8 +1143,8 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <rect>
         <x>170</x>
         <y>160</y>
-        <width>121</width>
-        <height>91</height>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1159,8 +1159,8 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <rect>
         <x>330</x>
         <y>160</y>
-        <width>121</width>
-        <height>91</height>
+        <width>120</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1174,9 +1174,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1191,9 +1191,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1208,9 +1208,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1225,9 +1225,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>255</y>
-        <width>41</width>
-        <height>24</height>
+        <y>268</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1242,9 +1242,9 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>125</y>
-        <width>41</width>
-        <height>24</height>
+        <y>132</y>
+        <width>40</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1259,7 +1259,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>5</y>
+        <y>3</y>
         <width>80</width>
         <height>20</height>
        </rect>
@@ -1270,6 +1270,102 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
        <string>取消下载</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>128</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>264</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng2">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>128</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng3">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>128</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng5">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>264</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="progressBarPng6">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>264</y>
+        <width>120</width>
+        <height>2</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="textVisible">
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -1418,7 +1514,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
-         <string>115200</string>
+         <string>230400</string>
         </property>
         <item>
          <property name="text">
