@@ -41,7 +41,7 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
     connect(ui->btnCancelDownload, SIGNAL(clicked()), this, SLOT(on_btnCancelDownload_clicked()));
 
     timer = new QTimer(this);
-    timer->setInterval(10);
+    timer->setInterval(5);
     connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Send_Handler()));
 }
 
@@ -386,6 +386,7 @@ void MyPic::Pic_Send_Handler()
 
                 picSendState = GET_IMAGE;
             }
+
             break;
         }
         case GET_ROW_DATA:
@@ -464,6 +465,8 @@ void MyPic::Pic_Send_Handler()
 
                 Pic_Clr_Ack();
 
+                picSendState = SEND_COL_DATA;
+
                 if(imageData.imageWidth)
                 {
                     picSendState = SEND_COL_DATA;
@@ -476,19 +479,23 @@ void MyPic::Pic_Send_Handler()
                 return ;
             }
 
-            if(++imageData.timeout >= 1000/PIC_INTERVAL_TIME)
+            if(++imageData.timeout >= 50/PIC_INTERVAL_TIME)
             {
+                static uint8_t terminateCnt;
                 imageData.timeout = 0;
 
-                Pic_Queue_Clr();
-
-                timer->stop();
-
-                picSendState = GET_IMAGE;
-            }
-            else
-            {
                 picSendState = SEND_COL_DATA;
+
+                if(++terminateCnt >= 100)
+                {
+                    terminateCnt = 0;
+
+                    Pic_Queue_Clr();
+
+                    timer->stop();
+
+                    picSendState = GET_IMAGE;
+                }
             }
 
             break;

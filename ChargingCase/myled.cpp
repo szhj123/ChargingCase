@@ -27,7 +27,7 @@ void MyLed::Led_Init(Ui::MainWindow *ui, MySerialPort *serialPort)
     connect(ui->lineEditRegularOff, SIGNAL(textChanged(const QString &)), this, SLOT(on_lineEditRegularOff_changed(const QString &)));
     connect(ui->lineEditQuickOn, SIGNAL(textChanged(const QString &)), this, SLOT(on_lineEditQuickOn_changed(const QString &)));
     connect(ui->lineEditQuickOff, SIGNAL(textChanged(const QString &)), this, SLOT(on_lineEditQuickOff_changed(const QString &)));
-    connect(ui->sliderBreathSpeed, SIGNAL(valueChanged(int value)), this, SLOT(on_sliderBreathSpeed_changed(int value)));
+    //connect(ui->sliderBreathSpeed, SIGNAL(valueChanged(int value)), this, SLOT(on_sliderBreathSpeed_changed(int value)));
 
     connect(ui->led1Btn, SIGNAL(checkedChanged(bool)), this, SLOT(on_led1Btn_checked(bool)));
     connect(ui->led1StyleSolid, SIGNAL(clicked(bool)), this, SLOT(on_led1StyleSolid_checked(bool)));
