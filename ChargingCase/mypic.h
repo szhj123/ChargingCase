@@ -16,7 +16,7 @@
 #include <QTimer>
 #include <QProgressBar>
 
-#define GIF_FRAME_NUM                (64)
+#define GIF_FRAME_NUM                (128)
 #define IMAGE_MAX_WIDTH              (132)
 #define IMAGE_MAX_HEIGHT             (162)
 
@@ -27,10 +27,13 @@ typedef struct
     uchar  *pData;
     int    imageWidth;
     int    imageHeightCnt;
+    int    imageTotalNum;
     int    imageIndex;
     int    imageTotalLength;
     int    imageDataCnt;
+    int    gifImageNum;
     int    timeout;
+    int    imageTransErrCnt;
 }image_data_s;
 
 Q_DECLARE_METATYPE(image_data_s)
@@ -66,8 +69,10 @@ public:
     void Pic_Queue_Set(QImage *imageSrc, int imageIndex );
     bool Pic_Queue_Get(image_data_s *imageData);
     void Pic_Queue_Clr(void );
-    void Pic_Send_Enable(int imageIndex, uint16_t width, uint16_t height );
+    void Pic_Send_Enable(int imageTotalNum, int imageIndex, uint16_t width, uint16_t height );
     void Pic_Send_Data(char *buf, int length);
+    void Pic_Set_Gif_Image_Num(int imageNum);
+    int  Pic_Get_Gif_Image_Num(void );
     void Pic_Set_Ack(unsigned char ack );
     void Pic_Clr_Ack(void );
     unsigned char Pic_Get_Ack(void );

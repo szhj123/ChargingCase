@@ -3,6 +3,8 @@
 #define PIC_INTERVAL_TIME           5 //ms
 #define PIC_DATA_MAX_LENGTH         64
 
+static image_data_s imageData;
+
 MyPic::MyPic(QWidget *parent) : QWidget(parent)
 {
     Pic_Queue_Clr();
@@ -41,7 +43,7 @@ void MyPic::Pic_Init(Ui::MainWindow *ui ,MySerialPort *serialPort)
     connect(ui->btnCancelDownload, SIGNAL(clicked()), this, SLOT(on_btnCancelDownload_clicked()));
 
     timer = new QTimer(this);
-    timer->setInterval(5);
+    timer->setInterval(PIC_INTERVAL_TIME);
     connect(timer, SIGNAL(timeout()), this, SLOT(Pic_Send_Handler()));
 }
 
@@ -213,7 +215,7 @@ void MyPic::on_btnPng6_clicked()
 
     QString filename=QFileDialog::getOpenFileName(this,tr("Open Image"),QDir::homePath(),tr("(*.gif)"));
 
-    if(filename != nullptr)
+    if(filename == nullptr)
     {
         return ;
     }
@@ -242,6 +244,8 @@ void MyPic::on_btnDownload1_clicked()
         Pic_Queue_Set(image1Src, 0);
 
         timer->start();
+
+        ui->btnDownload1->setEnabled(false);
     }
 }
 
@@ -252,6 +256,8 @@ void MyPic::on_btnDownload2_clicked()
         Pic_Queue_Set(image2Src, 1);
 
         timer->start();
+
+        ui->btnDownload2->setEnabled(false);
     }
 }
 
@@ -262,6 +268,8 @@ void MyPic::on_btnDownload3_clicked()
         Pic_Queue_Set(image3Src, 2);
 
         timer->start();
+
+        ui->btnDownload3->setEnabled(false);
     }
 }
 
@@ -272,6 +280,8 @@ void MyPic::on_btnDownload4_clicked()
         Pic_Queue_Set(image4Src, 3);
 
         timer->start();
+
+        ui->btnDownload4->setEnabled(false);
     }
 }
 
@@ -282,6 +292,8 @@ void MyPic::on_btnDownload5_clicked()
         Pic_Queue_Set(image5Src, 4);
 
         timer->start();
+
+        ui->btnDownload5->setEnabled(false);
     }
 }
 
@@ -294,13 +306,15 @@ void MyPic::on_btnDownload6_clkcked()
         return ;
     }
 
-    int gifFrameNum = movie->frameCount() > GIF_FRAME_NUM ? GIF_FRAME_NUM : movie->frameCount();
+    int gifImageNum = movie->frameCount() > GIF_FRAME_NUM ? GIF_FRAME_NUM : movie->frameCount();
 
-    qDebug() << QString().sprintf("gif frame count:%d", gifFrameNum);
+    qDebug() << QString().sprintf("gif frame count:%d", gifImageNum);
 
-    for(int i=0;i<gifFrameNum;i++)
+    Pic_Set_Gif_Image_Num(gifImageNum);
+
+    for(int i=0;i<gifImageNum;i++)
     {
-        movie->jumpToFrame(0);
+        movie->jumpToFrame(i);
 
         image = movie->currentImage();
 
@@ -308,19 +322,28 @@ void MyPic::on_btnDownload6_clkcked()
     }
 
     timer->start();
+
+    ui->btnDownload6->setEnabled(false);
 }
 
 void MyPic::on_btnCancelDownload_clicked()
 {
     Pic_Queue_Clr();
 
+    timer->stop();
+
+    ui->btnDownload1->setEnabled(true);
+    ui->btnDownload2->setEnabled(true);
+    ui->btnDownload3->setEnabled(true);
+    ui->btnDownload4->setEnabled(true);
+    ui->btnDownload5->setEnabled(true);
+    ui->btnDownload6->setEnabled(true);
+
     picSendState = GET_IMAGE;
 }
 
 void MyPic::Pic_Send_Handler()
 {
-    static image_data_s imageData;
-
     switch(picSendState)
     {
         case GET_IMAGE:
@@ -348,7 +371,17 @@ void MyPic::Pic_Send_Handler()
                 QPixmap fitpixmap = pixmap.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);  // 饱满填充
                 imageData.scalingImage = fitpixmap.toImage().convertToFormat(QImage::Format_RGB16);
 
-                Pic_Send_Enable(imageData.imageIndex, width, height);
+                if(imageData.imageIndex < 5)
+                {
+                    imageData.imageTotalNum = 1;
+                }
+                else
+                {
+                    imageData.imageTotalNum = Pic_Get_Gif_Image_Num();
+                }
+
+
+                Pic_Send_Enable(imageData.imageTotalNum, imageData.imageIndex, width, height);
 
                 imageData.imageTotalLength = width * height * 2;
                 imageData.imageHeightCnt = 0;
@@ -365,6 +398,13 @@ void MyPic::Pic_Send_Handler()
                 Pic_Queue_Clr();
 
                 timer->stop();
+
+                ui->btnDownload1->setEnabled(true);
+                ui->btnDownload2->setEnabled(true);
+                ui->btnDownload3->setEnabled(true);
+                ui->btnDownload4->setEnabled(true);
+                ui->btnDownload5->setEnabled(true);
+                ui->btnDownload6->setEnabled(true);
             }
             break;
         }
@@ -381,8 +421,6 @@ void MyPic::Pic_Send_Handler()
                 imageData.timeout = 0;
 
                 Pic_Queue_Clr();
-
-                timer->stop();
 
                 picSendState = GET_IMAGE;
             }
@@ -442,15 +480,21 @@ void MyPic::Pic_Send_Handler()
 
             qDebug() << QString().sprintf("send count:%d", imageData.imageDataCnt);
 
-            switch(imageData.imageIndex)
+            if(imageData.imageIndex < 5)
             {
-                case 0: ui->progressBarPng1->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                case 1: ui->progressBarPng2->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                case 2: ui->progressBarPng3->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                case 3: ui->progressBarPng4->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                case 4: ui->progressBarPng5->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                case 5: ui->progressBarPng6->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                default: break;
+                switch(imageData.imageIndex)
+                {
+                    case 0: ui->progressBarPng1->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                    case 1: ui->progressBarPng2->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                    case 2: ui->progressBarPng3->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                    case 3: ui->progressBarPng4->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                    case 4: ui->progressBarPng5->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+                    default: break;
+                }
+            }
+            else
+            {
+                ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
             }
 
             picSendState = WAIT_RECV_DATA_ACK;
@@ -462,6 +506,8 @@ void MyPic::Pic_Send_Handler()
             if(Pic_Get_Ack() == 0x01)
             {
                 imageData.timeout = 0;
+
+                imageData.imageTransErrCnt = 0;
 
                 Pic_Clr_Ack();
 
@@ -481,18 +527,15 @@ void MyPic::Pic_Send_Handler()
 
             if(++imageData.timeout >= 50/PIC_INTERVAL_TIME)
             {
-                static uint8_t terminateCnt;
                 imageData.timeout = 0;
 
                 picSendState = SEND_COL_DATA;
 
-                if(++terminateCnt >= 100)
+                if(++imageData.imageTransErrCnt >= 100)
                 {
-                    terminateCnt = 0;
+                    imageData.imageTransErrCnt = 0;
 
                     Pic_Queue_Clr();
-
-                    timer->stop();
 
                     picSendState = GET_IMAGE;
                 }
@@ -569,7 +612,7 @@ bool MyPic::Pic_Queue_Get(image_data_s *imageData)
     if(imageQueue.head != imageQueue.rear)
     {
         imageData->pImage = imageQueue.imageDataBuf[imageQueue.head].pImage;
-        imageData->imageIndex = imageQueue.head;
+        imageData->imageIndex = imageQueue.imageDataBuf[imageQueue.head].imageIndex;
         imageQueue.head = (imageQueue.head + 1) % GIF_FRAME_NUM;
 
         return true;
@@ -583,27 +626,28 @@ void MyPic::Pic_Queue_Clr()
     memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
 }
 
-void MyPic::Pic_Send_Enable(int imageIndex, uint16_t width, uint16_t height)
+void MyPic::Pic_Send_Enable(int imageTotalNum, int imageIndex, uint16_t width, uint16_t height)
 {
-    static char buf[10] = {0};
+    static char buf[11] = {0};
     char checksum = 0;
 
     buf[0] = 0x5a;
     buf[1] = 0x5a;
-    buf[2] = 0x7;
+    buf[2] = 0x8;
     buf[3] = 0x2;
-    buf[4] = imageIndex;
-    buf[5] = (char )width;
-    buf[6] = (char )(width >> 8);
-    buf[7] = (char )height;
-    buf[8] = (char )(height >> 8);
+    buf[4] = imageTotalNum;
+    buf[5] = imageIndex;
+    buf[6] = (char )width;
+    buf[7] = (char )(width >> 8);
+    buf[8] = (char )height;
+    buf[9] = (char )(height >> 8);
 
     for(int i = 0;i<buf[2];i++)
     {
         checksum += buf[i+2];
     }
 
-    buf[9] = (char)checksum;
+    buf[10] = (char)checksum;
 
     serialPort->Serial_Port_Send_Data(buf, sizeof(buf));
 }
@@ -632,6 +676,16 @@ void MyPic::Pic_Send_Data(char *pBuf, int length)
     buf[length+4] = (char)checksum;
 
     serialPort->Serial_Port_Send_Data(buf, length+5);
+}
+
+void MyPic::Pic_Set_Gif_Image_Num(int imageNum)
+{
+    imageData.gifImageNum = imageNum;
+}
+
+int MyPic::Pic_Get_Gif_Image_Num()
+{
+    return imageData.gifImageNum;
 }
 
 void MyPic::Pic_Set_Ack(unsigned char ack)
