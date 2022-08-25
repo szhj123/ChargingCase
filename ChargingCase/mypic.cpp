@@ -14,7 +14,6 @@ MyPic::MyPic(QWidget *parent) : QWidget(parent)
     this->movie = nullptr;
 
     this->ack = 0;
-    this->ack = 0;
 }
 
 MyPic::~MyPic()
@@ -300,26 +299,33 @@ void MyPic::on_btnDownload5_clicked()
 
 void MyPic::on_btnDownload6_clkcked()
 {
-    static QImage image;
+    static QImage image[GIF_FRAME_NUM];
 
     if(movie == nullptr || serialPort->Serial_Port_Get_Opened() == false)
     {
         return ;
     }
 
-    int gifImageNum = movie->frameCount() > GIF_FRAME_NUM ? GIF_FRAME_NUM : movie->frameCount();
+    int gifImageNum = movie->frameCount() > GIF_FRAME_NUM ? GIF_FRAME_NUM : movie->frameCount();   
 
     qDebug() << QString().sprintf("gif frame count:%d", gifImageNum);
 
+    if(gifImageNum > GIF_FRAME_NUM)
+    {
+        gifImageNum = GIF_FRAME_NUM;
+    }
+
     Pic_Set_Gif_Image_Num(gifImageNum);
+    //imageData.gifImageNum = 30;
 
     for(int i=0;i<gifImageNum;i++)
+    //for(int i=0;i<imageData.gifImageNum;i++)
     {
         movie->jumpToFrame(i);
 
-        image = movie->currentImage();
+        image[i] = movie->currentImage();
 
-        Pic_Queue_Set(&image, 5+i);
+        Pic_Queue_Set(&image[i], 5+i);
     }
 
     timer->start();
@@ -495,7 +501,7 @@ void MyPic::Pic_Send_Handler()
             }
             else
             {
-                ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
+                ui->progressBarPng6->setValue((imageData.imageIndex-5) * 100 / imageData.gifImageNum);
             }
 
             picSendState = WAIT_RECV_DATA_ACK;
