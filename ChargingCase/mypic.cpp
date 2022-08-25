@@ -501,7 +501,7 @@ void MyPic::Pic_Send_Handler()
             }
             else
             {
-                ui->progressBarPng6->setValue((imageData.imageIndex-5) * 100 / imageData.gifImageNum);
+                ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
             }
 
             picSendState = WAIT_RECV_DATA_ACK;
