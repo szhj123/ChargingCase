@@ -14,6 +14,7 @@ MyPic::MyPic(QWidget *parent) : QWidget(parent)
     this->movie = nullptr;
 
     this->ack = 0;
+    this->ack = 0;
 }
 
 MyPic::~MyPic()
