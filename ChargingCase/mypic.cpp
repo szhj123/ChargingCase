@@ -462,12 +462,8 @@ void MyPic::Pic_Send_Handler()
                     tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(tmpBuf, PIC_DATA_MAX_LENGTH);
+                Pic_Send_Data(imageData.imageDataCnt ,tmpBuf, PIC_DATA_MAX_LENGTH);
                 //serialPort->Serial_Port_Send_Data(tmpBuf, 64);
-
-                imageData.imageWidth -= PIC_DATA_MAX_LENGTH/2;
-                imageData.pData += PIC_DATA_MAX_LENGTH;
-                imageData.imageDataCnt += PIC_DATA_MAX_LENGTH;
             }
             else
             {
@@ -477,31 +473,8 @@ void MyPic::Pic_Send_Handler()
                     tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(tmpBuf, imageData.imageWidth*2);
+                Pic_Send_Data(imageData.imageDataCnt, tmpBuf, imageData.imageWidth*2);
                 //serialPort->Serial_Port_Send_Data(tmpBuf, imageData.imageWidth*2);
-
-                imageData.imageDataCnt += imageData.imageWidth*2;
-                imageData.pData += imageData.imageWidth*2;
-                imageData.imageWidth = 0;
-            }
-
-            qDebug() << QString().sprintf("send count:%d", imageData.imageDataCnt);
-
-            if(imageData.imageIndex < 5)
-            {
-                switch(imageData.imageIndex)
-                {
-                    case 0: ui->progressBarPng1->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                    case 1: ui->progressBarPng2->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                    case 2: ui->progressBarPng3->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                    case 3: ui->progressBarPng4->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                    case 4: ui->progressBarPng5->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
-                    default: break;
-                }
-            }
-            else
-            {
-                ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
             }
 
             picSendState = WAIT_RECV_DATA_ACK;
@@ -520,14 +493,22 @@ void MyPic::Pic_Send_Handler()
 
                 picSendState = SEND_COL_DATA;
 
-                if(imageData.imageWidth)
+                if(imageData.imageWidth > PIC_DATA_MAX_LENGTH/2)
                 {
+                    imageData.imageWidth -= PIC_DATA_MAX_LENGTH/2;
+                    imageData.pData += PIC_DATA_MAX_LENGTH;
+                    imageData.imageDataCnt += PIC_DATA_MAX_LENGTH;
                     picSendState = SEND_COL_DATA;
                 }
                 else
                 {
+                    imageData.imageDataCnt += imageData.imageWidth*2;
+                    imageData.pData += imageData.imageWidth*2;
+                    imageData.imageWidth = 0;
                     picSendState = GET_ROW_DATA;
                 }
+
+                Pic_Set_Progress_Bar();
 
                 return ;
             }
@@ -552,7 +533,6 @@ void MyPic::Pic_Send_Handler()
         }
         default: break;
     }
-
 }
 
 void MyPic::Pic_Show(QImage *pImage, QLabel *pLabel )
@@ -600,6 +580,28 @@ void MyPic::Pic_Read_Rgb565(QImage *pImage, QByteArray pImageDataBuf)
             qDebug() << QString().sprintf("%x", pData[2*j+1]);
         }
     }
+}
+
+void MyPic::Pic_Set_Progress_Bar()
+{
+    if(imageData.imageIndex < 5)
+    {
+        switch(imageData.imageIndex)
+        {
+            case 0: ui->progressBarPng1->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+            case 1: ui->progressBarPng2->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+            case 2: ui->progressBarPng3->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+            case 3: ui->progressBarPng4->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+            case 4: ui->progressBarPng5->setValue(imageData.imageDataCnt * 100 / imageData.imageTotalLength); break;
+            default: break;
+        }
+    }
+    else
+    {
+        ui->progressBarPng6->setValue((imageData.imageIndex-5) * 100 / imageData.gifImageNum);
+    }
+
+    qDebug() << QString().sprintf("send count:%d", imageData.imageDataCnt);
 }
 
 void MyPic::Pic_Queue_Set(QImage *imageSrc, int imageIndex )
@@ -659,20 +661,24 @@ void MyPic::Pic_Send_Enable(int imageTotalNum, int imageIndex, uint16_t width, u
     serialPort->Serial_Port_Send_Data(buf, sizeof(buf));
 }
 
-void MyPic::Pic_Send_Data(char *pBuf, int length)
+void MyPic::Pic_Send_Data(int offset, char *pBuf, int length)
 {
-    static char buf[69] = {0};
+    static char buf[73] = {0};
     int i;
     char checksum = 0;
 
     buf[0] = 0x5a;
     buf[1] = 0x5a;
-    buf[2] = length+2;
+    buf[2] = length+6;
     buf[3] = 0x3;
+    buf[4] = (uchar)offset;
+    buf[5] = (uchar)(offset >> 8);
+    buf[6] = (uchar)(offset >> 16);
+    buf[7] = (uchar)(offset >> 24);
 
     for(i=0;i<length;i++)
     {
-        buf[4+i] = pBuf[i];
+        buf[8+i] = pBuf[i];
     }
 
     for(int i = 0;i<buf[2];i++)
@@ -680,9 +686,9 @@ void MyPic::Pic_Send_Data(char *pBuf, int length)
         checksum += buf[i+2];
     }
 
-    buf[length+4] = (char)checksum;
+    buf[length+8] = (char)checksum;
 
-    serialPort->Serial_Port_Send_Data(buf, length+5);
+    serialPort->Serial_Port_Send_Data(buf, length+9);
 }
 
 void MyPic::Pic_Set_Gif_Image_Num(int imageNum)
