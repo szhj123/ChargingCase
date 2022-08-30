@@ -1514,7 +1514,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
-         <string>115200</string>
+         <string>921600</string>
         </property>
         <item>
          <property name="text">
@@ -1690,7 +1690,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
 font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="currentText">
-         <string>5</string>
+         <string>8</string>
         </property>
         <item>
          <property name="text">
