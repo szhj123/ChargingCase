@@ -6,6 +6,7 @@ MySerialPort *mySerialPort;
 MyLed *myLed;
 MyBtn *myBtn;
 MyPic *myPic;
+MyUpgrade *myUpgrade;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,9 +23,12 @@ MainWindow::MainWindow(QWidget *parent)
     mySerialPort = new MySerialPort(this);
     myLed = new MyLed(this);
     myPic = new MyPic(this);
+    myUpgrade = new MyUpgrade(this);
 
     myPic->Pic_Init(ui, mySerialPort);
     myLed->Led_Init(ui, mySerialPort);
+    myUpgrade->Upgrade_Init(ui, mySerialPort);
+
     mySerialPort->Serial_Port_Init(ui);
 
 }

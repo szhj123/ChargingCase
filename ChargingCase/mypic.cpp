@@ -246,6 +246,8 @@ void MyPic::on_btnDownload1_clicked()
         timer->start();
 
         ui->btnDownload1->setEnabled(false);
+
+        ui->progressBarPng1->setValue(0);
     }
 }
 
@@ -258,6 +260,8 @@ void MyPic::on_btnDownload2_clicked()
         timer->start();
 
         ui->btnDownload2->setEnabled(false);
+
+        ui->progressBarPng2->setValue(0);
     }
 }
 
@@ -270,6 +274,8 @@ void MyPic::on_btnDownload3_clicked()
         timer->start();
 
         ui->btnDownload3->setEnabled(false);
+
+        ui->progressBarPng3->setValue(0);
     }
 }
 
@@ -282,6 +288,8 @@ void MyPic::on_btnDownload4_clicked()
         timer->start();
 
         ui->btnDownload4->setEnabled(false);
+
+        ui->progressBarPng4->setValue(0);
     }
 }
 
@@ -294,6 +302,8 @@ void MyPic::on_btnDownload5_clicked()
         timer->start();
 
         ui->btnDownload5->setEnabled(false);
+
+        ui->progressBarPng5->setValue(0);
     }
 }
 
@@ -331,6 +341,8 @@ void MyPic::on_btnDownload6_clkcked()
     timer->start();
 
     ui->btnDownload6->setEnabled(false);
+
+    ui->progressBarPng6->setValue(0);
 }
 
 void MyPic::on_btnCancelDownload_clicked()
@@ -386,7 +398,6 @@ void MyPic::Pic_Send_Handler()
                 {
                     imageData.imageTotalNum = Pic_Get_Gif_Image_Num();
                 }
-
 
                 Pic_Send_Enable(imageData.imageTotalNum, imageData.imageIndex, width, height);
 
@@ -598,7 +609,10 @@ void MyPic::Pic_Set_Progress_Bar()
     }
     else
     {
-        ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
+        if(imageData.imageDataCnt >= imageData.imageTotalLength)
+        {
+            ui->progressBarPng6->setValue((imageData.imageIndex-4) * 100 / imageData.gifImageNum);
+        }
     }
 
     qDebug() << QString().sprintf("send count:%d", imageData.imageDataCnt);

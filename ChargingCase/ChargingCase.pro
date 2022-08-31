@@ -24,7 +24,8 @@ SOURCES += \
     mypic.cpp \
     myprocessbar.cpp \
     myserialport.cpp \
-    mythread.cpp
+    mythread.cpp \
+    myupgrade.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -33,7 +34,8 @@ HEADERS += \
     mypic.h \
     myprocessbar.h \
     myserialport.h \
-    mythread.h
+    mythread.h \
+    myupgrade.h
 
 FORMS += \
     mainwindow.ui

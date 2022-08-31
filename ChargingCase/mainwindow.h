@@ -4,6 +4,8 @@
 #include "myled.h"
 #include "mybtn.h"
 #include "mypic.h"
+#include "myupgrade.h"
+
 #include <QMainWindow>
 #include <QDebug>
 #include <QFile>
@@ -25,6 +27,7 @@ extern MySerialPort *mySerialPort;
 extern MyLed *myLed;
 extern MyBtn *myBtn;
 extern MyPic *myPic;
+extern MyUpgrade *myUpgrade;
 
 class MainWindow : public QMainWindow
 {
