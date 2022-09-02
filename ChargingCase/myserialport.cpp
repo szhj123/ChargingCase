@@ -177,6 +177,164 @@ bool MySerialPort::Serial_Port_Get_Opened()
     return serialPortOpened;
 }
 
+void MySerialPort::Serial_Send_Cmd_Pic_Erase(int imageTotalNum, int imageIndex, uint16_t width, uint16_t height)
+{
+    static char buf[11] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x8;
+    buf[3] = CMD_PIC_ERASE;
+    buf[4] = imageTotalNum;
+    buf[5] = imageIndex;
+    buf[6] = (char )width;
+    buf[7] = (char )(width >> 8);
+    buf[8] = (char )height;
+    buf[9] = (char )(height >> 8);
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[10] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
+void MySerialPort::Serial_Send_Cmd_Pic_Data(int offset, char *pBuf, int length)
+{
+    static char buf[73] = {0};
+    int i;
+    char checksum = 0;
+
+    if(length >= 64)
+        length = 64;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = length+6;
+    buf[3] = CMD_PIC_DATA;
+    buf[4] = (uchar)offset;
+    buf[5] = (uchar)(offset >> 8);
+    buf[6] = (uchar)(offset >> 16);
+    buf[7] = (uchar)(offset >> 24);
+
+    for(i=0;i<length;i++)
+    {
+        buf[8+i] = pBuf[i];
+    }
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[length+8] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, length+9);
+}
+
+void MySerialPort::Serial_Send_Cmd_Get_Version()
+{
+    static char buf[5] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x2;
+    buf[3] = CMD_GET_VERSION;
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[4] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
+void MySerialPort::Serial_Send_Cmd_Fw_Erase(int fwLength )
+{
+    static char buf[9] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x6;
+    buf[3] = CMD_SET_FW_ERASE;
+    buf[4] = (uchar )fwLength;
+    buf[5] = (uchar )(fwLength >> 8);
+    buf[6] = (uchar )(fwLength >> 16);
+    buf[7] = (uchar )(fwLength >> 24);
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[8] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
+void MySerialPort::Serial_Send_Cmd_Tx_Data(int offset, char *pBuf, int length)
+{
+    static char buf[73] = {0};
+    int i;
+    char checksum = 0;
+
+    if(length >= 64)
+        length = 64;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = length+6;
+    buf[3] = CMD_SET_FW_DATA;
+    buf[4] = (uchar)offset;
+    buf[5] = (uchar)(offset >> 8);
+    buf[6] = (uchar)(offset >> 16);
+    buf[7] = (uchar)(offset >> 24);
+
+    for(i=0;i<length;i++)
+    {
+        buf[8+i] = pBuf[i];
+    }
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[length+8] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, length+9);
+}
+
+void MySerialPort::Serial_Send_Cmd_Tx_Checksum(int fwChecksum)
+{
+    static char buf[7] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x4;
+    buf[3] = CMD_SET_FW_CHECKSUM;
+    buf[4] = (uchar )fwChecksum;
+    buf[5] = (uchar )(fwChecksum >> 8);
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[6] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
 void MySerialPort::Serial_Port_Recv_Data()
 {
     if (mySerialPort->bytesAvailable())
@@ -191,19 +349,6 @@ void MySerialPort::Serial_Port_Recv_Data()
         //ui->textRecv->append(QString::fromUtf8(recv_data));
         //qDebug() << QString().sprintf("recv count:%d", length);
         //qDebug()<<"已接收："<<QString::fromUtf8(recv_data);
-
-#if 0
-        if(data[0] == 0x5a && data[1] == 0x5a)
-        {
-            if((uchar)data[3] == 0x84)
-            {
-                myPic->Pic_Set_Ack(1);
-            }
-            recv_data.clear();
-        }
-
-        return ;
-#endif
 
         int i=0;
         for(;i<(length-1);i++)
@@ -228,6 +373,14 @@ void MySerialPort::Serial_Port_Recv_Data()
 
                         myPic->Pic_Set_Ack(ack);
                     }
+                    else if(cmd == (0x80 | CMD_GET_VERSION))
+                    {
+                        uchar fwBuildVer = (uchar)data[i+4];
+                        uchar fwMinorVer = (uchar)data[i+5];
+                        uchar fwMajorVer = (uchar)data[i+6];
+
+                        myUpgrade->Upgrade_Set_Version(fwBuildVer, fwMinorVer, fwMajorVer);
+                    }
 
                     i = cmdLength + 3;
                 }
@@ -235,8 +388,6 @@ void MySerialPort::Serial_Port_Recv_Data()
         }
 
         recv_data.clear();
-
     }
-
 }
 

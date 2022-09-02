@@ -49,7 +49,6 @@ private slots:
 
     void on_btnSerialRefresh_clicked();
 
-    void on_btnSend_clicked();
 private:
     Ui::MainWindow *ui;
     QPoint last;

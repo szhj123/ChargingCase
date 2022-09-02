@@ -70,8 +70,6 @@ public:
     void Pic_Queue_Set(QImage *imageSrc, int imageIndex );
     bool Pic_Queue_Get(image_data_s *imageData);
     void Pic_Queue_Clr(void );
-    void Pic_Send_Enable(int imageTotalNum, int imageIndex, uint16_t width, uint16_t height );
-    void Pic_Send_Data(int offset, char *buf, int length);
     void Pic_Set_Gif_Image_Num(int imageNum);
     int  Pic_Get_Gif_Image_Num(void );
     void Pic_Set_Ack(unsigned char ack );

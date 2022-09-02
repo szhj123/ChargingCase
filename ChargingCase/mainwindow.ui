@@ -231,7 +231,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>81</width>
-          <height>126</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
@@ -335,7 +335,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>81</width>
-          <height>126</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -439,7 +439,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>81</width>
-          <height>126</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -543,7 +543,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
           <x>0</x>
           <y>10</y>
           <width>81</width>
-          <height>126</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -628,7 +628,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <x>0</x>
          <y>20</y>
          <width>84</width>
-         <height>61</height>
+         <height>62</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -794,7 +794,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <x>0</x>
          <y>20</y>
          <width>84</width>
-         <height>61</height>
+         <height>62</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_3">
@@ -873,7 +873,7 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
          <x>0</x>
          <y>20</y>
          <width>84</width>
-         <height>61</height>
+         <height>62</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
@@ -1395,12 +1395,12 @@ font: 8pt &quot;Microsoft YaHei UI&quot;;</string>
        <rect>
         <x>100</x>
         <y>29</y>
-        <width>251</width>
+        <width>321</width>
         <height>31</height>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_upg">
+     <widget class="QPushButton" name="btn_upgEn">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1434,7 +1434,7 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        <string>当前固件版本号：</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_27">
+     <widget class="QLabel" name="label_fwVersion">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -1442,6 +1442,10 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
         <width>71</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 240, 240);
+font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
       </property>
       <property name="text">
        <string/>
@@ -1457,11 +1461,6 @@ font: 10pt &quot;Microsoft YaHei UI&quot;;</string>
        </rect>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab4">
-     <attribute name="title">
-      <string>页</string>
-     </attribute>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBoxSerial">

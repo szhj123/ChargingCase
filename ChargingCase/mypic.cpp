@@ -399,7 +399,7 @@ void MyPic::Pic_Send_Handler()
                     imageData.imageTotalNum = Pic_Get_Gif_Image_Num();
                 }
 
-                Pic_Send_Enable(imageData.imageTotalNum, imageData.imageIndex, width, height);
+                serialPort->Serial_Send_Cmd_Pic_Erase(imageData.imageTotalNum, imageData.imageIndex, width, height);
 
                 imageData.imageTotalLength = width * height * 2;
                 imageData.imageHeightCnt = 0;
@@ -473,7 +473,7 @@ void MyPic::Pic_Send_Handler()
                     tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(imageData.imageDataCnt ,tmpBuf, PIC_DATA_MAX_LENGTH);
+                serialPort->Serial_Send_Cmd_Pic_Data(imageData.imageDataCnt ,tmpBuf, PIC_DATA_MAX_LENGTH);
                 //serialPort->Serial_Port_Send_Data(tmpBuf, 64);
             }
             else
@@ -484,7 +484,7 @@ void MyPic::Pic_Send_Handler()
                     tmpBuf[i*2+1] = imageData.pData[i*2];
                 }
 
-                Pic_Send_Data(imageData.imageDataCnt, tmpBuf, imageData.imageWidth*2);
+                serialPort->Serial_Send_Cmd_Pic_Data(imageData.imageDataCnt, tmpBuf, imageData.imageWidth*2);
                 //serialPort->Serial_Port_Send_Data(tmpBuf, imageData.imageWidth*2);
             }
 
@@ -647,62 +647,6 @@ bool MyPic::Pic_Queue_Get(image_data_s *imageData)
 void MyPic::Pic_Queue_Clr()
 {
     memset((void*)&imageQueue, 0, sizeof(image_queue_typedef));
-}
-
-void MyPic::Pic_Send_Enable(int imageTotalNum, int imageIndex, uint16_t width, uint16_t height)
-{
-    static char buf[11] = {0};
-    char checksum = 0;
-
-    buf[0] = 0x5a;
-    buf[1] = 0x5a;
-    buf[2] = 0x8;
-    buf[3] = 0x2;
-    buf[4] = imageTotalNum;
-    buf[5] = imageIndex;
-    buf[6] = (char )width;
-    buf[7] = (char )(width >> 8);
-    buf[8] = (char )height;
-    buf[9] = (char )(height >> 8);
-
-    for(int i = 0;i<buf[2];i++)
-    {
-        checksum += buf[i+2];
-    }
-
-    buf[10] = (char)checksum;
-
-    serialPort->Serial_Port_Send_Data(buf, sizeof(buf));
-}
-
-void MyPic::Pic_Send_Data(int offset, char *pBuf, int length)
-{
-    static char buf[73] = {0};
-    int i;
-    char checksum = 0;
-
-    buf[0] = 0x5a;
-    buf[1] = 0x5a;
-    buf[2] = length+6;
-    buf[3] = 0x3;
-    buf[4] = (uchar)offset;
-    buf[5] = (uchar)(offset >> 8);
-    buf[6] = (uchar)(offset >> 16);
-    buf[7] = (uchar)(offset >> 24);
-
-    for(i=0;i<length;i++)
-    {
-        buf[8+i] = pBuf[i];
-    }
-
-    for(int i = 0;i<buf[2];i++)
-    {
-        checksum += buf[i+2];
-    }
-
-    buf[length+8] = (char)checksum;
-
-    serialPort->Serial_Port_Send_Data(buf, length+9);
 }
 
 void MyPic::Pic_Set_Gif_Image_Num(int imageNum)

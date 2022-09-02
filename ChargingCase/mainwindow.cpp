@@ -104,14 +104,6 @@ void MainWindow::on_btnSerialRefresh_clicked()
 }
 
 
-void MainWindow::on_btnSend_clicked()
-{
-    char buf[5] = {0,1,2,3,4};
-
-    mySerialPort->Serial_Port_Send_Data(buf, 5);
-}
-
-
 
 
 
