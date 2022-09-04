@@ -313,7 +313,7 @@ void MySerialPort::Serial_Send_Cmd_Tx_Data(int offset, char *pBuf, int length)
     Serial_Port_Send_Data(buf, length+9);
 }
 
-void MySerialPort::Serial_Send_Cmd_Tx_Checksum(int fwChecksum)
+void MySerialPort::Serial_Send_Cmd_Tx_Checksum(uint16_t fwChecksum)
 {
     static char buf[7] = {0};
     char checksum = 0;
@@ -367,11 +367,17 @@ void MySerialPort::Serial_Port_Recv_Data()
 
                 if(calChecksum == cmdCheckSum)
                 {
-                    if(cmd == 0x84)
+                    if(cmd == CMD_PIC_ACK)
                     {
-                        unsigned char ack = (uchar)data[i+4];
+                        uchar ack = (uchar)data[i+4];
 
                         myPic->Pic_Set_Ack(ack);
+                    }
+                    else if(cmd == CDM_GET_FW_ACK)
+                    {
+                        uchar ack = (uchar)data[i+4];
+
+                        myUpgrade->Upgrade_Set_Ack(ack);
                     }
                     else if(cmd == (0x80 | CMD_GET_VERSION))
                     {

@@ -25,8 +25,10 @@ typedef struct _fw_info_t
 {
     int fwLength;
     int fwOffset;
-    uchar *fwBuf;
+    char *fwBuf;
     int fwTxLength;
+    int fwTxTimeoutCnt;
+    int fwTxErrCnt;
     QByteArray fwArray;
 }fw_info_t;
 Q_DECLARE_METATYPE(fw_info_t)
@@ -38,10 +40,16 @@ public:
     explicit MyUpgrade(QWidget *parent = nullptr);
     void Upgrade_Init(Ui::MainWindow *ui, MySerialPort *serialPort);
     void Upgrade_Set_Version(uchar fwBuildVer, uchar fwMinorVer, uchar fwMajorVer);
+    void Upgrade_Set_Ack(uchar ack );
+    void Upgrade_Clr_Ack(void );
+    uchar Upgrade_Get_Ack(void );
+    uint16_t UPgrade_Cal_Checksum(uint8_t *data, uint32_t length );
+
 private:
     Ui::MainWindow *ui;
     MySerialPort *serialPort;
     QTimer *timer;
+    uchar ack;
 signals:
 
 private slots:

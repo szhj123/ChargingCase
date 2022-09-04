@@ -12,13 +12,11 @@
 #define CMD_PIC_ACK             0x04
 
 #define CMD_SET_FW_ERASE        0x05
-#define CMD_GET_FW_ERASE_ACK    (CMD_SET_FW_ERASE | 0x80)
 #define CMD_SET_FW_DATA         0x06
-#define CMD_GET_FW_DATA_ACK     (CMD_SET_FW_DATA | 0x80)
 #define CMD_SET_FW_CHECKSUM     0x07
-#define CDM_GET_FW_CHECKSUM_ACK (CMD_SET_FW_CHECKSUM | 0x80)
+#define CDM_GET_FW_ACK          0x08
 
-#define CMD_GET_VERSION      0x09
+#define CMD_GET_VERSION         0x09
 
 class MySerialPort : public QObject
 {
@@ -39,7 +37,7 @@ public:
     void Serial_Send_Cmd_Get_Version(void );
     void Serial_Send_Cmd_Fw_Erase(int fwLength );
     void Serial_Send_Cmd_Tx_Data(int offset, char *pBuf, int length );
-    void Serial_Send_Cmd_Tx_Checksum(int fwChecksum );
+    void Serial_Send_Cmd_Tx_Checksum(uint16_t fwChecksum );
 
 private:
     QSerialPort *mySerialPort;
