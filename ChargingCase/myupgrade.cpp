@@ -1,6 +1,6 @@
 #include "myupgrade.h"
 
-#define UPG_INTERVAL_TIME                5 //ms
+#define UPG_INTERVAL_TIME                10 //ms
 #define UPG_ERASE_TIMEOUT                1000 //ms
 
 static fw_info_t   fwInfo;
@@ -31,6 +31,10 @@ void MyUpgrade::Upgrade_Init(Ui::MainWindow *ui, MySerialPort *serialPort)
 void MyUpgrade::Upgrade_Set_Version(uchar fwBuildVer, uchar fwMinorVer, uchar fwMajorVer)
 {
     QString str = "0.0.0";
+
+    fwInfo.buildVer = fwBuildVer;
+    fwInfo.minorVer = fwMinorVer;
+    fwInfo.majorVer = fwMajorVer;
 
     str[0] = fwBuildVer + 0x30;
     str[2] = fwMinorVer + 0x30;
@@ -151,6 +155,8 @@ void MyUpgrade::Upg_Handler()
 
             fwInfo.fwTxTimeoutCnt = 0;
 
+            qDebug() << QString().sprintf("firmware size:%d", fwInfo.fwSize);
+
             upgState = UPG_STATE_WAIT_ACK_FOR_ERASE;
 
             break;
@@ -185,23 +191,10 @@ void MyUpgrade::Upg_Handler()
             if(fwInfo.fwSize > FW_MAX_DATA_LENGTH)
             {
                 serialPort->Serial_Send_Cmd_Tx_Data(fwInfo.fwOffset, fwInfo.fwBuf, FW_MAX_DATA_LENGTH);
-
-#if 1
-                for(int i=0;i<FW_MAX_DATA_LENGTH;i++)
-                {
-                    qDebug() << QString().sprintf("0x%02x", fwInfo.fwBuf[i]);
-                }
-#endif
             }
             else
             {
                 serialPort->Serial_Send_Cmd_Tx_Data(fwInfo.fwOffset, fwInfo.fwBuf, fwInfo.fwSize);
-#if 1
-                for(int i=0;i<fwInfo.fwSize;i++)
-                {
-                    qDebug() << QString().sprintf("0x%02x", fwInfo.fwBuf[i]);
-                }
-#endif
             }
 
             upgState = UPG_STATE_WAIT_ACK_FOR_TX;
@@ -233,11 +226,20 @@ void MyUpgrade::Upg_Handler()
                     upgState = UPG_STATE_TX_FW_CHECKSUM;
                 }
 
-                ui->upgradeBar->Update_Val(fwInfo.fwOffset *100 / fwInfo.fwArray.length());
+                uint8_t progressVal = fwInfo.fwOffset *100 / fwInfo.fwArray.length();
+
+                if(progressVal >= 100)
+                {
+                    progressVal = 99;
+                }
+
+                qDebug() << QString().sprintf("firmware data offset:%d", fwInfo.fwOffset);
+
+                ui->upgradeBar->Update_Val(progressVal);
             }
             else
             {
-                if(++fwInfo.fwTxTimeoutCnt >= (500 / UPG_INTERVAL_TIME))
+                if(++fwInfo.fwTxTimeoutCnt >= (50 / UPG_INTERVAL_TIME))
                 {
                     fwInfo.fwTxTimeoutCnt = 0;
 
@@ -265,8 +267,6 @@ void MyUpgrade::Upg_Handler()
 
             serialPort->Serial_Send_Cmd_Tx_Checksum((int )checksum);
 
-            fwInfo.fwTxTimeoutCnt = 0;
-
             upgState = UPG_STATE_WATI_ACK_FOR_CHECKSUM;
 
             break;
@@ -275,9 +275,13 @@ void MyUpgrade::Upg_Handler()
         {
             if(Upgrade_Get_Ack() == 0x01)
             {
-                upgState = UPG_STATE_RESET;
+                fwInfo.fwTxTimeoutCnt = 0;
+
+                fwInfo.fwTxErrCnt = 0;
 
                 serialPort->Serial_Send_Cmd_Tx_Reset();
+
+                upgState = UPG_STATE_TX_GET_VERSION;
             }
             else
             {
@@ -285,22 +289,63 @@ void MyUpgrade::Upg_Handler()
                 {
                     fwInfo.fwTxTimeoutCnt = 0;
 
-                    upgState = UPG_STATE_ERASE_FLASH;
+                    upgState = UPG_STATE_TX_FW_CHECKSUM;
 
-                    QMessageBox::warning(this, tr("Upgrade State"),tr("Upgrade Error, it's timeout for getting correct checksum"));
+                    if(++fwInfo.fwTxErrCnt >= 10)
+                    {
+                        upgState = UPG_STATE_ERASE_FLASH;
 
-                    timer->stop();
+                        QMessageBox::warning(this, tr("Upgrade State"),tr("Upgrade Error, it's timeout for getting correct checksum"));
+
+                        timer->stop();
+                    }
                 }
             }
             break;
         }
-        case UPG_STATE_RESET:
+        case UPG_STATE_TX_GET_VERSION:
         {
-            upgState = UPG_STATE_IDLE;
+            fwInfo.buildVer = 0;
+            fwInfo.minorVer = 0;
+            fwInfo.majorVer = 0;
 
-            QMessageBox::warning(this,tr("Upgrade State"), tr("Upgrade Successful!"));
+            serialPort->Serial_Send_Cmd_Get_Version();
 
-            timer->stop();
+            upgState = UPG_STATE_WAIT_FW_VERSION;
+
+            break;
+        }
+        case UPG_STATE_WAIT_FW_VERSION:
+        {
+
+            if((fwInfo.buildVer + fwInfo.minorVer + fwInfo.majorVer) != 0)
+            {
+                upgState = UPG_STATE_IDLE;
+
+                ui->upgradeBar->Update_Val(100);
+
+                QMessageBox::warning(this,tr("Upgrade State"), tr("Upgrade Successful!"));
+
+                timer->stop();
+            }
+            else
+            {
+                if(++fwInfo.fwTxTimeoutCnt >= (1000 / UPG_INTERVAL_TIME))
+                {
+                    fwInfo.fwTxTimeoutCnt = 0;
+
+                    upgState = UPG_STATE_TX_GET_VERSION;
+
+                    if(++fwInfo.fwTxErrCnt >= 10)
+                    {
+                        upgState = UPG_STATE_ERASE_FLASH;
+
+                        QMessageBox::warning(this, tr("Upgrade State"),tr("Upgrade Error, it's timeout for getting correct checksum"));
+
+                        timer->stop();
+                    }
+                }
+            }
             break;
         }
         default: break;
