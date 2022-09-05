@@ -17,6 +17,7 @@
 #define CDM_GET_FW_ACK          0x08
 
 #define CMD_GET_VERSION         0x09
+#define CMD_SET_RESET           0x0a
 
 class MySerialPort : public QObject
 {
@@ -38,7 +39,7 @@ public:
     void Serial_Send_Cmd_Fw_Erase(int fwLength );
     void Serial_Send_Cmd_Tx_Data(int offset, char *pBuf, int length );
     void Serial_Send_Cmd_Tx_Checksum(uint16_t fwChecksum );
-
+    void Serial_Send_Cmd_Tx_Reset(void );
 private:
     QSerialPort *mySerialPort;
     bool  serialPortOpened;

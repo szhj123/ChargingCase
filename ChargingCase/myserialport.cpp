@@ -335,6 +335,26 @@ void MySerialPort::Serial_Send_Cmd_Tx_Checksum(uint16_t fwChecksum)
     Serial_Port_Send_Data(buf, sizeof(buf));
 }
 
+void MySerialPort::Serial_Send_Cmd_Tx_Reset()
+{
+    static char buf[5] = {0};
+    char checksum = 0;
+
+    buf[0] = 0x5a;
+    buf[1] = 0x5a;
+    buf[2] = 0x2;
+    buf[3] = CMD_SET_RESET;
+
+    for(int i = 0;i<buf[2];i++)
+    {
+        checksum += buf[i+2];
+    }
+
+    buf[4] = (char)checksum;
+
+    Serial_Port_Send_Data(buf, sizeof(buf));
+}
+
 void MySerialPort::Serial_Port_Recv_Data()
 {
     if (mySerialPort->bytesAvailable())

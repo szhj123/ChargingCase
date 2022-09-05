@@ -110,13 +110,13 @@ void MyUpgrade::on_btnAddFw_Clicked()
 
     QDataStream binFileData(&readFile);
 
-    fwInfo.fwLength = readFileInfo.size();
+    fwInfo.fwSize = readFileInfo.size();
 
-    static char *pBuf = new char[fwInfo.fwLength];
+    static char *pBuf = new char[fwInfo.fwSize];
 
-    binFileData.readRawData(pBuf, static_cast<int>(fwInfo.fwLength));
+    binFileData.readRawData(pBuf, static_cast<int>(fwInfo.fwSize));
 
-    fwInfo.fwArray = QByteArray(pBuf, static_cast<int>(fwInfo.fwLength));
+    fwInfo.fwArray = QByteArray(pBuf, static_cast<int>(fwInfo.fwSize));
 
     fwInfo.fwBuf = (char *)fwInfo.fwArray.data();
 }
@@ -124,6 +124,8 @@ void MyUpgrade::on_btnAddFw_Clicked()
 void MyUpgrade::on_btnUpgEn_Clicked()
 {
     upgState = UPG_STATE_ERASE_FLASH;
+
+    ui->upgradeBar->Update_Val(0);
 
     timer->start();
 }
@@ -145,7 +147,7 @@ void MyUpgrade::Upg_Handler()
     {
         case UPG_STATE_ERASE_FLASH:
         {
-            serialPort->Serial_Send_Cmd_Fw_Erase(fwInfo.fwLength);
+            serialPort->Serial_Send_Cmd_Fw_Erase(fwInfo.fwSize);
 
             fwInfo.fwTxTimeoutCnt = 0;
 
@@ -157,6 +159,8 @@ void MyUpgrade::Upg_Handler()
         {
             if(Upgrade_Get_Ack() == 0x01)
             {
+                Upgrade_Clr_Ack();
+
                 fwInfo.fwTxTimeoutCnt = 0;
 
                 fwInfo.fwOffset = 0;
@@ -178,23 +182,26 @@ void MyUpgrade::Upg_Handler()
         }
         case UPG_STATE_TX_FW_DATA:
         {
-            if(fwInfo.fwLength > FW_MAX_DATA_LENGTH)
+            if(fwInfo.fwSize > FW_MAX_DATA_LENGTH)
             {
                 serialPort->Serial_Send_Cmd_Tx_Data(fwInfo.fwOffset, fwInfo.fwBuf, FW_MAX_DATA_LENGTH);
 
+#if 1
                 for(int i=0;i<FW_MAX_DATA_LENGTH;i++)
                 {
                     qDebug() << QString().sprintf("0x%02x", fwInfo.fwBuf[i]);
                 }
+#endif
             }
             else
             {
-                serialPort->Serial_Send_Cmd_Tx_Data(fwInfo.fwOffset, fwInfo.fwBuf, fwInfo.fwLength);
-
-                for(int i=0;i<fwInfo.fwLength;i++)
+                serialPort->Serial_Send_Cmd_Tx_Data(fwInfo.fwOffset, fwInfo.fwBuf, fwInfo.fwSize);
+#if 1
+                for(int i=0;i<fwInfo.fwSize;i++)
                 {
                     qDebug() << QString().sprintf("0x%02x", fwInfo.fwBuf[i]);
                 }
+#endif
             }
 
             upgState = UPG_STATE_WAIT_ACK_FOR_TX;
@@ -204,12 +211,14 @@ void MyUpgrade::Upg_Handler()
         {
             if(Upgrade_Get_Ack() == 0x01)
             {
+                Upgrade_Clr_Ack();
+
                 fwInfo.fwTxTimeoutCnt = 0;
                 fwInfo.fwTxErrCnt = 0;
 
-                if(fwInfo.fwLength > FW_MAX_DATA_LENGTH)
+                if(fwInfo.fwSize > FW_MAX_DATA_LENGTH)
                 {
-                    fwInfo.fwLength -= FW_MAX_DATA_LENGTH;
+                    fwInfo.fwSize -= FW_MAX_DATA_LENGTH;
                     fwInfo.fwOffset += FW_MAX_DATA_LENGTH;
                     fwInfo.fwBuf += FW_MAX_DATA_LENGTH;
 
@@ -217,16 +226,18 @@ void MyUpgrade::Upg_Handler()
                 }
                 else
                 {
-                    fwInfo.fwOffset += fwInfo.fwLength;
-                    fwInfo.fwLength = 0;
+                    fwInfo.fwOffset += fwInfo.fwSize;
+                    fwInfo.fwSize = 0;
                     fwInfo.fwBuf = nullptr;
 
                     upgState = UPG_STATE_TX_FW_CHECKSUM;
                 }
+
+                ui->upgradeBar->Update_Val(fwInfo.fwOffset *100 / fwInfo.fwArray.length());
             }
             else
             {
-                if(++fwInfo.fwTxTimeoutCnt >= (50 / UPG_INTERVAL_TIME))
+                if(++fwInfo.fwTxTimeoutCnt >= (500 / UPG_INTERVAL_TIME))
                 {
                     fwInfo.fwTxTimeoutCnt = 0;
 
@@ -248,9 +259,9 @@ void MyUpgrade::Upg_Handler()
         {
             fwInfo.fwBuf = (char *)fwInfo.fwArray.data();
 
-            fwInfo.fwLength = fwInfo.fwArray.length();
+            fwInfo.fwSize = fwInfo.fwArray.length();
 
-            uint16_t checksum = UPgrade_Cal_Checksum((uint8_t *)fwInfo.fwBuf, fwInfo.fwLength);
+            uint16_t checksum = UPgrade_Cal_Checksum((uint8_t *)fwInfo.fwBuf, fwInfo.fwSize);
 
             serialPort->Serial_Send_Cmd_Tx_Checksum((int )checksum);
 
@@ -264,15 +275,13 @@ void MyUpgrade::Upg_Handler()
         {
             if(Upgrade_Get_Ack() == 0x01)
             {
-                upgState = UPG_STATE_ERASE_FLASH;
+                upgState = UPG_STATE_RESET;
 
-                QMessageBox::warning(this,tr("Upgrade State"), tr("Upgrade Successful!"));
-
-                timer->stop();
+                serialPort->Serial_Send_Cmd_Tx_Reset();
             }
             else
             {
-                if(++fwInfo.fwTxTimeoutCnt >= (50 / UPG_INTERVAL_TIME))
+                if(++fwInfo.fwTxTimeoutCnt >= (500 / UPG_INTERVAL_TIME))
                 {
                     fwInfo.fwTxTimeoutCnt = 0;
 
@@ -283,6 +292,15 @@ void MyUpgrade::Upg_Handler()
                     timer->stop();
                 }
             }
+            break;
+        }
+        case UPG_STATE_RESET:
+        {
+            upgState = UPG_STATE_IDLE;
+
+            QMessageBox::warning(this,tr("Upgrade State"), tr("Upgrade Successful!"));
+
+            timer->stop();
             break;
         }
         default: break;

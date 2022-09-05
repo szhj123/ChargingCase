@@ -17,12 +17,6 @@ MyProcessBar::MyProcessBar(QWidget *parent) : QWidget(parent)
     processWidth = 10;
 
     setMinimumSize(50, 50);
-
-    timer = new QTimer(this);
-    timer->setInterval(30);
-    connect(timer, SIGNAL(timeout()), this, SLOT(Update_Val()));
-
-    timer->start();
 }
 
 MyProcessBar::~MyProcessBar()
@@ -100,32 +94,12 @@ void MyProcessBar::Draw_Text(QPainter *painter)
 
 }
 
-void MyProcessBar::Update_Val()
+void MyProcessBar::Update_Val(uint8_t val)
 {
-    static bool flag= false;
+    if(val > 100)
+        val = 100;
 
-    if(!flag)
-    {
-        if(currVal < 100)
-        {
-            currVal++;
-        }
-        else
-        {
-            flag = true;
-        }
-    }
-    else
-    {
-        if(currVal > 0)
-        {
-            currVal--;
-        }
-        else
-        {
-            flag = false;
-        }
-    }
+    currVal = val;
 
     update();
 }

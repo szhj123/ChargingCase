@@ -3,6 +3,7 @@
 
 #include "ui_mainwindow.h"
 #include "myserialport.h"
+#include "myprocessbar.h"
 
 #include <QWidget>
 #include <QFileDialog>
@@ -18,12 +19,14 @@ typedef enum
     UPG_STATE_TX_FW_DATA,
     UPG_STATE_WAIT_ACK_FOR_TX,
     UPG_STATE_TX_FW_CHECKSUM,
-    UPG_STATE_WATI_ACK_FOR_CHECKSUM
+    UPG_STATE_WATI_ACK_FOR_CHECKSUM,
+    UPG_STATE_RESET,
+    UPG_STATE_IDLE
 }upg_state_t;
 
 typedef struct _fw_info_t
 {
-    int fwLength;
+    int fwSize;
     int fwOffset;
     char *fwBuf;
     int fwTxLength;
