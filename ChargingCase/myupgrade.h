@@ -51,6 +51,9 @@ public:
     void Upgrade_Set_Ack(uchar ack );
     void Upgrade_Clr_Ack(void );
     uchar Upgrade_Get_Ack(void );
+    void Upgrade_Set_Fw_Version_Flag(bool flag );
+    void Upgrade_Clr_Fw_Version_Flag(void );
+    bool Upgrade_Get_Fw_Version_Flag(void );
     uint16_t UPgrade_Cal_Checksum(uint8_t *data, uint32_t length );
 
 private:
@@ -58,6 +61,7 @@ private:
     MySerialPort *serialPort;
     QTimer *timer;
     uchar ack;
+    bool fwVerRecvFlag;
 signals:
 
 private slots:

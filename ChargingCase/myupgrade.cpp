@@ -32,9 +32,7 @@ void MyUpgrade::Upgrade_Set_Version(uchar fwBuildVer, uchar fwMinorVer, uchar fw
 {
     QString str = "0.0.0";
 
-    fwInfo.buildVer = fwBuildVer;
-    fwInfo.minorVer = fwMinorVer;
-    fwInfo.majorVer = fwMajorVer;
+    Upgrade_Set_Fw_Version_Flag(true);
 
     str[0] = fwBuildVer + 0x30;
     str[2] = fwMinorVer + 0x30;
@@ -56,6 +54,21 @@ void MyUpgrade::Upgrade_Clr_Ack()
 uchar MyUpgrade::Upgrade_Get_Ack()
 {
     return this->ack;
+}
+
+void MyUpgrade::Upgrade_Set_Fw_Version_Flag(bool flag)
+{
+    this->fwVerRecvFlag = flag;
+}
+
+void MyUpgrade::Upgrade_Clr_Fw_Version_Flag()
+{
+    this->fwVerRecvFlag = false;
+}
+
+bool MyUpgrade::Upgrade_Get_Fw_Version_Flag()
+{
+    return this->fwVerRecvFlag;
 }
 
 void InvertUint16(uint16_t *poly )
@@ -136,6 +149,8 @@ void MyUpgrade::on_btnUpgEn_Clicked()
 
 void MyUpgrade::on_tabWidget_Clicked(int index)
 {
+    Upgrade_Clr_Fw_Version_Flag();
+
     if(index == 2)
     {
         if(serialPort->Serial_Port_Get_Opened() == true)
@@ -305,9 +320,7 @@ void MyUpgrade::Upg_Handler()
         }
         case UPG_STATE_TX_GET_VERSION:
         {
-            fwInfo.buildVer = 0;
-            fwInfo.minorVer = 0;
-            fwInfo.majorVer = 0;
+            Upgrade_Clr_Fw_Version_Flag();
 
             serialPort->Serial_Send_Cmd_Get_Version();
 
@@ -318,7 +331,7 @@ void MyUpgrade::Upg_Handler()
         case UPG_STATE_WAIT_FW_VERSION:
         {
 
-            if((fwInfo.buildVer + fwInfo.minorVer + fwInfo.majorVer) != 0)
+            if(Upgrade_Get_Fw_Version_Flag())
             {
                 upgState = UPG_STATE_IDLE;
 
