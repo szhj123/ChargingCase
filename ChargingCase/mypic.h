@@ -17,8 +17,8 @@
 #include <QProgressBar>
 
 #define GIF_FRAME_NUM                (128)
-#define IMAGE_MAX_WIDTH              (132)
-#define IMAGE_MAX_HEIGHT             (162)
+#define IMAGE_MAX_WIDTH              (120)
+#define IMAGE_MAX_HEIGHT             (160)
 
 typedef struct
 {
